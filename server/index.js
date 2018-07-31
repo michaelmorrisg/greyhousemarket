@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const massive = require('massive')
 const session = require('express-session')
+// const bcrypt = require('bcryptjs')
 require('dotenv').config()
 
 const controller = require('./controller')
@@ -28,5 +29,8 @@ app.use(session({
 
 
 /////Endpoints///////
+app.post('/api/newuser', controller.addUser)
+app.get('/api/userinfo/:email/:password', controller.getUser)
+app.get('/api/products/:category', controller.getProducts)
 
 
