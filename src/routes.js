@@ -20,6 +20,6 @@ export default (
         <Route path="/walls" component={Walls}/>
         <Route path="/car" component={Car}/>
         <Route path="/seasonal" component={Seasonal}/>
-        {/* <Route path="/product" component={SingleProduct}/> */}
+        <Route path="/product/:id" component={SingleProduct}/>
     </Switch>
 )

@@ -32,5 +32,7 @@ app.use(session({
 app.post('/api/newuser', controller.addUser)
 app.get('/api/userinfo/:email/:password', controller.getUser)
 app.get('/api/products/:category', controller.getProducts)
+app.get('/api/getproduct/:id', controller.getProduct)
+app.post('/api/addproduct', controller.addProduct)
 
 

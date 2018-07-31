@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import MappedProducts from './MappedProducts'
+import {Link} from 'react-router-dom'
 
 class Nails extends Component{
     constructor(){
@@ -22,9 +23,9 @@ class Nails extends Component{
 
     render(){
         return(
-            <div>{this.state.nailsProducts.map(element=>{
+            <div>{this.state.nailsProducts.map((element,i)=>{
                 return(
-                    <div><MappedProducts key={element} productInfo = {element} /></div>
+                    <Link to={`/product/${element.product_id}`} key={i}><div><MappedProducts productInfo = {element} /></div></Link>
                 )
             })}</div>
         )

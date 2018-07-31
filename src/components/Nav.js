@@ -12,6 +12,7 @@ class Nav extends Component{
                 <Link to="/">Home</Link>
                 Nav Bar!
                 <Link to="/account/login">Login</Link>
+                Cart
             </div>
         )
     }

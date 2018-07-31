@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import MappedProducts from './MappedProducts'
+import {Link} from 'react-router-dom'
 
 class Seasonal extends Component{
     constructor(){
@@ -22,10 +23,9 @@ class Seasonal extends Component{
     render(){
         return(
             <div>
-                {this.state.seasonProducts.map(element =>{
-                    console.log(element)
+                {this.state.seasonProducts.map((element,i) =>{
                     return(
-                        <a href={`/products/${element.product_id}`}><div><MappedProducts key={element} productInfo={element}/></div></a>
+                        <Link to={`/product/${element.product_id}`} key={i}><div><MappedProducts productInfo={element}/></div></Link>
                     )
                 })}
             </div>

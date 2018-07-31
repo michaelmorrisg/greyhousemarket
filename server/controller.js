@@ -45,5 +45,21 @@ module.exports = {
         .then(response=>{
             res.status(200).send(response)
         })
+    },
+    getProduct: (req,res)=>{
+        const db = req.app.get('db')
+
+        db.get_product({id: req.params.id})
+        .then(response=>{
+            res.status(200).send(response)
+        })
+    },
+    addProduct: (req,res)=>{
+        const db = req.app.get('db')
+
+        db.add_product()
+        .then(response=>{
+            res.status(200).send(response)
+        })
     }
 }
