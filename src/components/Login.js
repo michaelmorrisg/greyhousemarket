@@ -26,7 +26,7 @@ class Login extends Component {
         axios.get(`/api/userinfo/${this.state.email}/${this.state.password}`)
         .then((response)=>{
             console.log(response)
-            this.props.loginUser(response.data[0].first_name,response.data[0].last_name,response.data[0].id,response.data[0].email)
+            this.props.loginUser(response.data.response[0].first_name,response.data.response[0].last_name,response.data.response[0].id,response.data.response[0].email)
         })
     }
 

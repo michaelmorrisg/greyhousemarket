@@ -16,9 +16,16 @@ description text
 create table category (
 category_id serial primary key,
 name text
-)
+);
 
 create table category_product (
 product_id integer references products(products_id),
 category_id integer references category(category_id)
-)
+);
+
+create table cart (
+item_id integer references products(products_id),
+name text,
+price integer,
+image text
+);

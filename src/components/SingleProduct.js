@@ -22,9 +22,21 @@ class SingleProduct extends Component{
             quantity: input
         })
     }
+    addToCart(){
+        axios.post('/api/addproduct',
+            {productId:this.state.productInfo[0].products_id
+        })
+        .then(res=>{
+            console.log(res)
+            if(res.data="Gotta log in!"){
+                alert("Please log in to add to your cart!")
+            } else {
+                alert("Added to cart")
+            }
+        })
+    }
 
     render(){
-        console.log(this.state.productInfo[0])
         return(
             <div>
                 <div>{this.state.productInfo[0] ? this.state.productInfo[0].image : ''}</div>
@@ -32,7 +44,7 @@ class SingleProduct extends Component{
                     <p>{this.state.productInfo[0] ? this.state.productInfo[0].product_name : ''}</p>
                     <p>{this.state.productInfo[0] ? this.state.productInfo[0].price : ''}</p>
                     <p>Quantity: <input onChange={(e)=>this.handleQuantity(e.target.value)} type="number" placeholder="1"/></p>
-                    {this.state.productInfo[0] ? <button>Add to Cart</button> : '' }
+                    {this.state.productInfo[0] ? <button onClick={()=>this.addToCart()}>Add to Cart</button> : '' }
                     <p>{this.state.productInfo[0] ? this.state.productInfo[0].description : ''}</p>
                 </div>
             </div>

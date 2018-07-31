@@ -9,7 +9,8 @@ module.exports = {
 
         db.add_user({firstName: req.body.firstName, lastName: req.body.lastName,password: hash,email: req.body.email})
         .then(response =>{
-            res.status(200).send(response)
+            req.session.userid = response[0].id
+            res.status(200).send({sessionId:req.session.userid,response:response})
         })
     },
     getUser: (req,res)=>{
@@ -26,8 +27,12 @@ module.exports = {
             bcrypt.compare(req.params.password, response[0].password).then(hashRes=>{
 
                 if(hashRes===true){
+                    if(!req.session.userid){
                     req.session.userid = response[0].id
-                    res.status(200).send(response)
+                    res.status(200).send({sessionId:req.session.userid,response:response})
+                    } else {
+                        res.status(200).send({sessionId:req.session.userid, response:response})
+                    }
                
                 } else {
                     res.status(401).send('Wrong username or password')
@@ -55,9 +60,20 @@ module.exports = {
         })
     },
     addProduct: (req,res)=>{
+        if(req.session.userid){
         const db = req.app.get('db')
 
-        db.add_product()
+        db.add_product({productId: req.body.productId, userId: req.session.userid})
+        .then(response=>{
+            res.status(200).send(response)
+        })} else {
+            res.status(200).send('Gotta log in!')
+        }
+    },
+    getCart: (req,res)=>{
+        const db = req.app.get('db')
+
+        db.get_cart({id:req.session.userid})
         .then(response=>{
             res.status(200).send(response)
         })

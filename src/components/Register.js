@@ -39,7 +39,7 @@ class Register extends Component {
         axios.post(`/api/newuser`,{firstName:this.state.firstName,lastName:this.state.lastName,email:this.state.email,password:this.state.password})
         .then(res=>{
             console.log(res)
-            this.props.loginUser(res.data[0].first_name,res.data[0].last_name,res.data[0].id,res.data[0].email)
+            this.props.loginUser(res.data.response[0].first_name,res.data.response[0].last_name,res.data.response[0].id,res.data.response[0].email)
         })
     }
 

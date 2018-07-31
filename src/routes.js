@@ -9,6 +9,7 @@ import Walls from './components/Walls'
 import Car from './components/Car'
 import Seasonal from './components/Seasonal'
 import SingleProduct from './components/SingleProduct'
+import Cart from './components/Cart'
 
 export default (
     <Switch>
@@ -21,5 +22,6 @@ export default (
         <Route path="/car" component={Car}/>
         <Route path="/seasonal" component={Seasonal}/>
         <Route path="/product/:id" component={SingleProduct}/>
+        <Route path="/cart" component={Cart}/>
     </Switch>
 )

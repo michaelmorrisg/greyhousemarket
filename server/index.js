@@ -34,5 +34,6 @@ app.get('/api/userinfo/:email/:password', controller.getUser)
 app.get('/api/products/:category', controller.getProducts)
 app.get('/api/getproduct/:id', controller.getProduct)
 app.post('/api/addproduct', controller.addProduct)
+app.get('/api/getcart', controller.getCart)
 
 
