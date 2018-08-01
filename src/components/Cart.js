@@ -28,7 +28,11 @@ class Cart extends Component {
                 })
                 axios.get('/api/totalcart')
                     .then(res=>{
+                        if(res.data[0].sum){
                         this.props.countCart(res.data[0].sum)
+                        } else (
+                            this.props.countCart(0)
+                        )
                     })
         })
     }
@@ -38,7 +42,12 @@ class Cart extends Component {
             axios.get('/api/getcart')
                 .then(res=>{
                     this.setState({cartItems: res.data})
+                    axios.get('/api/totalcart')
+                    .then(res=>{
+                        this.props.countCart(res.data[0].sum)
+                    })
                 })
+                
         })
     }
 

@@ -41,7 +41,7 @@ class SingleProduct extends Component{
         axios.get('/api/totalcart')
         .then(res=>{
             console.log(res,'care about me')
-            this.props.countCart(res.data[0].count)
+            this.props.countCart(res.data[0].sum)
         })
         })
     }

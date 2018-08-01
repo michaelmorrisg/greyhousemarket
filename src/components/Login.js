@@ -32,8 +32,11 @@ class Login extends Component {
         }
         axios.get('/api/totalcart')
         .then(res=>{
+            if(res.data[0].sum!= null){
             this.props.countCart(res.data[0].sum)
-        })
+        } else{
+            this.props.countCart(0)
+        }})
     })
     }
 

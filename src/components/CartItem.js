@@ -1,5 +1,7 @@
 import React,{Component} from 'react'
 import axios from 'axios'
+import {connect} from 'react-redux'
+import {countCart} from '../ducks/reducer'
 
 class CartItem extends Component{
 constructor(props){
@@ -28,4 +30,4 @@ handleChange(input){
         )
     }
 }
-export default CartItem
+export default connect(null, {countCart})(CartItem)
