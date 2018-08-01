@@ -8,7 +8,7 @@ email VARCHAR(50) NOT NULL
 create table products (
 products_id serial Primary Key,
 product_name text,
-price money,
+price decimal,
 image text,
 description text
 );

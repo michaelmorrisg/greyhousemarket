@@ -30,10 +30,15 @@ app.use(session({
 
 /////Endpoints///////
 app.post('/api/newuser', controller.addUser)
+app.post('/api/addguest', controller.addGuest)
 app.get('/api/userinfo/:email/:password', controller.getUser)
 app.get('/api/products/:category', controller.getProducts)
 app.get('/api/getproduct/:id', controller.getProduct)
 app.post('/api/addproduct', controller.addProduct)
 app.get('/api/getcart', controller.getCart)
+app.delete('/api/removefromcart/:id', controller.deleteProduct)
+app.get('/api/refreshuser', controller.refreshUser)
+app.get('/api/totalcart', controller.totalCart)
+app.put('/api/updatequantity/:id/:quantity', controller.updateQuantity)
 
 

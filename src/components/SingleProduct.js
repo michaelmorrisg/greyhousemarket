@@ -1,13 +1,19 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import Modal from './Modal'
+import {connect} from 'react-redux'
+import {countCart} from '../ducks/reducer'
 
 class SingleProduct extends Component{
     constructor(){
         super()
         this.state = {
             productInfo: [],
-            quantity: 1
+            quantity: 1,
+            showModal: false,
         }
+
+    this.toggleModalOff = this.toggleModalOff.bind(this)
     }
     componentDidMount(){
         axios.get(`/api/getproduct/${this.props.match.params.id}`)
@@ -22,19 +28,35 @@ class SingleProduct extends Component{
             quantity: input
         })
     }
-    addToCart(){
+    addToCart(props){
         axios.post('/api/addproduct',
-            {productId:this.state.productInfo[0].products_id
+            {productId:this.state.productInfo[0].products_id,quantity:this.state.quantity
         })
         .then(res=>{
-            console.log(res)
-            if(res.data="Gotta log in!"){
-                alert("Please log in to add to your cart!")
+            if(res.data==="Gotta log in!"){
+                this.toggleModalOn()
             } else {
                 alert("Added to cart")
             }
+        axios.get('/api/totalcart')
+        .then(res=>{
+            console.log(res,'care about me')
+            this.props.countCart(res.data[0].count)
+        })
         })
     }
+
+    toggleModalOn(){
+        this.setState({
+            showModal: true
+        })
+    }
+    toggleModalOff(){
+        this.setState({
+            showModal: false
+        })
+    }
+
 
     render(){
         return(
@@ -43,13 +65,14 @@ class SingleProduct extends Component{
                 <div>
                     <p>{this.state.productInfo[0] ? this.state.productInfo[0].product_name : ''}</p>
                     <p>{this.state.productInfo[0] ? this.state.productInfo[0].price : ''}</p>
-                    <p>Quantity: <input onChange={(e)=>this.handleQuantity(e.target.value)} type="number" placeholder="1"/></p>
+                    <p>Quantity: <input onChange={(e)=>this.handleQuantity(e.target.value)} type="number" min="1" placeholder="1"/></p>
                     {this.state.productInfo[0] ? <button onClick={()=>this.addToCart()}>Add to Cart</button> : '' }
                     <p>{this.state.productInfo[0] ? this.state.productInfo[0].description : ''}</p>
+                    <Modal class={this.state.showModal} toggle={this.toggleModalOff}/>
                 </div>
             </div>
         )
 
     }
 }
-export default SingleProduct
+export default connect(null,{countCart})(SingleProduct)

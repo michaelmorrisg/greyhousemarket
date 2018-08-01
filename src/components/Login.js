@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-import {loginUser} from '../ducks/reducer'
+import {loginUser,countCart} from '../ducks/reducer'
 import {connect} from 'react-redux'
 
 class Login extends Component {
@@ -22,18 +22,25 @@ class Login extends Component {
             password: input
         })
     }
-    signIn(){
+    signIn(props){
         axios.get(`/api/userinfo/${this.state.email}/${this.state.password}`)
         .then((response)=>{
-            console.log(response)
+            if(response.data!='Wrong username or password'){
             this.props.loginUser(response.data.response[0].first_name,response.data.response[0].last_name,response.data.response[0].id,response.data.response[0].email)
+        } else {
+            alert('dumb')
+        }
+        axios.get('/api/totalcart')
+        .then(res=>{
+            this.props.countCart(res.data[0].sum)
         })
+    })
     }
 
 
-    render(){
+    render(props){
         return(
-            <div>
+            <div className={this.props.show===false ? "loginHidden" : "loginShowing"}>
                 <h2>Login</h2>
                 <input onChange={(e)=>this.handleEmail(e.target.value)}placeholder="Email" />
                 <input onChange={(e)=>this.handlePassword(e.target.value)}placeholder="Password" type="password" />
@@ -44,4 +51,4 @@ class Login extends Component {
     }
 }
 
-export default connect(null, {loginUser})(Login)
+export default connect(null, {loginUser,countCart})(Login)

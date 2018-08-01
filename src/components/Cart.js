@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import CartItem from './CartItem'
+import {connect} from 'react-redux'
+import {countCart} from '../ducks/reducer'
 
 class Cart extends Component {
     constructor(){
@@ -7,6 +10,8 @@ class Cart extends Component {
         this.state = {
             cartItems: []
         }
+    this.removeFromCart = this.removeFromCart.bind(this)
+    this.updateQuantity = this.updateQuantity.bind(this)
     }
     componentDidMount(){
         axios.get(`/api/getcart`)
@@ -14,21 +19,40 @@ class Cart extends Component {
             this.setState({cartItems: response.data})
         })
     }
+    removeFromCart(id,props){
+        axios.delete(`/api/removefromcart/${id}`)
+        .then(response=>{
+            axios.get(`/api/getcart`)
+                .then(res=>{
+                    this.setState({cartItems: res.data})
+                })
+                axios.get('/api/totalcart')
+                    .then(res=>{
+                        this.props.countCart(res.data[0].sum)
+                    })
+        })
+    }
+    updateQuantity(id,quantity){
+        axios.put(`/api/updatequantity/${id}/${quantity}`)
+        .then(response=>{
+            axios.get('/api/getcart')
+                .then(res=>{
+                    this.setState({cartItems: res.data})
+                })
+        })
+    }
 
     render(){
         console.log(this.state.cartItems)
         return(
             <div>
-                {this.state.cartItems[0] ? this.state.cartItems.map(element=>{
+                {this.state.cartItems[0] ? this.state.cartItems.map((element,i)=>{
                     return (
-                        <div>
-                            <p>{element.product_name}</p>
-                            <p>{element.price}</p>
-                        </div>
+                            <CartItem updateQuantity={this.updateQuantity} removeFromCart={this.removeFromCart} key={i} item={this.state.cartItems[i]}/>
                     )
                 }) : ''}
             </div>
         )
     }
 }
-export default Cart
+export default connect(null, {countCart})(Cart)

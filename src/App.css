@@ -21,6 +21,22 @@
 .App-intro {
   font-size: large;
 }
+.hidden {
+  opacity: 0;
+}
+.showing {
+  opacity: 1;
+  background-color: green;
+  width: 200px;
+  height: 200px;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.loginHidden {
+  opacity: 0;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
