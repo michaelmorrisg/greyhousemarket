@@ -4,6 +4,7 @@ import CartItem from './CartItem'
 import {connect} from 'react-redux'
 import {countCart} from '../ducks/reducer'
 
+
 class Cart extends Component {
     constructor(){
         super()
@@ -52,12 +53,11 @@ class Cart extends Component {
     }
 
     render(){
-        console.log(this.state.cartItems)
         return(
             <div>
                 {this.state.cartItems[0] ? this.state.cartItems.map((element,i)=>{
                     return (
-                            <CartItem updateQuantity={this.updateQuantity} removeFromCart={this.removeFromCart} key={i} item={this.state.cartItems[i]}/>
+                                <CartItem updateQuantity={this.updateQuantity} removeFromCart={this.removeFromCart} key={i} item={this.state.cartItems[i]}/>
                     )
                 }) : ''}
             </div>

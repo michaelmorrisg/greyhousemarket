@@ -19,7 +19,6 @@ class Nav extends Component{
     componentDidMount(props){
         axios.get('/api/refreshuser')
         .then(res=>{
-            console.log(res,'res')
             this.setState({
                 firstName: res.data[0].first_name,
                 lastName: res.data[0].last_name,
@@ -31,10 +30,14 @@ class Nav extends Component{
         })
         axios.get('/api/totalcart')
             .then(res=>{
-                console.log(res)
+                if(res.data[0].sum){
                 this.setState({
                     cartCount: res.data[0].sum
-                })
+                })} else{
+                    this.setState({
+                        cartCount: 0
+                    })
+                }
                 this.props.countCart(this.state.cartCount)
             })
     }

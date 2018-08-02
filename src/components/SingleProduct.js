@@ -40,9 +40,11 @@ class SingleProduct extends Component{
             }
         axios.get('/api/totalcart')
         .then(res=>{
-            console.log(res,'care about me')
+            if(res.data[0].sum){
             this.props.countCart(res.data[0].sum)
-        })
+        }else{
+            this.props.countCart(0)
+        }})
         })
     }
 

@@ -19,7 +19,6 @@ class Modal extends Component{
     continueAsGuest(props){
         axios.post('/api/addguest')
         .then(res=>{
-            console.log(res)
             this.props.loginUser(res.data[0].first_name,res.data[0].last_name,res.data[0].id,res.data[0].email)
             this.props.toggle()
         })
