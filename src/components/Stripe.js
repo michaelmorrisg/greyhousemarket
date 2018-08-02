@@ -9,7 +9,8 @@ class Stripe extends Component {
     constructor(){
         super()
         this.state = {
-            toCart : false
+            toCart : false,
+            cart : []
         }
     }
 
@@ -18,6 +19,12 @@ class Stripe extends Component {
         console.log('token', token)
         axios.post('http://localhost:3020/api/payment', {token, amount: this.props.total*100}).then(response=>{
             // alert('it is working!')
+            axios.get('/api/getcart')
+            .then(response=>{
+                this.setState({
+                    cart: response.data
+                })
+                axios.post('/api/sendtanninemail', {firstName:this.props.firstName,lastName:this.props.lastName, email:this.props.email})
             axios.delete('/api/clearcart')
                 .then(response=>{
                     this.setState({
@@ -25,7 +32,7 @@ class Stripe extends Component {
                 })
                 this.props.countCart(0)
                 })
-            })
+        })})
         }
     render(props){
         return(
@@ -41,7 +48,7 @@ class Stripe extends Component {
     }
 }
 function mapStateToProps(state){
-    const {total} = state
-    return {total} 
+    const {total,firstName,lastName,email} = state
+    return {total,firstName,lastName,email} 
 }
 export default connect(mapStateToProps, {countCart})(Stripe)

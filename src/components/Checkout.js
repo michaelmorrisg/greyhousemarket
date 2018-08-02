@@ -2,10 +2,17 @@ import React,{Component} from 'react'
 import Order from './Order'
 
 class Checkout extends Component {
-    constructor(){
+    constructor(props){
         super()
         this.state = {
-
+            // email: ,
+            // firstName: ,
+            // lastName: ,
+            // address1: ,
+            // address2: ,
+            // zipCode: ,
+            // city: ,
+            // state: 
         }
     }
     render(){

@@ -40,27 +40,7 @@ app.use(cors())
 
 
 ////NodeMailer/////
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'michaelmorrisg@gmail.com',
-        pass: 'Erlervlerv1'
-    }
-})
 
-var mailOptions = {
-    from: 'michaelmorrisg@gmail.com',
-    to: 'michaelmorrisg@gmail.com',
-    subject: 'Hey there!',
-    text: 'Well how crazy'
-}
-transporter.sendMail(mailOptions, function(error, info){
-    if (error){
-        console.log(error)
-    } else {
-        console.log('Email sent: ' + info.response)
-    }
-})
 
 
 /////Endpoints///////
@@ -76,6 +56,7 @@ app.get('/api/refreshuser', controller.refreshUser)
 app.get('/api/totalcart', controller.totalCart)
 app.put('/api/updatequantity/:id/:quantity', controller.updateQuantity)
 app.delete('/api/clearcart', controller.clearCart)
+app.post('/api/sendtanninemail', controller.sendTanninEmail)
 
 //Payment//
 app.post('/api/payment', function(req,res,next){

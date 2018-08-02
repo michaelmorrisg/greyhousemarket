@@ -91,7 +91,7 @@ module.exports = {
     deleteProduct: (req,res)=>{
         const db = req.app.get('db')
 
-        db.delete_from_cart({id:req.params.id})
+        db.delete_from_cart({id:req.params.id,userId:req.session.userid})
         .then(response=>{
             res.status(200).send(response)
         })
@@ -132,6 +132,31 @@ module.exports = {
         db.clear_cart({id:req.session.userid})
         .then(response=>{
             res.status(200).send(response)
+        })
+    },
+    sendTanninEmail: (req,res)=>{
+        require('dotenv').config()
+        const nodemailer = require('nodemailer')
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL,
+                pass: process.env.EMAIL_PASSWORD
+            }
+        })
+        
+        var mailOptions = {
+            from: 'michaelmorrisg@gmail.com',
+            to: 'michaelmorrisg@gmail.com',
+            subject: 'New Order, Tannin!',
+            text: `New order from ${req.body.firstName} ${req.body.lastName}`
+        }
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error){
+                console.log(error)
+            } else {
+                console.log('Email sent: ' + info.response)
+            }
         })
     }
 }
