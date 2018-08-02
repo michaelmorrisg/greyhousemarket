@@ -125,5 +125,13 @@ module.exports = {
             .then(response=>{
                 res.status(200).send(response)
             })
+    },
+    clearCart: (req,res)=>{
+        const db = req.app.get('db')
+
+        db.clear_cart({id:req.session.userid})
+        .then(response=>{
+            res.status(200).send(response)
+        })
     }
 }

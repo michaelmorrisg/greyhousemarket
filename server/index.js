@@ -2,7 +2,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const massive = require('massive')
 const session = require('express-session')
+const nodemailer = require('nodemailer')
 require('dotenv').config()
+cors = require('cors')
+
 
 const keyPublishable = process.env.PUBLISHABLE_KEY
 const keySecret = process.env.SECRET_KEY
@@ -32,6 +35,33 @@ app.use(session({
     resave: false
 }))
 
+app.use(cors())
+
+
+
+////NodeMailer/////
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'michaelmorrisg@gmail.com',
+        pass: 'Erlervlerv1'
+    }
+})
+
+var mailOptions = {
+    from: 'michaelmorrisg@gmail.com',
+    to: 'michaelmorrisg@gmail.com',
+    subject: 'Hey there!',
+    text: 'Well how crazy'
+}
+transporter.sendMail(mailOptions, function(error, info){
+    if (error){
+        console.log(error)
+    } else {
+        console.log('Email sent: ' + info.response)
+    }
+})
+
 
 /////Endpoints///////
 app.post('/api/newuser', controller.addUser)
@@ -45,6 +75,7 @@ app.delete('/api/removefromcart/:id', controller.deleteProduct)
 app.get('/api/refreshuser', controller.refreshUser)
 app.get('/api/totalcart', controller.totalCart)
 app.put('/api/updatequantity/:id/:quantity', controller.updateQuantity)
+app.delete('/api/clearcart', controller.clearCart)
 
 //Payment//
 app.post('/api/payment', function(req,res,next){
@@ -75,8 +106,9 @@ app.post('/api/payment', function(req,res,next){
         source: req.body.token.id,
         description: "Test Charge"
     }, function(err, charge){
-        if (err) return res.sendStatus(500)
-        return res.sendStatus(200)
+        if (err) {return res.sendStatus(500)}
+        else{
+        return res.sendStatus(200)}
     })
 })
 
