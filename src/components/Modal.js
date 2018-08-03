@@ -8,12 +8,20 @@ class Modal extends Component{
     constructor(){
         super()
         this.state = {
-            showLogIn: false
+            showLogIn: false,
+            showModal: true
         }
+
+    this.showModal = this.showModal.bind(this)
     }
     showLogIn(){
         this.setState({
             showLogIn: true
+        })
+    }
+    showModal(){
+        this.setState({
+            showModal: false
         })
     }
     continueAsGuest(props){
@@ -31,7 +39,7 @@ class Modal extends Component{
             <p>Log in or Continue as a guest</p>
             <button onClick={()=>this.showLogIn()}>Log in</button>
             <button onClick={()=>this.continueAsGuest()}>Continue as guest</button>
-            <Login show={this.state.showLogIn} />
+            <Login show={this.state.showLogIn} toggle={this.props.toggle} />
             
             </div>
         )

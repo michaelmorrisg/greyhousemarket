@@ -23,9 +23,17 @@ product_id integer references products(products_id),
 category_id integer references category(category_id)
 );
 
-create table cart (
-item_id integer references products(products_id),
-name text,
-price integer,
-image text
-);
+-- Cart is product_id, user_id, and quantity
+
+create table purchases(
+purchases_id serial primary key,
+user_id integer references users(id),
+date text,
+total decimal
+)
+
+create table purchases_product(
+purchases_id integer references purchases(purchases_id),
+product_id integer references products(products_id),
+product_amount integer
+)

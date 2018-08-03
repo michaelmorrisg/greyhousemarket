@@ -24,7 +24,7 @@ class Stripe extends Component {
                 this.setState({
                     cart: response.data
                 })
-                axios.post('/api/sendtanninemail', {firstName:this.props.firstName,lastName:this.props.lastName, email:this.props.email})
+            axios.post('/api/sendtanninemail', {firstName:this.props.shipFirstName,lastName:this.props.shipLastName, email:this.props.shipEmail, address1: this.props.shipAddress1, address2: this.props.shipAddress2, zip: this.props.shipZipCode, city: this.props.shipCity, state: this.props.shipState, products: response.data})
             axios.delete('/api/clearcart')
                 .then(response=>{
                     this.setState({
@@ -48,7 +48,7 @@ class Stripe extends Component {
     }
 }
 function mapStateToProps(state){
-    const {total,firstName,lastName,email} = state
-    return {total,firstName,lastName,email} 
+    const {total,shipFirstName,shipLastName,shipEmail,shipCity,shipState,shipZipCode,shipAddress1,shipAddress2} = state
+    return {total,shipFirstName,shipLastName,shipEmail,shipCity,shipState,shipZipCode,shipAddress1,shipAddress2} 
 }
 export default connect(mapStateToProps, {countCart})(Stripe)

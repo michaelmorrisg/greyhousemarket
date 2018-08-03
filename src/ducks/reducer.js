@@ -5,13 +5,22 @@ const initialState = {
     email: '',
     cart: 0,
     subTotal: 0,
-    total: 0
+    total: 0,
+    shipAddress1: '',
+    shipAddress2: '',
+    shipZipCode: '',
+    shipCity: '',
+    shipState: '',
+    shipFirstName: '',
+    shipLastName: '',
+    shipEmail: ''
 }
 
 const LOGIN_USER = "LOGIN_USER"
 const COUNT_CART = "COUNT_CART"
 const SUBTOTAL = "SUBTOTAL"
 const TOTAL = "TOTAL"
+const UPDATE_SHIPPING = "UPDATE_SHIPPING"
 
 
 
@@ -32,7 +41,11 @@ export default function reducer(state=initialState, action){
         case TOTAL:
             const {total} = action.payload
             return Object.assign({},state,{total})
-            
+
+        case UPDATE_SHIPPING:
+            const {shipEmail,shipFirstName,shipLastName,shipAddress1,shipAddress2,shipZipCode,shipCity,shipState} = action.payload
+            return Object.assign({},state,{shipEmail,shipFirstName,shipLastName,shipAddress1,shipAddress2,shipZipCode,shipCity,shipState})
+     
         default: return state
     }
 }
@@ -61,4 +74,11 @@ export function getTotal(total){
         payload: {total}
     }
 }
+
+export function updateShipping(shipEmail,shipFirstName,shipLastName,shipAddress1,shipAddress2,shipZipCode,shipCity,shipState){
+    return {
+        type: UPDATE_SHIPPING,
+        payload: {shipEmail,shipFirstName,shipLastName,shipAddress1,shipAddress2,shipZipCode,shipCity,shipState}
+    }
+} 
 

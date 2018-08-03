@@ -149,7 +149,25 @@ module.exports = {
             from: 'michaelmorrisg@gmail.com',
             to: 'michaelmorrisg@gmail.com',
             subject: 'New Order, Tannin!',
-            text: `New order from ${req.body.firstName} ${req.body.lastName}`
+            text: `New order from ${req.body.firstName} ${req.body.lastName}
+            Shipping Details:
+            Email Address: ${req.body.email}
+            Full Name: ${req.body.firstName} ${req.body.lastName}
+            Address: ${req.body.address1}
+            ${req.body.address2}
+            Zip: ${req.body.zip}
+            City: ${req.body.city}
+            State: ${req.body.state}
+            
+            Products:
+            ${req.body.products.map(element=>{
+                return (
+                    `Product: ${element.product_name}
+                    ID: ${element.product_id}
+                    Quantity: ${element.quantity}
+                    `
+                )
+            })}`
         }
         transporter.sendMail(mailOptions, function(error, info){
             if (error){
