@@ -27,7 +27,7 @@ class Login extends Component {
         .then((response)=>{
             if(response.data!=='Wrong username or password'){
             this.props.loginUser(response.data.response[0].first_name,response.data.response[0].last_name,response.data.response[0].id,response.data.response[0].email)
-            this.props.toggle()
+            this.props.toggle? this.props.toggle() : ''
         } else {
             alert('dumb')
         }

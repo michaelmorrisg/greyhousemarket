@@ -57,6 +57,10 @@ app.get('/api/totalcart', controller.totalCart)
 app.put('/api/updatequantity/:id/:quantity', controller.updateQuantity)
 app.delete('/api/clearcart', controller.clearCart)
 app.post('/api/sendtanninemail', controller.sendTanninEmail)
+app.post('/api/logout', (req,res)=>{
+    req.session.destroy()
+    res.sendStatus(200)
+})
 
 //Payment//
 app.post('/api/payment', function(req,res,next){

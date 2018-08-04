@@ -9,6 +9,11 @@ constructor(props){
         quantity: props.item.quantity
     }
 }
+componentDidUpdate(prevProps){
+   if (this.props.item.quantity !== prevProps.item.quantity){
+       this.setState({quantity: this.props.item.quantity})
+   }
+}
 handleChange(input){
     this.setState({
         quantity: input

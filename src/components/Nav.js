@@ -41,13 +41,29 @@ class Nav extends Component{
                 this.props.countCart(this.state.cartCount)
             })
     }
+    logOut(){
+        axios.post('/api/logout')
+            .then(res=>{
+                axios.get('/api/refreshuser')
+                    .then(res=>{
+                        this.setState({
+                            firstName: res.data[0].first_name,
+                            lastName: res.data[0].last_name,
+                            id: res.data[0].id,
+                            email: res.data[0].email
+                        })
+                        const {firstName,lastName,id,email} = this.state
+                        this.props.loginUser(firstName,lastName,id,email)})
+                        this.props.countCart(this.state.cartCount)
+            })
+    }
 
     render(props){
         return(
             <div>
                 <Link to="/">Home</Link>
                 Nav Bar!
-                <Link to="/account/login">Login</Link>
+                {this.props.firstName? <Link onClick={()=>this.logOut()} to="/">Logout</Link> :<Link to="/account/login">Login</Link>}
                 <Link to="/cart">Cart({this.props.cart})</Link>
                 <p>{this.props.firstName}</p>
             </div>

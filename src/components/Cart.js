@@ -18,18 +18,15 @@ class Cart extends Component {
     componentDidMount(){
         axios.get(`/api/getcart`)
         .then(response=>{
-            console.log(response.data)
             this.setState({cartItems: response.data})
             //pulling prices and converting to do a subtotal
             var prices = response.data.map(arrayItem=>arrayItem.price)
             var quantities = response.data.map(arrayItem=>arrayItem.quantity)
             for (let i =0; i<prices.length; i++){prices[i] = +prices[i]}
-            console.log(prices,quantities)
             var multiplied = 0
             for(let i=0; i< prices.length; i++){
                 multiplied += prices[i] * quantities[i]
             }
-            console.log(multiplied.toFixed(2))
             this.props.subTotal(multiplied.toFixed(2))
             })
     }
@@ -42,13 +39,11 @@ class Cart extends Component {
                     var prices = res.data.map(arrayItem=>arrayItem.price)
                     var quantities = res.data.map(arrayItem=>arrayItem.quantity)
                     for (let i =0; i<prices.length; i++){prices[i] = +prices[i]}
-                    console.log(prices,quantities)
                     var multiplied = 0
                     for(let i=0; i< prices.length; i++){
                         multiplied += prices[i] * quantities[i]
             }
                     this.props.subTotal(multiplied.toFixed(2))
-            console.log(multiplied.toFixed(2))
             this.props.subTotal(multiplied.toFixed(2))
                 })
                 axios.get('/api/totalcart')
@@ -58,6 +53,7 @@ class Cart extends Component {
                         } else (
                             this.props.countCart(0)
                         )
+                        this.forceUpdate()
                     })
         })
     }
@@ -70,13 +66,11 @@ class Cart extends Component {
                     var prices = res.data.map(arrayItem=>arrayItem.price)
                     var quantities = res.data.map(arrayItem=>arrayItem.quantity)
                     for (let i =0; i<prices.length; i++){prices[i] = +prices[i]}
-                    console.log(prices,quantities)
                     var multiplied = 0
                     for(let i=0; i< prices.length; i++){
                         multiplied += prices[i] * quantities[i]
             }
                     this.props.subTotal(multiplied.toFixed(2))
-            console.log(multiplied.toFixed(2))
             this.props.subTotal(multiplied.toFixed(2))
                     axios.get('/api/totalcart')
                     .then(res=>{
@@ -92,11 +86,7 @@ class Cart extends Component {
             <div>
                 {this.state.cartItems[0] ? this.state.cartItems.map((element,i)=>{
                     return (
-                        <div>
-                            <div>
-                                <CartItem updateQuantity={this.updateQuantity} removeFromCart={this.removeFromCart} key={i} item={this.state.cartItems[i]}/>
-                            </div>
-                        </div>
+                                <CartItem updateQuantity={this.updateQuantity} key={i} removeFromCart={this.removeFromCart} item={this.state.cartItems[i]}/>
                     )
                 }) : ''}
                 {this.state.cartItems[0] ? <CartTotals /> : ''}
