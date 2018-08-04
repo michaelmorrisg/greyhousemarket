@@ -61,6 +61,8 @@ app.post('/api/logout', (req,res)=>{
     req.session.destroy()
     res.sendStatus(200)
 })
+app.post('/api/addpurchase', controller.addPurchase)
+app.post('/api/addpurchasecart', controller.addPurchaseCart)
 
 //Payment//
 app.post('/api/payment', function(req,res,next){

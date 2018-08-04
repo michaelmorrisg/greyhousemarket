@@ -176,5 +176,24 @@ module.exports = {
                 console.log('Email sent: ' + info.response)
             }
         })
+    },
+    addPurchase: (req,res)=>{
+        const db = req.app.get('db')
+
+        db.add_purchase({amount:req.body.amount,date:req.body.date})
+        .then(response=>{
+            res.status(200).send(response)
+        })
+    },
+    addPurchaseCart: (req,res)=>{
+        const db = req.app.get('db')
+        console.log(req.body.cart)
+        req.body.cart.map(element=>{
+            db.add_purchase_cart({userId:element.user_id,productId:element.products_id,quantity:element.quantity,purchaseId:req.body.purchaseId})
+    //         .then(response=>{
+    //             response.status(200).send(response)
+    // })
+        })
+
     }
 }
