@@ -51,18 +51,20 @@ app.get('/api/products/:category', controller.getProducts)
 app.get('/api/getproduct/:id', controller.getProduct)
 app.post('/api/addproduct', controller.addProduct)
 app.get('/api/getcart', controller.getCart)
-app.delete('/api/removefromcart/:id', controller.deleteProduct)
+app.delete('/api/removefromcart/:id/:color', controller.deleteProduct)
 app.get('/api/refreshuser', controller.refreshUser)
 app.get('/api/totalcart', controller.totalCart)
-app.put('/api/updatequantity/:id/:quantity', controller.updateQuantity)
+app.put('/api/updatequantity/:id/:quantity/:color', controller.updateQuantity)
 app.delete('/api/clearcart', controller.clearCart)
 app.post('/api/sendtanninemail', controller.sendTanninEmail)
+app.post('/api/sendcontactemail',controller.sendContactEmail)
 app.post('/api/logout', (req,res)=>{
     req.session.destroy()
     res.sendStatus(200)
 })
 app.post('/api/addpurchase', controller.addPurchase)
 app.post('/api/addpurchasecart', controller.addPurchaseCart)
+app.get('/api/getorders', controller.getOrders)
 
 //Payment//
 app.post('/api/payment', function(req,res,next){

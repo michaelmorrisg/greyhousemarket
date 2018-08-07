@@ -1,17 +1,24 @@
 module.exports = {
     addUser: (req,res)=>{
         const db = req.app.get('db')
+        db.check_user({email: req.body.email})
+            .then(response=>{
+                console.log(response)
+                if(response[0]){
+                    res.status(200).send('User already exists')
+                }else{
+                var bcrypt = require('bcryptjs');
+        
+                var salt = bcrypt.genSaltSync(10)
+                var hash = bcrypt.hashSync(req.body.password, salt)
+        
+                db.add_user({firstName: req.body.firstName, lastName: req.body.lastName,password: hash,email: req.body.email})
+                .then(response =>{
+                    req.session.userid = response[0].id
+                    res.status(200).send({sessionId:req.session.userid,response:response})
+                })
+            }})
 
-        var bcrypt = require('bcryptjs');
-
-        var salt = bcrypt.genSaltSync(10)
-        var hash = bcrypt.hashSync(req.body.password, salt)
-
-        db.add_user({firstName: req.body.firstName, lastName: req.body.lastName,password: hash,email: req.body.email})
-        .then(response =>{
-            req.session.userid = response[0].id
-            res.status(200).send({sessionId:req.session.userid,response:response})
-        })
     },
     addGuest: (req,res)=>{
         const db = req.app.get('db')
@@ -73,7 +80,7 @@ module.exports = {
         if(req.session.userid){
         const db = req.app.get('db')
 
-        db.add_product({productId: req.body.productId, userId: req.session.userid, quantity: req.body.quantity})
+        db.add_product({productId: req.body.productId, userId: req.session.userid, quantity: req.body.quantity,color: req.body.color})
         .then(response=>{
             res.status(200).send(response)
         })} else {
@@ -91,7 +98,7 @@ module.exports = {
     deleteProduct: (req,res)=>{
         const db = req.app.get('db')
 
-        db.delete_from_cart({id:req.params.id,userId:req.session.userid})
+        db.delete_from_cart({id:req.params.id,userId:req.session.userid,color:req.params.color})
         .then(response=>{
             res.status(200).send(response)
         })
@@ -121,7 +128,7 @@ module.exports = {
     updateQuantity: (req,res)=>{
         const db = req.app.get('db')
 
-        db.update_quantity({productId:req.params.id,quantity:req.params.quantity,userId:req.session.userid})
+        db.update_quantity({productId:req.params.id,quantity:req.params.quantity,userId:req.session.userid,color:req.params.color})
             .then(response=>{
                 res.status(200).send(response)
             })
@@ -191,9 +198,44 @@ module.exports = {
         req.body.cart.map(element=>{
             db.add_purchase_cart({userId:element.user_id,productId:element.products_id,quantity:element.quantity,purchaseId:req.body.purchaseId})
     //         .then(response=>{
-    //             response.status(200).send(response)
+    //             res.status(200).send(response)
     // })
         })
 
+    },
+    getOrders: (req,res)=>{
+        const db = req.app.get('db')
+
+        db.get_orders({id:req.session.userid})
+        .then(response=>{
+            res.status(200).send(response)
+        })
+    },
+    sendContactEmail: (req,res)=>{
+        require('dotenv').config()
+        const nodemailer = require('nodemailer')
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL,
+                pass: process.env.EMAIL_PASSWORD
+            }
+        })
+        
+        var mailOptions = {
+            from: 'michaelmorrisg@gmail.com',
+            to: 'michaelmorrisg@gmail.com',
+            subject: 'Someone Has a question',
+            text: `Sender: ${req.body.email}
+            Message: ${req.body.message}`
+        }
+
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error){
+                console.log(error)
+            } else {
+                console.log('Email sent: ' + info.response)
+            }
+        }) 
     }
 }

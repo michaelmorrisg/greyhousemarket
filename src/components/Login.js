@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import {Link,Redirect} from 'react-router-dom'
 import axios from 'axios'
 import {loginUser,countCart} from '../ducks/reducer'
 import {connect} from 'react-redux'
@@ -9,7 +9,8 @@ class Login extends Component {
         super()
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            toHome: false
         }
     }
     handleEmail(input){
@@ -27,7 +28,10 @@ class Login extends Component {
         .then((response)=>{
             if(response.data!=='Wrong username or password'){
             this.props.loginUser(response.data.response[0].first_name,response.data.response[0].last_name,response.data.response[0].id,response.data.response[0].email)
-            this.props.toggle? this.props.toggle() : ''
+            this.props.toggle ? this.props.toggle() : ''
+            this.setState({
+                toHome: true
+            })
         } else {
             alert('dumb')
         }
@@ -38,6 +42,7 @@ class Login extends Component {
         } else{
             this.props.countCart(0)
         }})
+
     })
     }
 
@@ -50,6 +55,7 @@ class Login extends Component {
                 <input onChange={(e)=>this.handlePassword(e.target.value)}placeholder="Password" type="password" />
                 <button onClick={()=>this.signIn()}>Sign In</button>
                 <Link to="/account/register"><button>Register</button></Link>
+                {this.state.toHome ? <Redirect to="/" />: ''}
             </div>
         )
     }

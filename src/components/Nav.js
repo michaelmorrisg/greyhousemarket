@@ -62,8 +62,8 @@ class Nav extends Component{
         return(
             <div>
                 <Link to="/">Home</Link>
-                Nav Bar!
-                {this.props.firstName? <Link onClick={()=>this.logOut()} to="/">Logout</Link> :<Link to="/account/login">Login</Link>}
+                {this.props.firstName? <Link to="/account/myaccount">My Account</Link> :<Link to="/account/login">Login</Link>}
+                <Link to="/contact">Help</Link>
                 <Link to="/cart">Cart({this.props.cart})</Link>
                 <p>{this.props.firstName}</p>
             </div>

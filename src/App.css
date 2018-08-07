@@ -1,25 +1,25 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.categories {
+  display: flex;
+  flex-direction: column;
 }
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.mapped-products-image {
+  width: 10%;
+  height: auto;
 }
-
-.App-title {
-  font-size: 1.5em;
+.carousel-div {
+  display: flex;
+  justify-content: center;
 }
-
-.App-intro {
-  font-size: large;
+.carousel-image {
+  width: 50%;
+  height: auto;
+}
+.cart-image {
+  width: 60px;
+  height: auto;
 }
 .hidden {
   opacity: 0;
@@ -43,7 +43,3 @@
   justify-content: center;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}

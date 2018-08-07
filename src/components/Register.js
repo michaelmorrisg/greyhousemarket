@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import {loginUser} from '../ducks/reducer'
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 
 class Register extends Component {
     constructor() {
@@ -10,7 +11,8 @@ class Register extends Component {
             firstName: '',
             lastName: '',
             email: '',
-            password: ''
+            password: '',
+            toHome: false
         }
     }
 
@@ -33,14 +35,24 @@ class Register extends Component {
         this.setState({
             password: input
         })
-        console.log(this.state.password)
     }
     registerUser(){
-        axios.post(`/api/newuser`,{firstName:this.state.firstName,lastName:this.state.lastName,email:this.state.email,password:this.state.password})
-        .then(res=>{
-            console.log(res)
-            this.props.loginUser(res.data.response[0].first_name,res.data.response[0].last_name,res.data.response[0].id,res.data.response[0].email)
-        })
+        if(this.state.firstName && this.state.lastName && this.state.email && this.state.password){
+            axios.post(`/api/newuser`,{firstName:this.state.firstName,lastName:this.state.lastName,email:this.state.email,password:this.state.password})
+            .then(res=>{
+                console.log(res)
+                if(res.data !== "User already exists"){
+                    this.props.loginUser(res.data.response[0].first_name,res.data.response[0].last_name,res.data.response[0].id,res.data.response[0].email)
+                    this.setState({
+                        toHome: true
+                    })
+                } else {
+                    alert('Email already exists')
+                }
+            })
+        } else {
+            alert("Please enter your info")
+        }
     }
 
 
@@ -52,6 +64,7 @@ class Register extends Component {
                 <input onChange={(e)=>this.handleEmail(e.target.value)} placeholder="Email" value={this.state.email}/>
                 <input onChange={(e)=>this.handlePassword(e.target.value)} placeholder="Password" value={this.state.password} type="password"/>
                 <button onClick={()=>this.registerUser()}>Create</button>
+                {this.state.toHome ? <Redirect to="/"/> : ''}
             </div>
         )
     }

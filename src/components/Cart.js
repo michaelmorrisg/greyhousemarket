@@ -30,8 +30,9 @@ class Cart extends Component {
             this.props.subTotal(multiplied.toFixed(2))
             })
     }
-    removeFromCart(id,props){
-        axios.delete(`/api/removefromcart/${id}`)
+    removeFromCart(id,color,props){
+        console.log(id,color)
+        axios.delete(`/api/removefromcart/${id}/${color}`)
         .then(response=>{
             axios.get(`/api/getcart`)
                 .then(res=>{
@@ -57,8 +58,8 @@ class Cart extends Component {
                     })
         })
     }
-    updateQuantity(id,quantity){
-        axios.put(`/api/updatequantity/${id}/${quantity}`)
+    updateQuantity(id,quantity,color){
+        axios.put(`/api/updatequantity/${id}/${quantity}/${color}`)
         .then(response=>{
             axios.get('/api/getcart')
                 .then(res=>{

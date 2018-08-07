@@ -1,2 +1,2 @@
-insert into cart (product_id,user_id, quantity)
-values (${productId},${userId},${quantity})
+insert into cart (product_id,user_id, quantity,color)
+values (${productId},${userId},${quantity},${color})

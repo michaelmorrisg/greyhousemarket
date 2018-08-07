@@ -11,6 +11,8 @@ import Seasonal from './components/Seasonal'
 import SingleProduct from './components/SingleProduct'
 import Cart from './components/Cart'
 import Checkout from './components/Checkout'
+import MyAccount from './components/MyAccount'
+import Contact from './components/Contact'
 
 export default (
     <Switch>
@@ -25,5 +27,7 @@ export default (
         <Route path="/product/:id" component={SingleProduct}/>
         <Route path="/cart" component={Cart}/>
         <Route path="/checkout" component={Checkout}/>
+        <Route path="/account/myaccount" component={MyAccount}/>
+        <Route path="/contact" component={Contact}/>
     </Switch>
 )

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from 'react-responsive-carousel/lib/styles/carousel.min.css'
 import './App.css';
 import routes from './routes'
 import Nav from './components/Nav'
