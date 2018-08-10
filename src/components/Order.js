@@ -42,13 +42,18 @@ class Order extends Component {
                 <p>Subtotal ${Number(this.props.subTotal).toFixed(2)}</p>
                 <p>Shipping $4.00</p>
                 <p>Total ${this.state.total}</p>
-                <Stripe />
+                {this.props.shipEmail &&
+                this.props.shipLastName &&
+                this.props.shipFirstName &&
+                this.props.shipAddress1 &&
+                this.props.shipCity &&
+                this.props.shipZipCode ? <Stripe />: <p>Enter Shipping Info To Continue</p>}
             </div>
         )
     }
 }
 function mapStateToProps(state){
- const {subTotal} = state
- return {subTotal}
+ const {subTotal,shipEmail,shipLastName,shipFirstName,shipCity,shipZipCode,shipAddress1} = state
+ return {subTotal,shipEmail,shipLastName,shipFirstName,shipCity,shipZipCode,shipAddress1}
 }
 export default connect(mapStateToProps,{getTotal})(Order)

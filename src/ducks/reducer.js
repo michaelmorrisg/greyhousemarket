@@ -13,7 +13,8 @@ const initialState = {
     shipState: '',
     shipFirstName: '',
     shipLastName: '',
-    shipEmail: ''
+    shipEmail: '',
+    admin: false
 }
 
 const LOGIN_USER = "LOGIN_USER"
@@ -27,8 +28,8 @@ const UPDATE_SHIPPING = "UPDATE_SHIPPING"
 export default function reducer(state=initialState, action){
     switch(action.type){
         case LOGIN_USER:
-            const {firstName, lastName, id, email} = action.payload
-            return Object.assign({},state,{firstName,lastName,id,email})
+            const {firstName, lastName, id, email, admin} = action.payload
+            return Object.assign({},state,{firstName,lastName,id,email, admin})
     
         case COUNT_CART:
             const{cart} = action.payload
@@ -50,10 +51,10 @@ export default function reducer(state=initialState, action){
     }
 }
 
-export function loginUser(firstName,lastName,id,email){
+export function loginUser(firstName,lastName,id,email,admin){
     return {
         type: LOGIN_USER,
-        payload: {firstName,lastName,id,email}
+        payload: {firstName,lastName,id,email,admin}
     }
 }
 export function countCart(cart){

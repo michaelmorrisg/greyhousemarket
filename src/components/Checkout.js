@@ -3,6 +3,7 @@ import Order from './Order'
 import {connect} from 'react-redux'
 import {debounce} from 'lodash'
 import {updateShipping} from '../ducks/reducer'
+import {SplitButton,MenuItem} from 'react-bootstrap'
 
 class Checkout extends Component {
     constructor(props){
@@ -15,8 +16,68 @@ class Checkout extends Component {
             address2: '',
             zipCode: '',
             city: '',
-            state: ''
+            myState: '',
+            states: []
         }
+    }
+    componentDidMount(){
+        this.setState({
+            states: ["Alaska",
+            "Alabama",
+            "Arkansas",
+            "American Samoa",
+            "Arizona",
+            "California",
+            "Colorado",
+            "Connecticut",
+            "District of Columbia",
+            "Delaware",
+            "Florida",
+            "Georgia",
+            "Guam",
+            "Hawaii",
+            "Iowa",
+            "Idaho",
+            "Illinois",
+            "Indiana",
+            "Kansas",
+            "Kentucky",
+            "Louisiana",
+            "Massachusetts",
+            "Maryland",
+            "Maine",
+            "Michigan",
+            "Minnesota",
+            "Missouri",
+            "Mississippi",
+            "Montana",
+            "North Carolina",
+            " North Dakota",
+            "Nebraska",
+            "New Hampshire",
+            "New Jersey",
+            "New Mexico",
+            "Nevada",
+            "New York",
+            "Ohio",
+            "Oklahoma",
+            "Oregon",
+            "Pennsylvania",
+            "Puerto Rico",
+            "Rhode Island",
+            "South Carolina",
+            "South Dakota",
+            "Tennessee",
+            "Texas",
+            "Utah",
+            "Virginia",
+            "Virgin Islands",
+            "Vermont",
+            "Washington",
+            "Wisconsin",
+            "West Virginia",
+            "Wyoming"]
+        })
     }
     handleEmail(input){
         this.setState({
@@ -63,13 +124,13 @@ class Checkout extends Component {
     }
     handleState(input){
         this.setState({
-            state: input
+            myState: input
         })
         this.sendToRedux()
     }
     sendToRedux = debounce(()=>{
-            this.props.updateShipping(this.state.email,this.state.firstName,this.state.lastName,this.state.address1,this.state.address2,this.state.zipCode,this.state.city,this.state.state)
-        }, 5000
+            this.props.updateShipping(this.state.email,this.state.firstName,this.state.lastName,this.state.address1,this.state.address2,this.state.zipCode,this.state.city,this.state.myState)
+        }, 2000
     )
 
     render(){
@@ -93,6 +154,15 @@ class Checkout extends Component {
                 <h3>City</h3>
                 <input onChange={(e)=>this.handleCity(e.target.value)} value={this.state.city}/>
                 <h3>State</h3>
+                <SplitButton
+                title={this.state.myState ? this.state.myState : 'State'}
+                dropup={true}>
+                {this.state.states.map(element=>{
+                    return (
+                        <MenuItem onClick={()=>this.handleState(element)}>{element}</MenuItem>
+                    )
+                })}
+                </SplitButton>
                 </div>
                 <Order />
             </div>

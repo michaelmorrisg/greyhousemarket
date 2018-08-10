@@ -44,15 +44,12 @@ class MyOrders extends Component{
                     condensedArray[index].purchases.push(tempObj)
                 }
             }
-            console.log(condensedArray)
             for(let h=0; h<condensedArray.length;h++){
                let splitStuff = condensedArray[h].purchase_date.split(" ")
-               console.log(splitStuff)
                splitStuff.splice(4,5)
                splitStuff[0] += ","
                splitStuff[2] += ","
                let joinStuff = splitStuff.join(" ")
-               console.log(joinStuff)
                condensedArray[h].purchase_date = joinStuff
             }
             this.setState({

@@ -38,3 +38,9 @@ quantity integer,
 purchase_id integer references purchases(purchase_id)
 )
 
+create table reviews(
+id serial Primary Key,
+product_id integer references products(products_id),
+message varchar(500)
+)
+

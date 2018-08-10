@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {countCart} from '../ducks/reducer'
 import {Carousel} from 'react-responsive-carousel'
 import {SplitButton,MenuItem} from 'react-bootstrap'
+import Reviews from './Reviews'
 
 
 class SingleProduct extends Component{
@@ -16,7 +17,8 @@ class SingleProduct extends Component{
             showModal: false,
             images: [],
             color: '',
-            colorOptions: []
+            colorOptions: [],
+            toggleColor: false
         }
 
     this.toggleModalOff = this.toggleModalOff.bind(this)
@@ -43,6 +45,7 @@ class SingleProduct extends Component{
         })
     }
     addToCart(props){
+        this.state.color !== '' ? 
         axios.post('/api/addproduct',
             {productId:this.state.productInfo[0].products_id, quantity:this.state.quantity, color:this.state.color
         })
@@ -51,6 +54,9 @@ class SingleProduct extends Component{
                 this.toggleModalOn()
             } else {
                 alert("Added to cart")
+                this.setState({
+                    toggleColor: false
+                })
             }
         axios.get('/api/totalcart')
         .then(res=>{
@@ -59,6 +65,8 @@ class SingleProduct extends Component{
         }else{
             this.props.countCart(0)
         }})
+        }) : this.setState({
+            toggleColor: true
         })
     }
 
@@ -82,15 +90,16 @@ class SingleProduct extends Component{
 
     render(){
         return(
-            <div>
+            <div className="single-product-main">
                 <div className="carousel-div">{this.state.productInfo[0] ? <Carousel showStatus={false} className="carousel-image">{this.state.images.map((element,i)=>{
                     return(
-                        <div>
-                            <img src={element}/>
+                        <div className="carousel-image-div">
+                            <img className="carousel-image-image" src={element}/>
                         </div>
                     )
                 })}</Carousel> : ''}</div>
                 <div>
+                    {this.state.toggleColor? <p className="select-color">* Please select a color *</p> : ''}
                 <SplitButton
                 title={this.state.color? this.state.color : 'Color'}>
                     {this.state.colorOptions.map((element,i)=>{
@@ -106,6 +115,7 @@ class SingleProduct extends Component{
                     <p>{this.state.productInfo[0] ? this.state.productInfo[0].description : ''}</p>
                     <Modal class={this.state.showModal} toggle={this.toggleModalOff}/>
                 </div>
+                <Reviews productInfo={this.state.productInfo}/>
             </div>
         )
 

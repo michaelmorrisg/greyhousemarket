@@ -46,6 +46,9 @@ class Stripe extends Component {
                     token={this.onToken}
                     stripeKey= {process.env.REACT_APP_STRIPE_KEY}
                     amount={this.props.total*100}
+                    email={this.props.shipEmail}
+                    name="Grey House Market"
+                    image="https://i.etsystatic.com/isla/420b13/29519511/isla_500x500.29519511_ifsfvos4.jpg?version=0"
                 />
                 {this.state.toCart === true ? <Redirect to="/cart"/>  : ''}
             </div>

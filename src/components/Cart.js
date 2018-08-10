@@ -31,7 +31,6 @@ class Cart extends Component {
             })
     }
     removeFromCart(id,color,props){
-        console.log(id,color)
         axios.delete(`/api/removefromcart/${id}/${color}`)
         .then(response=>{
             axios.get(`/api/getcart`)
@@ -84,14 +83,14 @@ class Cart extends Component {
 
     render(){
         return(
-            <div>
+            <div className="main-cart">
                 {this.state.cartItems[0] ? this.state.cartItems.map((element,i)=>{
                     return (
                                 <CartItem updateQuantity={this.updateQuantity} key={i} removeFromCart={this.removeFromCart} item={this.state.cartItems[i]}/>
                     )
                 }) : ''}
-                {this.state.cartItems[0] ? <CartTotals /> : ''}
-                {!this.state.cartItems[0] ? "Your Cart is Currently Empty!": ''}
+                {/* {this.state.cartItems[0] ? <CartTotals /> : ''} */}
+                {!this.state.cartItems[0] ? <h3>Your Cart is Currently Empty!</h3>: ''}
             </div>
         )
     }

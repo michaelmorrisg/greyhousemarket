@@ -65,6 +65,12 @@ app.post('/api/logout', (req,res)=>{
 app.post('/api/addpurchase', controller.addPurchase)
 app.post('/api/addpurchasecart', controller.addPurchaseCart)
 app.get('/api/getorders', controller.getOrders)
+app.post('/api/addtodb', controller.addToDb)
+app.post('/api/addcategory', controller.addCategory)
+app.get('/api/getadminorders', controller.getAdminOrders)
+app.put('/api/fulfillorder/:id', controller.fulfillOrder)
+app.get('/api/getreviews/:id', controller.getReviews)
+app.get('/api/averagereviews/:id', controller.averageReviews)
 
 //Payment//
 app.post('/api/payment', function(req,res,next){

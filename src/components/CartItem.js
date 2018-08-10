@@ -31,13 +31,21 @@ handleChange(input){
 
     render(props){
         return(
-            <div>
-{console.log(this.props.item)}
+            <div className="main-cart-item-div">
+                <div className="left-cart-item">
+                    <div>
+                        <p>{this.props.item.product_name}</p>
+                        <p>Color: {this.props.item.color}</p>
+                        <p>Quantity: <input onChange={(e)=>this.handleChange(e.target.value)} type="number" min="1" value={this.state.quantity}/></p>
+                    </div>
+                    <div>
+                        <p>${(this.props.item.price * this.state.quantity).toFixed(2)}</p>
+                        <button onClick={()=>this.props.removeFromCart(this.props.item.product_id,this.props.item.color)}>Remove from cart</button>
+                    </div>
+                </div>
+                <div className="right-cart-item">
                 <p><img className="cart-image" src={this.state.image}/></p>
-                <p>{this.props.item.product_name} ({this.props.item.color})</p>
-                <p><input onChange={(e)=>this.handleChange(e.target.value)} type="number" min="1" value={this.state.quantity}/></p>
-                <p>{(this.props.item.price * this.state.quantity).toFixed(2)}</p>
-                <button onClick={()=>this.props.removeFromCart(this.props.item.product_id,this.props.item.color)}>Remove from cart</button>
+                </div>
             </div>
         )
     }

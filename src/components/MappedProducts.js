@@ -1,11 +1,43 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-export default function MappedProducts(props){
-    return(
-        <div>
-            <img className="mapped-products-image" src={props.productInfo.image}/>
-            <p>{props.productInfo.product_name}</p>
-            <p>{props.productInfo.price}</p>
-        </div>
-    )
+class MappedProducts extends Component{
+    constructor(){
+        super()
+        this.state = {
+            mappedImages: [],
+            hey: {}
+        }
+    }
+async componentDidMount(props){
+    let splitImages = this.props.productInfo.image.split(' ')
+    await this.setState({
+        mappedImages: splitImages
+    })
+    let myStyle = {
+        backgroundImage : `url(${this.state.mappedImages[0]})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover"
+    }
+    console.log(this.state.mappedImages[0])
+    this.setState({
+        hey: myStyle
+    })
 }
+
+
+render(props){
+        return(
+            <div className="product">
+            {console.log(this.state.hey)}
+                <div className="image-div">
+                    {this.props.productInfo.image && this.state.hey ? <div className="mapped-products-image" style={this.state.hey}></div>: ''}
+                </div>
+                <div className="lower-product">
+                    <p>{this.props.productInfo.product_name}</p>
+                    <p>${this.props.productInfo.price}</p>
+                </div>
+            </div>
+        )
+    }
+}
+export default MappedProducts

@@ -2,6 +2,11 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import MappedProducts from './MappedProducts'
 import {Link} from 'react-router-dom'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faChevronLeft)
 
 class Seasonal extends Component{
     constructor(){
@@ -22,12 +27,20 @@ class Seasonal extends Component{
 
     render(){
         return(
-            <div>
+            <div className="product-page">
+            <div className="product-headline">
+                <Link className="chevron-back" to="/">
+                    <FontAwesomeIcon onClick={()=>this.setState({toHome:true})} icon="chevron-left" size="2x" color="black"/>
+                </Link>
+                <h2>Seasonal Decals</h2>
+                </div>
+            <div className="product-grid">
                 {this.state.seasonProducts.map((element,i) =>{
                     return(
-                        <Link to={`/product/${element.product_id}`} key={i}><div><MappedProducts productInfo={element}/></div></Link>
+                        <Link className="main-product-div" to={`/product/${element.product_id}`} key={i}><div className="product"><MappedProducts productInfo={element}/></div></Link>
                     )
                 })}
+            </div>
             </div>
         )
     }

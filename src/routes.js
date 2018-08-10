@@ -13,6 +13,7 @@ import Cart from './components/Cart'
 import Checkout from './components/Checkout'
 import MyAccount from './components/MyAccount'
 import Contact from './components/Contact'
+import Admin from './components/Admin'
 
 export default (
     <Switch>
@@ -29,5 +30,6 @@ export default (
         <Route path="/checkout" component={Checkout}/>
         <Route path="/account/myaccount" component={MyAccount}/>
         <Route path="/contact" component={Contact}/>
+        <Route path="/admin" component={Admin}/>
     </Switch>
 )

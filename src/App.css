@@ -1,13 +1,188 @@
 .App {
   text-align: center;
+  margin-bottom: 15vh;
+}
+.main-logo{
+  width: 60%;
+  height: auto;
+}
+.navbar {
+  height: 50px;
+  position: fixed;
+  top: 0;
+  width: 90%;
+  margin: 0px 5%;
+  display: flex;
+  justify-content: space-between;
+  transition: .5s;
+  align-items: center;
+  z-index: 999;
+}
+.scrolling-navbar {
+  height: 50px;
+  transition: .5s;
+  z-index: 99;
+}
+.navbar-background {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  transition: .5s;
+}
+.scrolling-background {
+  background-color: #999999;
+  transition: .5s;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+}
+.navbar-left {
+  width: 30%;
+  display: flex;
+  justify-content: flex-start;
+}
+.navbar-right {
+  width: 70%;
+  display: flex;
+  justify-content: flex-end;
+}
+.list-item-nav {
+  margin-left: 5%;
+}
+.normal {
+  transition: .5s;
+}
+.rotated {
+  transform: rotate(90deg);
+  transition: .5s;
+}
+.drop-down {
+  width: 0;
+  height: 0vh;
+  background-color: #999999;
+  top: 50px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 999;
+}
+.list-item{
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  margin-top: 10px;
+}
+.menu-hidden {
+  height: 20vh;
+  width: 0;
+  transition: .5s;
+  position: fixed;
+}
+.menu-showing {
+  position: fixed;
+  height: 20vh;
+  width: 30%;
+  transition: .5s;
+}
+.main-banner {
+  color: gray;
+  position: relative;
+  margin-top: -30px;
+  font-weight: lighter;
+}
+.category-container{
+  width: 100%;
+  height: 22vh;
+  border-radius: 20px;
+}
+.product-div {
+  width: 100%;
+  height: 22vh;
+}
+.product-upper {
+  width: 100%;
+  height: 80%;
+
+}
+.product-lower {
+  width: 100%;
+  height: 20%;
+  background-color: #4d4d4d;
+  color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.upper-div-category{
+  background-color: #999999;
+  width: 100%;
+  height: 80%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.lower-div-category {
+  background-color: #4d4d4d;
+  width: 100%;
+  height: 20%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.category-text {
+  text-decoration: none;
+  color: white;
+  font-weight: lighter;
+  width: 45%;
+  margin-top: 10%;
+}
+.nails-category {
+  width: 100%;
+}
+.category-rows {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  margin: 0px auto;
 }
 .categories {
   display: flex;
   flex-direction: column;
 }
 .mapped-products-image {
-  width: 10%;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.product-page {
+  margin-top: 50px;
+}
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 10vh;
+}
+.product {
+  width: 100%;
+  height: 20vh;
+}
+.main-product-div {
+  width: 40%;
+  height: 20vh;
+  margin-top: 7vh;
+}
+.lower-product {
+  background-color: #4d4d4d;
+  color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 20%;
+}
+.image-div {
+  height: 20vh;
+  width: 100%;
 }
 .carousel-div {
   display: flex;
@@ -18,8 +193,9 @@
   height: auto;
 }
 .cart-image {
-  width: 60px;
+  width: 100%;
   height: auto;
+  border-radius: 10px;
 }
 .hidden {
   opacity: 0;
@@ -41,5 +217,77 @@
   display: flex;
   margin: 0px auto;
   justify-content: center;
+}
+.add-product {
+  display: flex;
+  flex-direction: column;
+}
+.select-color {
+  color: red;
+}
+.dropdown-menu {
+  overflow-y: scroll;
+  max-height: 30vh;
+}
+.carousel-image-div {
+  height: 100%;
+  width: auto;
+}
+.carousel-image-image {
+  height: 100%;
+  width: auto
+}
+.nails-body {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 80px;
+}
+.mapped-nails {
+  display: flex;
+}
+.product-headline {
+  display: flex;
+  width: 80%;
+  margin: 0px auto;
+  align-items: center;
+  justify-content: center;
+}
+.chevron-back {
+  margin-right: 10%;
+  margin-top: 8px;
+}
+.single-product-main {
+  margin-top: 60px;
+}
+.main-cart-item-div {
+  display: flex;
+  width: 95%;
+  justify-content: space-between;
+  margin: 0px auto;
+}
+.left-cart-item {
+  width: 50%;
+}
+.right-cart-item {
+  width: 50%;
+}
+.main-cart {
+  margin-top: 60px;
+}
+.subtotal-showing {
+  height: 10vh;
+  width: 100%;
+  background-color: #ff5e55;
+  position: fixed;
+  bottom: 0;
+}
+.subtotal-hidden {
+  height: 0px;
+  overflow: hidden;
+  width: 100%
+}
+.checkout-text {
+  text-decoration: none;
+  color: white;
 }
 

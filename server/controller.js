@@ -172,7 +172,7 @@ module.exports = {
                     `Product: ${element.product_name}
                     ID: ${element.product_id}
                     Quantity: ${element.quantity}
-                    `
+                    Color: ${element.color}`
                 )
             })}`
         }
@@ -196,7 +196,7 @@ module.exports = {
         const db = req.app.get('db')
         console.log(req.body.cart)
         req.body.cart.map(element=>{
-            db.add_purchase_cart({userId:element.user_id,productId:element.products_id,quantity:element.quantity,purchaseId:req.body.purchaseId})
+            db.add_purchase_cart({userId:element.user_id,productId:element.products_id,quantity:element.quantity,purchaseId:req.body.purchaseId,color:element.color})
     //         .then(response=>{
     //             res.status(200).send(response)
     // })
@@ -237,5 +237,80 @@ module.exports = {
                 console.log('Email sent: ' + info.response)
             }
         }) 
+    },
+    addToDb: (req,res)=>{
+        const db = req.app.get('db')
+
+        db.add_to_db({name:req.body.name,price:req.body.price,image:req.body.image,description:req.body.description,colors:req.body.colors})
+        .then(response=>{
+            res.status(200).send(response)
+        })
+    },
+    addCategory: (req,res)=>{
+        const db = req.app.get('db')
+        if(req.body.category === 'Seasonal'){
+            let myCategory = 1
+            db.add_category({productId: req.body.productId, category:myCategory})
+            .then(response=>{
+                res.status(200).send('Woo!')
+            })
+        } else if(req.body.category === 'Nails'){
+            let myCategory = 2
+            db.add_category({productId: req.body.productId, category:myCategory})
+            .then(response=>{
+                res.status(200).send('Woo!')
+            })
+        } else if(req.body.category === 'Kids') {
+            let myCategory = 3
+            db.add_category({productId: req.body.productId, category:myCategory})
+            .then(response=>{
+                res.status(200).send('Woo!')
+            })
+        } else if (req.body.category === 'car') {
+            let myCategory = 4
+            db.add_category({productId: req.body.productId, category:myCategory})
+            .then(response=>{
+                res.status(200).send('Woo!')
+            })
+        } else if (req.body.category === 'walls') {
+            let myCategory = 5
+            db.add_category({productId: req.body.productId, category:myCategory})
+            .then(response=>{
+                res.status(200).send('Woo!')
+            })
+        }
+
+    },
+    getAdminOrders: (req,res)=>{
+        const db = req.app.get('db')
+
+        db.get_admin_orders()
+            .then(response=>{
+                res.status(200).send(response)
+            })
+    },
+    fulfillOrder: (req,res)=>{
+        const db = req.app.get('db')
+
+        db.fulfill_order({purchaseId:req.params.id})
+            .then(response=>{
+                res.status(200).send(response)
+            })
+    },
+    getReviews: (req,res)=>{
+        const db = req.app.get('db')
+
+        db.get_reviews({productId:req.params.id})
+            .then(response=>{
+                res.status(200).send(response)
+            })
+    },
+    averageReviews: (req,res)=>{
+        const db = req.app.get('db')
+
+        db.get_average_reviews({productId: req.params.id})
+            .then(response=>{
+                res.status(200).send(response)
+            })
     }
 }
