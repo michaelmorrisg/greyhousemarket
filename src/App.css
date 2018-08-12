@@ -189,8 +189,8 @@
   justify-content: center;
 }
 .carousel-image {
-  width: 50%;
-  height: auto;
+  width: 100%;
+  height: 100%;
 }
 .cart-image {
   width: 100%;
@@ -230,12 +230,12 @@
   max-height: 30vh;
 }
 .carousel-image-div {
-  height: 100%;
-  width: auto;
+  width: 100%;
+  height: 40vh;
 }
 .carousel-image-image {
+  width: 100%;
   height: 100%;
-  width: auto
 }
 .nails-body {
   display: flex;
@@ -289,5 +289,21 @@
 .checkout-text {
   text-decoration: none;
   color: white;
+}
+.single-products-image{
+  width: 100%;
+  height: 100%;
+}
+.addtocart-button {
+  background-color: #ff5e55;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+.admin-page {
+  margin-top: 80px;
+}
+.account-home {
+  margin-top: 80px;
 }
 

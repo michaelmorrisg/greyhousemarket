@@ -24,7 +24,9 @@ class Stripe extends Component {
                 this.setState({
                     cart: response.data
                 })
+                console.log(this.state.cart)
                 let date = Date()
+            axios.put('/api/updatemaxquantity', {cart:this.state.cart})
             axios.post('/api/addpurchase',{amount: this.props.total,date: date})
             .then(response=>{
                 axios.post('/api/addpurchasecart',{cart:this.state.cart,purchaseId:response.data[0].purchase_id})

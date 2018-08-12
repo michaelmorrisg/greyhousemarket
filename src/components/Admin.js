@@ -13,7 +13,7 @@ class Admin extends Component{
 
     render(){
         return (
-            <div>
+            <div className="admin-page">
                 <Link to="/admin/addproduct">Add Product</Link>
                 <Link to="/admin/orders">Pending Orders</Link>
                 <Switch>

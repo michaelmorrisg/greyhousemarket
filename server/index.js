@@ -49,6 +49,7 @@ app.post('/api/addguest', controller.addGuest)
 app.get('/api/userinfo/:email/:password', controller.getUser)
 app.get('/api/products/:category', controller.getProducts)
 app.get('/api/getproduct/:id', controller.getProduct)
+app.get('/api/getcolors/:id', controller.getColors)
 app.post('/api/addproduct', controller.addProduct)
 app.get('/api/getcart', controller.getCart)
 app.delete('/api/removefromcart/:id/:color', controller.deleteProduct)
@@ -71,6 +72,7 @@ app.get('/api/getadminorders', controller.getAdminOrders)
 app.put('/api/fulfillorder/:id', controller.fulfillOrder)
 app.get('/api/getreviews/:id', controller.getReviews)
 app.get('/api/averagereviews/:id', controller.averageReviews)
+app.put('/api/updatemaxquantity', controller.updateMaxQuantity)
 
 //Payment//
 app.post('/api/payment', function(req,res,next){

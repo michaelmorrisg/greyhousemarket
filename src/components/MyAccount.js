@@ -7,7 +7,7 @@ class MyAccount extends Component{
 
     render(){
         return(
-            <div>
+            <div className="account-home">
                 <AccountNav />
                 <div>
                 <Switch>

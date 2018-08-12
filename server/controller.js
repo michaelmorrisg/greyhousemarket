@@ -76,7 +76,16 @@ module.exports = {
             res.status(200).send(response)
         })
     },
+    getColors: (req,res)=>{
+        const db = req.app.get('db')
+
+        db.get_colors({id: req.params.id})
+        .then(response=>{
+            res.status(200).send(response)
+        })
+    },
     addProduct: (req,res)=>{
+
         if(req.session.userid){
         const db = req.app.get('db')
 
@@ -312,5 +321,16 @@ module.exports = {
             .then(response=>{
                 res.status(200).send(response)
             })
+    },
+    updateMaxQuantity: (req,res)=>{
+        const db = req.app.get('db')
+
+        req.body.cart.map(element =>{
+            let remainder = element.product_quantity - element.quantity
+            db.update_max_quantity({remainder:remainder,colorId:element.color_id,productsId:element.product_id})
+            .then(response=>{
+                res.status(200).send(response)
+            })
+        })
     }
 }

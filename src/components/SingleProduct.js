@@ -4,7 +4,7 @@ import Modal from './Modal'
 import {connect} from 'react-redux'
 import {countCart} from '../ducks/reducer'
 import {Carousel} from 'react-responsive-carousel'
-import {SplitButton,MenuItem} from 'react-bootstrap'
+import {SplitButton,MenuItem,DropdownButton,ButtonProps} from 'react-bootstrap'
 import Reviews from './Reviews'
 
 
@@ -18,7 +18,8 @@ class SingleProduct extends Component{
             images: [],
             color: '',
             colorOptions: [],
-            toggleColor: false
+            toggleColor: false,
+            possibleQuantity: 10
         }
 
     this.toggleModalOff = this.toggleModalOff.bind(this)
@@ -32,11 +33,13 @@ class SingleProduct extends Component{
                 productInfo: res.data,
                 images: splitImages
             })
-            let colors = this.state.productInfo[0].color_options.split(', ')
+        })
+        axios.get(`/api/getcolors/${this.props.match.params.id}`)
+        .then(res=>{
+            console.log(res.data,'colorOptions')
             this.setState({
-                colorOptions: colors
+                colorOptions: res.data
             })
-            console.log(this.state.colorOptions, 'color options')
         })
     }
     handleQuantity(input){
@@ -45,7 +48,7 @@ class SingleProduct extends Component{
         })
     }
     addToCart(props){
-        this.state.color !== '' ? 
+        this.state.color !== '' && this.state.quantity <= this.state.possibleQuantity ? 
         axios.post('/api/addproduct',
             {productId:this.state.productInfo[0].products_id, quantity:this.state.quantity, color:this.state.color
         })
@@ -65,9 +68,10 @@ class SingleProduct extends Component{
         }else{
             this.props.countCart(0)
         }})
-        }) : this.setState({
+        }) : this.state.color === '' ? this.setState({
             toggleColor: true
-        })
+        }) : this.state.quantity > this.state.possibleQuantity ? alert(`We only have ${this.state.possibleQuantity} left in that color`)
+        : ''
     }
 
     toggleModalOn(){
@@ -80,38 +84,59 @@ class SingleProduct extends Component{
             showModal: false
         })
     }
-    chooseColor(input){
-        this.setState({
-            color: input
-        })
-        console.log(this.state.color)
+    async chooseColor(color,quantity){
+        if (quantity <= 0){
+            alert('This color sold out :(')
+        } else {
+            await this.setState({
+                color: color
+            })
+            let maxQuantity = this.state.colorOptions.findIndex(function(element){
+                return element.color_name === color
+
+            })
+            let maxQuant = this.state.colorOptions[maxQuantity].product_quantity
+            this.setState({
+                possibleQuantity: maxQuant
+            })
+        }
     }
 
 
     render(){
         return(
             <div className="single-product-main">
-                <div className="carousel-div">{this.state.productInfo[0] ? <Carousel showStatus={false} className="carousel-image">{this.state.images.map((element,i)=>{
+                <div className="carousel-div">{this.state.productInfo[0] ? <Carousel showArrows={false} showStatus={false} showThumbs={false} className="carousel-image">{this.state.images.map((element,i)=>{
+                    let image = {
+                                height: '100%',
+                                width: '100%',
+                                backgroundImage : `url(${element})`,
+                                backgroundSize : 'contain',
+                                backgroundRepeat : 'no-repeat',
+                                backgroundPosition: 'center',
+                                backgroundColor: '#999999'
+                    }
                     return(
                         <div className="carousel-image-div">
-                            <img className="carousel-image-image" src={element}/>
+                            {/* <img className="carousel-image-image" src={element}/> */}
+                            <div className="single-products-image" style={image}></div>
                         </div>
                     )
                 })}</Carousel> : ''}</div>
                 <div>
+                    <h4>{this.state.productInfo[0] ? this.state.productInfo[0].product_name : ''}</h4>
                     {this.state.toggleColor? <p className="select-color">* Please select a color *</p> : ''}
-                <SplitButton
+                <DropdownButton
                 title={this.state.color? this.state.color : 'Color'}>
                     {this.state.colorOptions.map((element,i)=>{
                         return(
-                            <MenuItem onClick={()=>this.chooseColor(element)} eventKey={i}>{element}</MenuItem>
+                            <MenuItem onClick={()=>this.chooseColor(element.color_name,element.product_quantity)} className={element.product_quantity===0? "disabled" : ''} eventKey={i}>{element.product_quantity > 0 ? element.color_name : element.color_name + ' (sold out)'}</MenuItem>
                         )
                     })}
-                </SplitButton>
-                    <p>{this.state.productInfo[0] ? this.state.productInfo[0].product_name : ''}</p>
+                </DropdownButton>
                     <p>{this.state.productInfo[0] ? '$'+this.state.productInfo[0].price : ''}</p>
-                    <p>Quantity: <input onChange={(e)=>this.handleQuantity(e.target.value)} type="number" min="1" placeholder="1"/></p>
-                    {this.state.productInfo[0] ? <button onClick={()=>this.addToCart()}>Add to Cart</button> : '' }
+                    <p>Quantity: <input onChange={(e)=>this.handleQuantity(e.target.value)} type="number" min="1" max={this.state.possibleQuantity} placeholder="1"/></p>
+                    {this.state.productInfo[0] ? <button className="addtocart-button" onClick={()=>this.addToCart()}>Add to Cart</button> : '' }
                     <p>{this.state.productInfo[0] ? this.state.productInfo[0].description : ''}</p>
                     <Modal class={this.state.showModal} toggle={this.toggleModalOff}/>
                 </div>
