@@ -90,7 +90,7 @@ class Cart extends Component {
                     )
                 }) : ''}
                 {/* {this.state.cartItems[0] ? <CartTotals /> : ''} */}
-                {!this.state.cartItems[0] ? <h3>Your Cart is Currently Empty!</h3>: ''}
+                {!this.state.cartItems[0] ? <h3 className="empty-cart">Your Cart is Currently Empty!</h3>: ''}
             </div>
         )
     }

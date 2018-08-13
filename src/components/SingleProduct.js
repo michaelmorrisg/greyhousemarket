@@ -27,7 +27,7 @@ class SingleProduct extends Component{
     componentDidMount(){
         axios.get(`/api/getproduct/${this.props.match.params.id}`)
         .then(res=>{
-            console.log(res.data)
+            // console.log(res.data)
             let splitImages = res.data[0].image.split(' ')
             this.setState({
                 productInfo: res.data,
@@ -36,7 +36,7 @@ class SingleProduct extends Component{
         })
         axios.get(`/api/getcolors/${this.props.match.params.id}`)
         .then(res=>{
-            console.log(res.data,'colorOptions')
+            // console.log(res.data,'colorOptions')
             this.setState({
                 colorOptions: res.data
             })
@@ -56,7 +56,7 @@ class SingleProduct extends Component{
             if(res.data==="Gotta log in!"){
                 this.toggleModalOn()
             } else {
-                alert("Added to cart")
+                // alert("Added to cart")
                 this.setState({
                     toggleColor: false
                 })
@@ -114,7 +114,7 @@ class SingleProduct extends Component{
                                 backgroundSize : 'contain',
                                 backgroundRepeat : 'no-repeat',
                                 backgroundPosition: 'center',
-                                backgroundColor: '#999999'
+                                backgroundColor: '#E8E8E8'
                     }
                     return(
                         <div className="carousel-image-div">
@@ -123,21 +123,25 @@ class SingleProduct extends Component{
                         </div>
                     )
                 })}</Carousel> : ''}</div>
-                <div>
-                    <h4>{this.state.productInfo[0] ? this.state.productInfo[0].product_name : ''}</h4>
+                <div className="single-product-body-text">
+                    <h4 className="single-product-header">{this.state.productInfo[0] ? this.state.productInfo[0].product_name : ''}</h4>
                     {this.state.toggleColor? <p className="select-color">* Please select a color *</p> : ''}
                 <DropdownButton
+                className="btn btn-secondary"
                 title={this.state.color? this.state.color : 'Color'}>
                     {this.state.colorOptions.map((element,i)=>{
                         return(
-                            <MenuItem onClick={()=>this.chooseColor(element.color_name,element.product_quantity)} className={element.product_quantity===0? "disabled" : ''} eventKey={i}>{element.product_quantity > 0 ? element.color_name : element.color_name + ' (sold out)'}</MenuItem>
+                            <MenuItem onClick={()=>this.chooseColor(element.color_name,element.product_quantity)} className={element.product_quantity<=0? "disabled" : ''} eventKey={i}>{element.product_quantity > 0 ? element.color_name : element.color_name + ' (sold out)'}</MenuItem>
                         )
                     })}
                 </DropdownButton>
                     <p>{this.state.productInfo[0] ? '$'+this.state.productInfo[0].price : ''}</p>
                     <p>Quantity: <input onChange={(e)=>this.handleQuantity(e.target.value)} type="number" min="1" max={this.state.possibleQuantity} placeholder="1"/></p>
                     {this.state.productInfo[0] ? <button className="addtocart-button" onClick={()=>this.addToCart()}>Add to Cart</button> : '' }
+                    <h4 className="single-product-header">{this.state.productInfo[0] ? "Description" : ''}</h4>
                     <p>{this.state.productInfo[0] ? this.state.productInfo[0].description : ''}</p>
+                    <h4 className="single-product-header">Measurements</h4>
+                    <p>{this.state.productInfo[0] ? this.state.productInfo[0].measurements : ''}</p>
                     <Modal class={this.state.showModal} toggle={this.toggleModalOff}/>
                 </div>
                 <Reviews productInfo={this.state.productInfo}/>

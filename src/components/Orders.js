@@ -85,7 +85,7 @@ class Orders extends Component{
                 {console.log(this.state.myCondensedOrders)}
                 {this.state.myCondensedOrders[0] ? this.state.myCondensedOrders.map((element,i)=>{
                     return(
-                        <div key={element.purchase_id}>
+                        <div className="admin-order" key={element.purchase_id}>
                             <p>{element.first_name}</p>
                             <p>{element.email === "Guest" ? '': element.email}</p>
                             <p>{element.purchase_date}</p>
@@ -93,7 +93,7 @@ class Orders extends Component{
                             {this.state.myCondensedOrders[i].purchases ? this.state.myCondensedOrders[i].purchases.map((element,i)=>{
                                 return(
                                     <div key={i}>
-                                        <p>{element.product_name}</p>
+                                        <p className="admin-product">{element.product_name}</p>
                                         <p>Color: {element.color}</p>
                                         <p>Quantity: {element.quantity}</p>
                                     </div>

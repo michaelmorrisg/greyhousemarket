@@ -41,20 +41,21 @@ class Reviews extends Component {
             <div>
             {console.log(Date())}
             {console.log(this.state.reviews)}
-                <h2>Reviews</h2>
-                {this.state.averageReview !== 0 ? <p>({this.state.averageReview} Average rating)</p>: ''}
+                <h2 className="single-product-header">Reviews</h2>
+                {this.state.reviews[0] ? '' : 'No reviews for this yet!'}
+                {this.state.reviews[0] ? <p>({this.state.averageReview} Average rating)</p>: ''}
                 {this.state.reviews.map((element,i)=>{
                     return (
-                        <div key={i}>
+                        <div className="single-product-body-text" key={i}>
                             <div>
-                                <p>{element.user_name}</p>
+                                <p className="reviews-name">{element.user_name}</p>
+                                <p className="reviews-date">{element.date}</p>
                                 <StarRatingComponent
                                 name="Rating" 
                                 value={element.rating}
                                 />
                             </div>
                             <p>{element.message}</p>
-                            <p>{element.date}</p>
                         </div>
                     )
                 })}

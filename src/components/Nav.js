@@ -79,15 +79,17 @@ class Nav extends Component{
     render(props){
         return(
             <div>
-                <div className={this.state.scroll > 5 ? "navbar-background scrolling-background" : 'navbar-background'}>
-                    <div className={this.state.scroll > 5 ? 'navbar scrolling-navbar' : 'navbar'}>
+                <div className={this.state.scroll > 30 ? "navbar-background scrolling-background" : 'navbar-background'}>
+                    <div className={this.state.scroll > 30 ? 'navbar scrolling-navbar' : 'navbar'}>
                         <div className='navbar-left'>
-                            <FontAwesomeIcon onClick={()=>this.setState({rotated:!this.state.rotated})} className={this.state.rotated? "rotated" : 'normal'} icon="bars" size="2x" color="dark-gray"/>
+                            <img src={require('../images/Hamburger.png')} onClick={()=>this.setState({rotated:!this.state.rotated})} className={this.state.rotated? "rotated" : 'normal'}/>
+                            <Link to="/" ><img className={this.state.scroll > 30 ? "nav-image" : "nav-image nav-image-hidden"} src="https://i.etsystatic.com/isla/420b13/29519511/isla_500x500.29519511_ifsfvos4.jpg?version=0" /></Link>
                         </div>
                         <div className='navbar-right'>
-                            {this.props.firstName && this.props.firstName !== "Guest" ? <p className="list-item-nav">Hey there, {this.props.firstName}</p>: ''}
-                            <FontAwesomeIcon className="list-item-nav" icon="search" size="2x" color="black"/>
-                            <Link className="list-item-nav" to="/cart"><FontAwesomeIcon  icon="shopping-cart" size="2x" color="black"/>({this.props.cart})</Link>
+                            {/* {this.props.firstName && this.props.firstName !== "Guest" ? <p className="list-item-nav">Hey there, {this.props.firstName}</p>: ''} */}
+                            <img className="search-icon" src={require('../images/Search.png')} />
+                            <Link className="list-item-nav" to="/cart"><div className={this.props.cart === 0 ? "shopping-cart-image" : "shopping-cart-item-image"}>{this.props.cart !== 0 ? <p className="cart-number">{this.props.cart}</p> : ''}</div></Link>
+                            {/* <p className="cart-amount">{this.props.cart}</p> */}
                         </div>
                     </div>
                 </div>

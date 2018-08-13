@@ -8,7 +8,7 @@ class Home extends Component{
 
     render(){
         return(
-            <div>
+            <div className="home-main">
                 <div>
                     <img className="main-logo" src="https://i.etsystatic.com/isla/420b13/29519511/isla_500x500.29519511_ifsfvos4.jpg?version=0"/>
                     <h4 className="main-banner">One-stop shop for all your vinyl decal needs</h4>

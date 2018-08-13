@@ -137,21 +137,34 @@ class Checkout extends Component {
             <div className="checkout">
             <div>
                 <h1>Checkout</h1>
+                <div className="shipping-info">
                 <h2>Shipping Address</h2>
                 <h3>Email Address</h3>
-                <input onChange={(e)=>this.handleEmail(e.target.value)} value={this.state.email}/>
-                <h3>First Name</h3>
-                <input onChange={(e)=>this.handleFirst(e.target.value)} value={this.state.firstName}/>
-                <h3>Last Name</h3>
-                <input onChange={(e)=>this.handleLast(e.target.value)} value={this.state.lastName}/>
+                <input className="checkout-input" onChange={(e)=>this.handleEmail(e.target.value)} value={this.state.email}/>
+                <div className="first-name-last-name-checkout">
+                    <div>
+                        <h3>First Name</h3>
+                        <input className="checkout-input" onChange={(e)=>this.handleFirst(e.target.value)} value={this.state.firstName}/>
+                    </div>
+                    <div>
+                        <h3>Last Name</h3>
+                        <input className="checkout-input" onChange={(e)=>this.handleLast(e.target.value)} value={this.state.lastName}/>
+                    </div>
+                </div>
                 <h3>Address</h3>
-                <input onChange={(e)=>this.handleAddress1(e.target.value)} value={this.state.address1}/>
+                <input className="checkout-input" onChange={(e)=>this.handleAddress1(e.target.value)} value={this.state.address1}/>
                 <h3>Address 2</h3>
-                <input onChange={(e)=>this.handleAddress2(e.target.value)} value={this.state.address2}/>
-                <h3>Zip Code</h3>
-                <input onChange={(e)=>this.handleZipCode(e.target.value)} value={this.state.zipCode}/>
-                <h3>City</h3>
-                <input onChange={(e)=>this.handleCity(e.target.value)} value={this.state.city}/>
+                <input className="checkout-input" onChange={(e)=>this.handleAddress2(e.target.value)} value={this.state.address2}/>
+                <div className="first-name-last-name-checkout">
+                    <div>
+                        <h3>Zip Code</h3>
+                        <input className="checkout-input" onChange={(e)=>this.handleZipCode(e.target.value)} value={this.state.zipCode}/>
+                    </div>
+                    <div>
+                        <h3>City</h3>
+                        <input className="checkout-input" onChange={(e)=>this.handleCity(e.target.value)} value={this.state.city}/>
+                    </div>
+                </div>
                 <h3>State</h3>
                 <SplitButton
                 title={this.state.myState ? this.state.myState : 'State'}
@@ -162,6 +175,7 @@ class Checkout extends Component {
                     )
                 })}
                 </SplitButton>
+                </div>
                 </div>
                 <Order />
             </div>
