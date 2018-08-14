@@ -89,7 +89,7 @@ class Cart extends Component {
                                 <CartItem updateQuantity={this.updateQuantity} key={i} removeFromCart={this.removeFromCart} item={this.state.cartItems[i]}/>
                     )
                 }) : ''}
-                {/* {this.state.cartItems[0] ? <CartTotals /> : ''} */}
+                {this.state.cartItems[0] ? <CartTotals /> : ''}
                 {!this.state.cartItems[0] ? <h3 className="empty-cart">Your Cart is Currently Empty!</h3>: ''}
             </div>
         )

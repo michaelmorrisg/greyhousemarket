@@ -35,11 +35,15 @@ class Modal extends Component{
 
     render(props){
         return (
-            <div className={this.props.class===false? 'hidden': 'showing'}>
-            <p>Log in or Continue as a guest</p>
-            <button onClick={()=>this.showLogIn()}>Log in</button>
-            <button onClick={()=>this.continueAsGuest()}>Continue as guest</button>
-            <Login show={this.state.showLogIn} toggle={this.props.toggle} />
+            <div className={this.props.class===false? 'hidden': this.props.class===true && this.state.showLogIn=== false ? 'showing' : 'showing tall'}>
+            {/* <p>Log in or Continue as a guest</p> */}
+            <div className={this.state.showLogIn === false ? "modal-content" : "modal-content-login"}>
+            <button className="modal-button" onClick={()=>this.showLogIn()}>Log in</button>
+            <div className="space"/>
+            <p>or</p>
+            <button className="modal-button" onClick={()=>this.continueAsGuest()}>Continue as guest</button>
+            </div>
+            {this.state.showLogIn ? <Login modal={this.props.class} show={this.state.showLogIn} toggle={this.props.toggle} />: ''}
             
             </div>
         )

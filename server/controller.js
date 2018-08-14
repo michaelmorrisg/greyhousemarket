@@ -98,6 +98,8 @@ module.exports = {
     },
     getCart: (req,res)=>{
         const db = req.app.get('db')
+        console.log(req.session.userid,'user')
+        console.log(req.body.id,'body user')
 
         db.get_cart({id:req.session.userid})
         .then(response=>{
@@ -162,7 +164,7 @@ module.exports = {
         })
         
         var mailOptions = {
-            from: 'michaelmorrisg@gmail.com',
+            from: 'grayhousemarket@gmail.com',
             to: 'michaelmorrisg@gmail.com',
             subject: 'New Order, Tannin!',
             text: `New order from ${req.body.firstName} ${req.body.lastName}
@@ -192,6 +194,97 @@ module.exports = {
                 console.log('Email sent: ' + info.response)
             }
         })
+    },
+    sendClientEmail: (req,res)=>{
+        require('dotenv').config()
+        const nodemailer = require('nodemailer')
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL,
+                pass: process.env.EMAIL_PASSWORD
+            }
+        })
+        
+        var mailOptions = {
+            from: 'grayhousemarket@gmail.com',
+            to: req.body.email,
+            subject: 'Thanks for the order!',
+            text: `Hey there ${req.body.firstName},
+
+            Thanks for your recent order! Here's a list of what you got as a reference:
+            
+            Products:
+            ${req.body.products.map(element=>{
+                return (
+                    `Product: ${element.product_name}
+                    Quantity: ${element.quantity}
+                    Color: ${element.color}`
+                )
+            })}
+            
+            We typically ship within 2 business days, so you should be getting a shipping confirmation email soon!
+            
+            Thanks again!
+            
+            Gray House Market`
+        }
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error){
+                console.log(error)
+            } else {
+                console.log('Email sent: ' + info.response)
+            }
+        })
+    },
+    shippingConfirmationEmail: (req,res)=>{
+
+        const db = req.app.get('db')
+        db.get_product_info_for_confirmation({id:req.params.id})
+        .then(res=>{
+            
+            require('dotenv').config()
+            const nodemailer = require('nodemailer')
+            var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: process.env.EMAIL,
+                    pass: process.env.EMAIL_PASSWORD
+                }
+            })
+            
+            var mailOptions = {
+                from: 'grayhousemarket@gmail.com',
+                to: res[0].email,
+                subject: 'Your order has shipped!',
+                text: `Hey there ${res[0].first_name === "Guest" ? '': res[0].first_name},
+    
+                Your recent purchase has shipped!
+                
+                Products:
+                ${res.map(element=>{
+                    return (
+                        `Product: ${element.product_name}
+                        Quantity: ${element.quantity}
+                        Color: ${element.color}`
+                    )
+                })}
+
+                Be sure the check your mailbox within the next couple of days :)
+                
+                Thanks!
+                
+                Gray House Market`
+            }
+            transporter.sendMail(mailOptions, function(error, info){
+                if (error){
+                    console.log(error)
+                } else {
+                    console.log('Email sent: ' + info.response)
+                }
+            })
+        })
+
     },
     addPurchase: (req,res)=>{
         const db = req.app.get('db')
@@ -331,6 +424,15 @@ module.exports = {
             .then(response=>{
                 res.status(200).send(response)
             })
+        })
+    },
+    submitReview: (req,res)=>{
+        const db = req.app.get('db')
+        let date = Date()
+
+        db.submit_review({productId:req.params.id,message:req.body.message,rating:req.body.rating, userName: req.body.name,date:date})
+        .then(response=>{
+            res.status(200).send(response)
         })
     }
 }

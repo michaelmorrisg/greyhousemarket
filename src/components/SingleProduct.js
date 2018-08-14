@@ -6,6 +6,7 @@ import {countCart} from '../ducks/reducer'
 import {Carousel} from 'react-responsive-carousel'
 import {SplitButton,MenuItem,DropdownButton,ButtonProps} from 'react-bootstrap'
 import Reviews from './Reviews'
+import Backdrop from './Backdrop';
 
 
 class SingleProduct extends Component{
@@ -19,7 +20,8 @@ class SingleProduct extends Component{
             color: '',
             colorOptions: [],
             toggleColor: false,
-            possibleQuantity: 10
+            possibleQuantity: 10,
+            showBackdrop: false
         }
 
     this.toggleModalOff = this.toggleModalOff.bind(this)
@@ -76,7 +78,8 @@ class SingleProduct extends Component{
 
     toggleModalOn(){
         this.setState({
-            showModal: true
+            showModal: true,
+            showBackdrop: true
         })
     }
     toggleModalOff(){
@@ -101,6 +104,12 @@ class SingleProduct extends Component{
             })
         }
     }
+    backdropClickHandler = ()=>{
+        this.setState({
+          showModal: false,
+          showBackdrop: false
+        })
+      }
 
 
     render(){
@@ -143,6 +152,7 @@ class SingleProduct extends Component{
                     <h4 className="single-product-header">Measurements</h4>
                     <p>{this.state.productInfo[0] ? this.state.productInfo[0].measurements : ''}</p>
                     <Modal class={this.state.showModal} toggle={this.toggleModalOff}/>
+                    {this.state.showBackdrop ? <Backdrop click={this.backdropClickHandler}/> : ''}
                 </div>
                 <Reviews productInfo={this.state.productInfo}/>
             </div>

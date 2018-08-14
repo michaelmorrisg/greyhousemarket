@@ -6,6 +6,7 @@ import {loginUser, countCart} from '../ducks/reducer'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faShoppingCart, faSearch } from '@fortawesome/free-solid-svg-icons'
+import DrawerToggleButton from './DrawerToggleButton'
 
 library.add(faBars)
 library.add(faShoppingCart)
@@ -38,7 +39,6 @@ class Nav extends Component{
             })
             const {firstName,lastName,id,email,admin} = this.state
             this.props.loginUser(firstName,lastName,id,email,admin)
-            console.log(this.state.admin)
         })
         axios.get('/api/totalcart')
             .then(res=>{
@@ -82,7 +82,8 @@ class Nav extends Component{
                 <div className={this.state.scroll > 30 ? "navbar-background scrolling-background" : 'navbar-background'}>
                     <div className={this.state.scroll > 30 ? 'navbar scrolling-navbar' : 'navbar'}>
                         <div className='navbar-left'>
-                            <img src={require('../images/Hamburger.png')} onClick={()=>this.setState({rotated:!this.state.rotated})} className={this.state.rotated? "rotated" : 'normal'}/>
+                        <DrawerToggleButton click={this.props.drawerClickHandler}/>
+                            {/* <img src={require('../images/Hamburger.png')} onClick={()=>this.setState({rotated:!this.state.rotated})} className={this.state.rotated? "rotated" : 'normal'}/> */}
                             <Link to="/" ><img className={this.state.scroll > 30 ? "nav-image" : "nav-image nav-image-hidden"} src="https://i.etsystatic.com/isla/420b13/29519511/isla_500x500.29519511_ifsfvos4.jpg?version=0" /></Link>
                         </div>
                         <div className='navbar-right'>
@@ -92,13 +93,6 @@ class Nav extends Component{
                             {/* <p className="cart-amount">{this.props.cart}</p> */}
                         </div>
                     </div>
-                </div>
-                <div className={this.state.rotated ? "drop-down menu-showing" : "drop-down menu-hidden"}>
-                    
-                    <Link className="list-item" to="/">Home</Link>
-                    {this.props.firstName? <Link className="list-item" to="/account/myaccount">My Account</Link> :<Link className="list-item" to="/account/login">Login</Link>}
-                    <Link className="list-item" to="/contact">Help</Link>
-                    {this.state.admin ? <Link className="list-item" to="/admin">Admin</Link> : ''}
                 </div>
             </div>
         )

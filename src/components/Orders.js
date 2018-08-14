@@ -44,6 +44,20 @@ class Orders extends Component{
                 })
     }
     fulfillOrder(id){
+        let purchaseOrder = []
+        for(let i = 0;i<this.state.myCondensedOrders.length; i++){
+            if(this.state.myCondensedOrders[i].purchase_id === id){
+                purchaseOrder.push(this.state.myCondensedOrders[i])
+            }
+        }
+        for(let k = 0; k<purchaseOrder[0].purchases.length; k++) {
+            purchaseOrder[0].purchases[k].purchases[k].purchases = []
+        }
+        console.log(purchaseOrder, 'purchaseOrder')
+        axios.post(`/api/shippingconfirmationemail/${id}`, {order:purchaseOrder})
+        .then(res=>{
+            console.log(res)
+        })
         axios.put(`/api/fulfillorder/${id}`)
         .then(res=>{
             axios.get('/api/getadminorders')
@@ -82,14 +96,14 @@ class Orders extends Component{
     render(){
         return(
             <div>
-                {console.log(this.state.myCondensedOrders)}
+                {/* {console.log(this.state.myCondensedOrders)} */}
                 {this.state.myCondensedOrders[0] ? this.state.myCondensedOrders.map((element,i)=>{
                     return(
                         <div className="admin-order" key={element.purchase_id}>
-                            <p>{element.first_name}</p>
+                            <p>{element.first_name} {element.last_name}</p>
                             <p>{element.email === "Guest" ? '': element.email}</p>
                             <p>{element.purchase_date}</p>
-                            {console.log(this.state.myCondensedOrders[i].purchases)}
+                            {/* {console.log(this.state.myCondensedOrders[i].purchases)} */}
                             {this.state.myCondensedOrders[i].purchases ? this.state.myCondensedOrders[i].purchases.map((element,i)=>{
                                 return(
                                     <div key={i}>

@@ -32,6 +32,7 @@ class Stripe extends Component {
                 axios.post('/api/addpurchasecart',{cart:this.state.cart,purchaseId:response.data[0].purchase_id})
             })    
             axios.post('/api/sendtanninemail', {firstName:this.props.shipFirstName,lastName:this.props.shipLastName, email:this.props.shipEmail, address1: this.props.shipAddress1, address2: this.props.shipAddress2, zip: this.props.shipZipCode, city: this.props.shipCity, state: this.props.shipState, products: response.data})
+            axios.post('/api/sendclientemail', {firstName:this.props.shipFirstName,lastName:this.props.shipLastName, email:this.props.shipEmail, products: response.data})
             axios.delete('/api/clearcart')
                 .then(response=>{
                     this.setState({

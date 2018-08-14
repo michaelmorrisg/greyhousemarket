@@ -13,6 +13,11 @@ class Login extends Component {
             toHome: false
         }
     }
+    componentDidMount(props){
+        this.setState({
+            stayOnPage: this.props.modal
+        })
+    }
     handleEmail(input){
         this.setState({
             email: input
@@ -27,11 +32,13 @@ class Login extends Component {
         axios.get(`/api/userinfo/${this.state.email}/${this.state.password}`)
         .then((response)=>{
             if(response.data!=='Wrong username or password'){
-            this.props.loginUser(response.data.response[0].first_name,response.data.response[0].last_name,response.data.response[0].id,response.data.response[0].email)
+            this.props.loginUser(response.data.response[0].first_name,response.data.response[0].last_name,response.data.response[0].id,response.data.response[0].email,response.data.response[0].admin)
             this.props.toggle ? this.props.toggle() : ''
-            this.setState({
+            {
+                this.setState({
                 toHome: true
             })
+            }
         } else {
             alert('dumb')
         }
@@ -49,7 +56,7 @@ class Login extends Component {
 
     render(props){
         return(
-            <div className={this.props.show===false ? "loginHidden" : "loginShowing"}>
+            <div className={this.props.show===false ? "loginHidden" : this.props.show===true && this.props.modal=== true ? "loginShowing login-modal" : "loginShowing"}>
                 <h2>Login</h2>
                 <input onChange={(e)=>this.handleEmail(e.target.value)}placeholder="Email" />
                 <input onChange={(e)=>this.handlePassword(e.target.value)}placeholder="Password" type="password" />

@@ -58,6 +58,8 @@ app.get('/api/totalcart', controller.totalCart)
 app.put('/api/updatequantity/:id/:quantity/:color', controller.updateQuantity)
 app.delete('/api/clearcart', controller.clearCart)
 app.post('/api/sendtanninemail', controller.sendTanninEmail)
+app.post('/api/sendclientemail', controller.sendClientEmail)
+app.post('/api/shippingconfirmationemail/:id', controller.shippingConfirmationEmail)
 app.post('/api/sendcontactemail',controller.sendContactEmail)
 app.post('/api/logout', (req,res)=>{
     req.session.destroy()
@@ -73,6 +75,7 @@ app.put('/api/fulfillorder/:id', controller.fulfillOrder)
 app.get('/api/getreviews/:id', controller.getReviews)
 app.get('/api/averagereviews/:id', controller.averageReviews)
 app.put('/api/updatemaxquantity', controller.updateMaxQuantity)
+app.post('/api/submitreview/:id', controller.submitReview)
 
 //Payment//
 app.post('/api/payment', function(req,res,next){

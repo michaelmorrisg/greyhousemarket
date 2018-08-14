@@ -1,6 +1,12 @@
 import React,{Component} from 'react'
 import axios from 'axios'
 import {findIndex} from 'lodash'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+import {Link} from 'react-router-dom'
+
+library.add(faStar)
 
 class MyOrders extends Component{
     constructor(){
@@ -40,7 +46,7 @@ class MyOrders extends Component{
                 let tempObj = {}
                 if(findIndex(condensedArray,{total_amount:myTotal,purchase_date:myDate})!==-1){
                     let index = findIndex(condensedArray,{total_amount:myTotal,purchase_date:myDate})
-                    tempObj = {product_name: this.state.orders[j].product_name, quantity: this.state.orders[j].quantity}
+                    tempObj = {product_name: this.state.orders[j].product_name, quantity: this.state.orders[j].quantity, product_id:this.state.orders[j].products_id}
                     condensedArray[index].purchases.push(tempObj)
                 }
             }
@@ -61,13 +67,15 @@ class MyOrders extends Component{
             <div>
                 {this.state.condensedOrders.map((element,i)=>{
                     return(
-                        <div key={i}>
+                        <div className="individual-order" key={i}>
                             <p>{element.product_name}</p>
-                            <p>{element.purchase_date}</p>
+                            <p className="bold">{element.purchase_date}</p>
                             {this.state.condensedOrders[i].purchases.map((element,i)=>{
+                                console.log(element)
                                 return(
-                                    <div key={i}>
+                                    <div className="product-review-div" key={i}>
                                         {element.product_name} x {element.quantity}
+                                        <Link to={`/addreview/product/${element.product_id}`} ><FontAwesomeIcon icon="star" color="yellow"/></Link>
                                     </div>
                                 )
                             })}
