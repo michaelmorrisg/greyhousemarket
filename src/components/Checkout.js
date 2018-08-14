@@ -140,7 +140,7 @@ class Checkout extends Component {
                 <div className="shipping-info">
                 <h2>Shipping Address</h2>
                 <h3>Email Address</h3>
-                <input className="checkout-input" onChange={(e)=>this.handleEmail(e.target.value)} value={this.state.email}/>
+                <input className="checkout-input email" onChange={(e)=>this.handleEmail(e.target.value)} value={this.state.email}/>
                 <div className="first-name-last-name-checkout">
                     <div>
                         <h3>First Name</h3>
@@ -152,9 +152,9 @@ class Checkout extends Component {
                     </div>
                 </div>
                 <h3>Address</h3>
-                <input className="checkout-input" onChange={(e)=>this.handleAddress1(e.target.value)} value={this.state.address1}/>
+                <input className="checkout-input email" onChange={(e)=>this.handleAddress1(e.target.value)} value={this.state.address1}/>
                 <h3>Address 2</h3>
-                <input className="checkout-input" onChange={(e)=>this.handleAddress2(e.target.value)} value={this.state.address2}/>
+                <input className="checkout-input email" onChange={(e)=>this.handleAddress2(e.target.value)} value={this.state.address2}/>
                 <div className="first-name-last-name-checkout">
                     <div>
                         <h3>Zip Code</h3>
@@ -167,8 +167,9 @@ class Checkout extends Component {
                 </div>
                 <h3>State</h3>
                 <SplitButton
+                className="state-button"
                 title={this.state.myState ? this.state.myState : 'State'}
-                dropup={true}>
+                dropup={false}>
                 {this.state.states.map(element=>{
                     return (
                         <MenuItem onClick={()=>this.handleState(element)}>{element}</MenuItem>

@@ -31,9 +31,9 @@ class Kids extends Component{
             <div className="product-page">
             <div className="product-headline">
                 <Link className="chevron-back"  to="/">
-                    <FontAwesomeIcon onClick={()=>this.setState({toHome:true})} icon="chevron-left" size="2x" color="black"/>
+                    <FontAwesomeIcon onClick={()=>this.setState({toHome:true})} icon="chevron-left" size="2x" color="white"/>
                 </Link>
-                <h2>Kids Decals</h2>
+                <h2 className="product-headline-text">Kids Decals</h2>
                 </div>
                 <div className="product-grid">
                     {this.state.kidsProducts.map((element,i) =>{

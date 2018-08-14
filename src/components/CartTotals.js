@@ -16,8 +16,8 @@ class CartTotals extends Component {
         return(
             <div className={this.props.cart !== 0 ? "subtotal-showing" : "subtotal-hidden"}>
                 <div>
-                    {this.props.subTotal != 0.00 ? <p>Cart Total: ${this.props.subTotal}</p>: ''}
-                    <Link className="checkout-text" to="/checkout"><button>Proceed to Checkout</button></Link>
+                    {this.props.subTotal != 0.00 ? <p className="cart-total-text">Cart Total: ${this.props.subTotal}</p>: ''}
+                    <Link className="checkout-text" to="/checkout"><button className="proceed-checkout-button">Proceed to Checkout</button></Link>
                 </div>
             </div>
         )

@@ -16,7 +16,7 @@ button {
   background-color: white;
   box-shadow: 2px 0px 5px rgba(0,0,0,0.5);
   position: fixed;
-  top: 10vh;
+  top: 7.8vh;
   left: 0;
   width: 60%;
   max-width: 300px;
@@ -27,6 +27,14 @@ button {
 .side-drawer-open {
   transform: translateX(0);
   transition: .5s;
+}
+.side-drawer-list {
+  width: 100%;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 0px;
 }
 .backdrop {
   position: fixed;
@@ -129,6 +137,8 @@ button {
 .hamburger-button {
   padding-left: 0px;
   width: 95px;
+  background: transparent;
+  border: none;
 }
 .normal {
   transition: .5s;
@@ -141,7 +151,16 @@ button {
   list-style-type: none;
   color: black;
   font-size: 20px;
-  margin-top: 10px;
+  margin-top: 3vh;
+}
+.list-item a {
+  color: black;
+}
+.list-item a:hover,
+.list-item a:active {
+  color: #ff5e55;
+  list-style-type: none;
+  text-decoration: none;
 }
 .menu-hidden {
   height: 20vh;
@@ -189,6 +208,8 @@ button {
   height: 80%;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  background-position: center;
+  background-size: cover;
 }
 .lower-div-category {
   background-color: #4d4d4d;
@@ -196,6 +217,9 @@ button {
   height: 20%;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .category-text {
   text-decoration: none;
@@ -230,7 +254,6 @@ button {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-top: 10vh;
 }
 .product {
   width: 100%;
@@ -389,10 +412,18 @@ button {
   margin: 0px auto;
   align-items: center;
   justify-content: center;
+  background-color: #c3b8de;
+  width: 100%;
+  padding: 3vh 0;
+}
+.product-headline-text {
+  margin-top: 10px;
+  font-weight: 700;
+  color: white;
+  font-family: 'Raleway', sans-serif;
 }
 .chevron-back {
   margin-right: 10%;
-  margin-top: 8px;
 }
 .single-product-main {
   margin-top: 100px;
@@ -416,11 +447,14 @@ button {
   margin-top: 40vh;
 }
 .subtotal-showing {
-  height: 10vh;
+  height: 15vh;
   width: 100%;
   background-color: #ff5e55;
   position: fixed;
   bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 .subtotal-hidden {
   height: 0px;
@@ -430,6 +464,11 @@ button {
 .checkout-text {
   text-decoration: none;
   color: white;
+  font-weight: 700;
+  font-size: 20px;
+}
+.cart-total-text {
+  font-size: 20px;
 }
 .single-products-image{
   width: 100%;
@@ -441,6 +480,7 @@ button {
   border-radius: 5px;
   outline: none;
   color: white;
+  padding: 8px 14px;
 }
 .admin-page {
   margin-top: 80px;
@@ -449,7 +489,7 @@ button {
   margin-top: 80px;
 }
 .home-main {
-  margin-top: 80px; 
+  margin-top: 8vh; 
 }
 .color-button {
   width: 100%;
@@ -509,3 +549,11 @@ button {
   top: 0;
   flex-wrap: wrap;
 }
+.email {
+  width: 90%;
+}
+.proceed-checkout-button {
+  background: transparent;
+  border: none;
+}
+

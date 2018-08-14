@@ -33,6 +33,9 @@ class Stripe extends Component {
             })    
             axios.post('/api/sendtanninemail', {firstName:this.props.shipFirstName,lastName:this.props.shipLastName, email:this.props.shipEmail, address1: this.props.shipAddress1, address2: this.props.shipAddress2, zip: this.props.shipZipCode, city: this.props.shipCity, state: this.props.shipState, products: response.data})
             axios.post('/api/sendclientemail', {firstName:this.props.shipFirstName,lastName:this.props.shipLastName, email:this.props.shipEmail, products: response.data})
+            if(this.props.firstName === "Guest"){
+                axios.put('/api/updateguestemail', {email:this.props.shipEmail})
+            }
             axios.delete('/api/clearcart')
                 .then(response=>{
                     this.setState({
@@ -59,7 +62,7 @@ class Stripe extends Component {
     }
 }
 function mapStateToProps(state){
-    const {total,shipFirstName,shipLastName,shipEmail,shipCity,shipState,shipZipCode,shipAddress1,shipAddress2} = state
-    return {total,shipFirstName,shipLastName,shipEmail,shipCity,shipState,shipZipCode,shipAddress1,shipAddress2} 
+    const {total,shipFirstName,shipLastName,shipEmail,shipCity,shipState,shipZipCode,shipAddress1,shipAddress2,firstName} = state
+    return {total,shipFirstName,shipLastName,shipEmail,shipCity,shipState,shipZipCode,shipAddress1,shipAddress2,firstName} 
 }
 export default connect(mapStateToProps, {countCart})(Stripe)

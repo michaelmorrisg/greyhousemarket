@@ -242,6 +242,7 @@ module.exports = {
         const db = req.app.get('db')
         db.get_product_info_for_confirmation({id:req.params.id})
         .then(res=>{
+            console.log(res)
             
             require('dotenv').config()
             const nodemailer = require('nodemailer')
@@ -432,6 +433,14 @@ module.exports = {
 
         db.submit_review({productId:req.params.id,message:req.body.message,rating:req.body.rating, userName: req.body.name,date:date})
         .then(response=>{
+            res.status(200).send(response)
+        })
+    },
+    updateGuestEmail: (req,res)=>{
+        const db = req.app.get('db')
+        
+        db.update_guest_email({email: req.body.email, id: req.session.userid})
+        .then(response => {
             res.status(200).send(response)
         })
     }

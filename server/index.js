@@ -76,6 +76,7 @@ app.get('/api/getreviews/:id', controller.getReviews)
 app.get('/api/averagereviews/:id', controller.averageReviews)
 app.put('/api/updatemaxquantity', controller.updateMaxQuantity)
 app.post('/api/submitreview/:id', controller.submitReview)
+app.put('/api/updateguestemail', controller.updateGuestEmail)
 
 //Payment//
 app.post('/api/payment', function(req,res,next){
