@@ -50,6 +50,8 @@ button {
 }
 .cart-number {
   margin-right: -8px;
+  list-style-type: none;
+  text-decoration: none;
   color: white;
   position: relative;
   top:-3px;
@@ -167,6 +169,16 @@ button {
   list-style-type: none;
   text-decoration: none;
 }
+.account-nav {
+  margin: 0px 3vw;
+}
+.account-nav:hover,
+.list-item a:active {
+  color: #ff5e55;
+  list-style-type: none;
+  text-decoration: none;
+}
+
 .menu-hidden {
   height: 20vh;
   width: 0;

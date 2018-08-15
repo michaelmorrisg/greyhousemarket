@@ -37,8 +37,8 @@ class AccountNav extends Component{
     render(){
         return (
             <div>
-                <Link to="/account/myaccount/myorders" >My Orders</Link>
-                <Link onClick={()=>this.logOut()} to="/">Log Out</Link>
+                <Link className="list-item account-nav" to="/account/myaccount/myorders" >My Orders</Link>
+                <Link className="list-item account-nav" onClick={()=>this.logOut()} to="/">Log Out</Link>
             </div>
         )
     }

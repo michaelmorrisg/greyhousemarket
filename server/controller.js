@@ -98,8 +98,6 @@ module.exports = {
     },
     getCart: (req,res)=>{
         const db = req.app.get('db')
-        console.log(req.session.userid,'user')
-        console.log(req.body.id,'body user')
 
         db.get_cart({id:req.session.userid})
         .then(response=>{

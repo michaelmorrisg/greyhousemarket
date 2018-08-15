@@ -10,12 +10,15 @@ class Admin extends Component{
 
         }
     }
+    componentDidMount(){
+        window.scrollTo(0,0)
+    }
 
     render(){
         return (
             <div className="admin-page">
-                <Link to="/admin/addproduct">Add Product</Link>
-                <Link to="/admin/orders">Pending Orders</Link>
+                <Link className="list-item account-nav" to="/admin/addproduct">Add Product</Link>
+                <Link className="list-item account-nav" to="/admin/orders">Pending Orders</Link>
                 <Switch>
                     <Route path="/admin/addproduct" component={AddProduct}/>
                     <Route path="/admin/orders" component={Orders}/>
