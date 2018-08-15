@@ -42,10 +42,10 @@ class Contact extends Component{
     }
     render(){
         return (
-            <div>
+            <div className="questions-main">
                 <h2>Top Questions</h2>
-                <h4 onClick={()=>this.toggleState()}>Are you really this cool?</h4>
-                {this.state.showCool===true ? <h5>Yes. Yes we are.</h5> : ''}
+                <h4 className="question" onClick={()=>this.toggleState()}>Are you really this cool?</h4>
+                <div className={this.state.showCool ? "showing-answer" : "hidden-answer" }><h5 className="answer">Yes. Yes we are.</h5></div>
                 <h4 onClick={()=>this.toggleReturn()}>What is your return policy?</h4>
                 {this.state.showReturn===true ? <div><h5><b>We gladly accept returns</b></h5><h5>Contact me within 14 days of delivery
                     and ship the items back within 30 days for a full refund</h5></div> : ''}

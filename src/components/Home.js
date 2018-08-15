@@ -4,6 +4,10 @@ import {Link} from 'react-router-dom'
 
 class Home extends Component{
 
+    componentDidMount(){
+        window.scrollTo(0,0)
+    }
+
 
 
     render(){

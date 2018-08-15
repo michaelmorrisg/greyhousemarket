@@ -48,7 +48,7 @@ handleChange = debounce((input)=>{
                 starCount={5}
                 value={this.state.rating}
                 onStarClick = {this.onStarClick.bind(this)} />
-                <textarea onChange={(e)=>this.handleChange(e.target.value)} className="review-field" placeholder="Write a review if you'd like!"></textarea>
+                <textarea onChange={(e)=>this.handleChange(e.target.value)} className="review-field" placeholder="Tell everyone what you think!"></textarea>
                 <button onClick={()=>this.submitReview()}>Submit</button>
                 {this.state.toHome ? <Redirect to="/"/> : ''}
             </div>

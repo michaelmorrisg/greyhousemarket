@@ -56,12 +56,20 @@ class Login extends Component {
 
     render(props){
         return(
-            <div className={this.props.show===false ? "loginHidden" : this.props.show===true && this.props.modal=== true ? "loginShowing login-modal" : "loginShowing"}>
-                <h2>Login</h2>
-                <input onChange={(e)=>this.handleEmail(e.target.value)}placeholder="Email" />
-                <input onChange={(e)=>this.handlePassword(e.target.value)}placeholder="Password" type="password" />
-                <button onClick={()=>this.signIn()}>Sign In</button>
-                <Link to="/account/register"><button>Register</button></Link>
+            <div className={this.props.show===false ? "loginHidden" : this.props.show===true && window.location.hash !== "#/account/login" ? "login login-modal" : "login"}>
+                <h2 className="login-register-title">Login</h2>
+                {console.log(window.location.hash)}
+                <input className={window.location.hash === "#/account/login" ? "main-login-input" : ''} onChange={(e)=>this.handleEmail(e.target.value)}placeholder="Email" />
+                <input className={window.location.hash === "#/account/login" ? "main-login-input" : ''}  onChange={(e)=>this.handlePassword(e.target.value)}placeholder="Password" type="password" />
+                <div>
+                <button className={window.location.hash === "#/account/login" ? "main-login-button" : ''} onClick={()=>this.signIn()}>Sign In</button>
+                <div className="line-container">
+                <div className="line"></div>
+                <h5 id="or">Or</h5>
+                <div className="line"></div>
+                </div>
+                <Link to="/account/register"><button className={window.location.hash === "#/account/login" ? "main-register-button" : ''}>Register</button></Link>
+                </div>
                 {this.state.toHome ? <Redirect to="/" />: ''}
             </div>
         )

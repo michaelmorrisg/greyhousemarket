@@ -27,6 +27,7 @@ class SingleProduct extends Component{
     this.toggleModalOff = this.toggleModalOff.bind(this)
     }
     componentDidMount(){
+        window.scrollTo(0,0)
         axios.get(`/api/getproduct/${this.props.match.params.id}`)
         .then(res=>{
             // console.log(res.data)
@@ -45,9 +46,16 @@ class SingleProduct extends Component{
         })
     }
     handleQuantity(input){
-        this.setState({
-            quantity: input
-        })
+        if(input >= 1){
+            this.setState({
+                quantity: input
+            })
+        } else if (input <= 0){
+            this.setState({
+                quantity: 1
+            })
+        }
+        console.log(this.state.quantity)
     }
     addToCart(props){
         this.state.color !== '' && this.state.quantity <= this.state.possibleQuantity ? 
@@ -116,6 +124,7 @@ class SingleProduct extends Component{
         return(
             <div className="single-product-main">
                 <div className="carousel-div">{this.state.productInfo[0] ? <Carousel showArrows={false} showStatus={false} showThumbs={false} className="carousel-image">{this.state.images.map((element,i)=>{
+                    if(element !== " " || element !== ""){
                     let image = {
                                 height: '100%',
                                 width: '100%',
@@ -131,12 +140,17 @@ class SingleProduct extends Component{
                             <div className="single-products-image" style={image}></div>
                         </div>
                     )
+                }
                 })}</Carousel> : ''}</div>
                 <div className="single-product-body-text">
                     <h4 className="single-product-header">{this.state.productInfo[0] ? this.state.productInfo[0].product_name : ''}</h4>
+                    <p className="price-quantity">{this.state.productInfo[0] ? '$'+this.state.productInfo[0].price : ''}</p>
                     {this.state.toggleColor? <p className="select-color">* Please select a color *</p> : ''}
                 <DropdownButton
-                className="btn btn-secondary"
+                // bsClass="btn test"
+                bsStyle="info"
+                block={true}
+                // active={true}
                 title={this.state.color? this.state.color : 'Color'}>
                     {this.state.colorOptions.map((element,i)=>{
                         return(
@@ -144,14 +158,13 @@ class SingleProduct extends Component{
                         )
                     })}
                 </DropdownButton>
-                    <p>{this.state.productInfo[0] ? '$'+this.state.productInfo[0].price : ''}</p>
-                    <p>Quantity: <input onChange={(e)=>this.handleQuantity(e.target.value)} type="number" min="1" max={this.state.possibleQuantity} placeholder="1"/></p>
+                    <p className="price-quantity">Quantity: <input className="quant-input" onChange={(e)=>this.handleQuantity(e.target.value)} type="number" min="1" max={this.state.possibleQuantity} placeholder="1"/></p>
                     {this.state.productInfo[0] ? <button className="addtocart-button" onClick={()=>this.addToCart()}>Add to Cart</button> : '' }
                     <h4 className="single-product-header">{this.state.productInfo[0] ? "Description" : ''}</h4>
-                    <p>{this.state.productInfo[0] ? this.state.productInfo[0].description : ''}</p>
+                    <p className="description">{this.state.productInfo[0] ? this.state.productInfo[0].description : ''}</p>
                     <h4 className="single-product-header">Measurements</h4>
-                    <p>{this.state.productInfo[0] ? this.state.productInfo[0].measurements : ''}</p>
-                    <Modal class={this.state.showModal} toggle={this.toggleModalOff}/>
+                    <p className="description">{this.state.productInfo[0] ? this.state.productInfo[0].measurements : ''}</p>
+                    <Modal click={this.backdropClickHandler} class={this.state.showModal} toggle={this.toggleModalOff}/>
                     {this.state.showBackdrop ? <Backdrop click={this.backdropClickHandler}/> : ''}
                 </div>
                 <Reviews productInfo={this.state.productInfo}/>

@@ -58,12 +58,15 @@ class Register extends Component {
 
     render(){
         return(
-            <div>
-                <input onChange={(e)=>this.handleFirst(e.target.value)} placeholder="First Name" value={this.state.firstName}/>
-                <input onChange={(e)=>this.handleLast(e.target.value)} placeholder="Last Name" value={this.state.lastName}/>
-                <input onChange={(e)=>this.handleEmail(e.target.value)} placeholder="Email" value={this.state.email}/>
-                <input onChange={(e)=>this.handlePassword(e.target.value)} placeholder="Password" value={this.state.password} type="password"/>
-                <button onClick={()=>this.registerUser()}>Create</button>
+            <div className="register-main">
+            <h2 className="login-register-title">Register</h2>
+                <div className="input-div">
+                    <input className="main-login-input" onChange={(e)=>this.handleFirst(e.target.value)} placeholder="First Name" value={this.state.firstName}/>
+                    <input className="main-login-input" onChange={(e)=>this.handleLast(e.target.value)} placeholder="Last Name" value={this.state.lastName}/>
+                    <input className="main-login-input" onChange={(e)=>this.handleEmail(e.target.value)} placeholder="Email" value={this.state.email}/>
+                    <input className="main-login-input" onChange={(e)=>this.handlePassword(e.target.value)} placeholder="Password" value={this.state.password} type="password"/>
+                    <button className="main-login-button" onClick={()=>this.registerUser()}>Create</button>
+                </div>
                 {this.state.toHome ? <Redirect to="/"/> : ''}
             </div>
         )

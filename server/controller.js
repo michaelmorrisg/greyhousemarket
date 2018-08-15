@@ -343,9 +343,16 @@ module.exports = {
     },
     addToDb: (req,res)=>{
         const db = req.app.get('db')
+        console.log(req.body)
 
-        db.add_to_db({name:req.body.name,price:req.body.price,image:req.body.image,description:req.body.description,colors:req.body.colors})
+        db.add_to_db({product_name:req.body.name,price:Number(req.body.price),image:req.body.image,description:req.body.description,measurement:req.body.measurement})
         .then(response=>{
+            
+            console.log(response,"the response")
+            req.body.colors.map(element =>{
+                db.add_colors_to_product({colorId: element.color, productId: response[0].products_id,productQuantity: element.quantity})
+
+            })
             res.status(200).send(response)
         })
     },
@@ -443,5 +450,8 @@ module.exports = {
         .then(response => {
             res.status(200).send(response)
         })
+    },
+    checkUser: (req,res)=>{
+        !req.session.userid ? res.status(200).send('not logged in') : res.status(200).send('')
     }
 }

@@ -30,6 +30,7 @@ class Modal extends Component{
             this.props.loginUser(res.data[0].first_name,res.data[0].last_name,res.data[0].id,res.data[0].email)
             this.props.toggle()
         })
+        this.props.click()
     }
 
 

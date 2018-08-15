@@ -4,6 +4,9 @@
   font-family: 'Raleway', sans-serif;
   height: 100%;
 }
+body {
+  height: 100%;
+}
 button {
   outline: none;
 }
@@ -20,7 +23,7 @@ button {
   left: 0;
   width: 60%;
   max-width: 300px;
-  z-index: 200;
+  z-index: 840;
   transform: translateX(-105%);
   transition: transform 0.2s ease-out;
 }
@@ -41,7 +44,7 @@ button {
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.3);
-  z-index: 100;
+  z-index: 830;
   top: 0;
   left: 0;
 }
@@ -94,12 +97,12 @@ button {
   justify-content: space-between;
   transition: .5s;
   align-items: center;
-  z-index: 98;
+  z-index: 800;
 }
 .scrolling-navbar {
   height: 50px;
   transition: .5s;
-  z-index: 99;
+  z-index: 800;
 }
 .navbar-background {
   width: 100%;
@@ -109,6 +112,8 @@ button {
   transition: .2s;
   padding-bottom: 50px;
   border-bottom: none;
+  z-index: 800;
+  background-color: white;
 }
 .scrolling-background {
   border-bottom: 2px solid gray;
@@ -260,16 +265,23 @@ button {
   height: 20vh;
 }
 .main-product-div {
-  width: 40%;
+  width: 42%;
   height: 20vh;
-  margin-top: 7vh;
+  margin: 6vh 0;
 }
 .lower-product {
   background-color: #4d4d4d;
   color: white;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  height: 20%;
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 13px;
+}
+.lower-product p {
+  margin-bottom: 0px;
 }
 .image-div {
   height: 20vh;
@@ -351,16 +363,12 @@ button {
 .loginHidden {
   opacity: 0;
 }
-.loginShowing{
+.login {
+  margin: 0px auto;
+  margin-top: 15vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-}
-.loginShowing input {
-  margin-top: 5px;
-}
-.loginShowing button {
-  margin-top: 5px;
+  width: 90%;
 }
 .checkout {
   margin: 0px auto;
@@ -384,7 +392,8 @@ button {
   flex-direction: column;
 }
 .select-color {
-  color: red;
+  color: #ff5e55;
+  margin-top: 3vh;
 }
 .dropdown-menu {
   overflow-y: scroll;
@@ -408,13 +417,25 @@ button {
 }
 .product-headline {
   display: flex;
-  width: 80%;
   margin: 0px auto;
   align-items: center;
   justify-content: center;
-  background-color: #c3b8de;
   width: 100%;
-  padding: 3vh 0;
+  height: 30vh;
+  background-color: black;
+}
+.react-parallax {
+  height: 100%;
+}
+.react-parallax-content {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#black {
+  color: black;
 }
 .product-headline-text {
   margin-top: 10px;
@@ -480,7 +501,8 @@ button {
   border-radius: 5px;
   outline: none;
   color: white;
-  padding: 8px 14px;
+  padding: 10px 25vw;
+  margin: 2vh 0;
 }
 .admin-page {
   margin-top: 80px;
@@ -489,14 +511,21 @@ button {
   margin-top: 80px;
 }
 .home-main {
-  margin-top: 8vh; 
+  margin-top: 5vh; 
 }
-.color-button {
-  width: 100%;
-  background-color: #4d4d4d;
-}
+
 .btn-group {
   width: 80%;
+  margin: 0px auto;
+}
+.dropdown {
+  margin: 0px auto;
+}
+.btn {
+  padding: 1vh 30vw;
+  margin: 3vh 0;
+  outline: none;
+  text-align: center;
 }
 .admin-order {
   background-color: #E8E8E8;
@@ -511,9 +540,12 @@ button {
 }
 .single-product-header {
   font-weight: 700;
+  font-size: 25px;
 }
 .reviews-name {
-  font-size: 16px;
+  font-size: 15px;
+  margin-bottom: 0px;
+  font-weight: 700;
 }
 .reviews-date {
   color: gray;
@@ -556,4 +588,184 @@ button {
   background: transparent;
   border: none;
 }
-
+.price-quantity {
+  font-size: 20px;
+  margin-bottom: 0px
+}
+.quant-input {
+  border: none;
+  border-bottom: 2px solid #E8E8E8;
+  text-align: center;
+  width: 8vw;
+  outline: none;
+}
+.description {
+  font-size: 16px;
+}
+.review-div {
+  border-bottom: 2px solid #E8E8E8;
+  padding-bottom: 2vh;
+  margin: 2vh;
+  display: flex;
+  flex-direction: column;
+}
+.review-upper-div {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 3vh auto;
+}
+.reviews-namedate-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 80%;
+}
+.your-orders {
+  color: #ff5e55;
+}
+#tried-it-text {
+  margin-top: 3vh;
+}
+.main-login-input {
+  border: none;
+  border-bottom: 2px solid #E8E8E8;
+  margin: 2vh 0px;
+  outline: none;
+  font-size: 20px;
+}
+.main-login-button {
+  max-width: 30vw;
+  background-color:#ff5e55;
+  border: none;
+  color: white;
+  padding: 2vh 3vw;
+  font-size: 20px;
+  border-radius: 4px;
+  margin: 2vh 0px;
+}
+.main-login-button:hover,
+.main-login-button:active{
+  background-color: white;
+  border: 2px solid #ff5e55;
+  color: #ff5e55;
+  padding: calc(2vh - 2px) calc(3vw - 2px);
+}
+.main-register-button {
+  max-width: 30vw;
+  background-color:white;
+  border: 2px solid #ff5e55;
+  color: #ff5e55;
+  padding: 2vh 3vw;
+  font-size: 20px;
+  border-radius: 4px;
+  margin: 2vh 0px;
+}
+.main-register-button:hover,
+.main-register-button:active{
+  background-color: #ff5e55;
+  color: white;
+}
+#or {
+  font-size: 20px;
+  font-weight: 700;
+  color: gray;
+}
+.line-container {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin: 0px auto;
+  justify-content: space-between;
+}
+.line {
+  border-bottom: 2px solid #E0E0E0;
+  width: 40%;
+  margin: 0px 1vw;
+}
+.login-register-title {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 5vh;
+  color: #707070;
+}
+.register-main {
+  margin-top: 15vh;
+}
+.input-div {
+  display: flex;
+  flex-direction: column;
+  margin: 0px auto;
+  width: 80%;
+  justify-content: center;
+}
+.questions-main {
+  margin-top: 15vh;
+}
+.question {
+  margin: 3vh 0;
+}
+.answer {
+  margin-top: 2vh;
+  transition: .5s;
+  display: block;
+}
+.hidden-answer{
+  height: 0px;
+  overflow: hidden;
+  transition: .5s;
+}
+.showing-answer {
+  height: 4vh;
+  transition: .5s;
+  position: relative;
+}
+.main-color-div {
+  width: 80%;
+  margin: 0px auto;
+}
+.color-div {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 2vh auto;
+  padding: 5px 0px;
+  border-bottom: 1px dashed gray;
+}
+.color-div input {
+  width: 10vw;
+  border: none;
+  border-bottom: 2px solid #E0E0E0;
+}
+.general-product-div {
+  width: 80%;
+  margin: 0px auto;
+}
+.general-product-div input {
+  border: none;
+  border-bottom: 2px solid #E0E0E0;
+  width: 100%;
+  font-size: 14px;
+  margin: 1vh 0;
+}
+.category-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  margin: 0px auto;
+}
+.category-individual {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  text-align: right;
+  margin: 1vh 0;
+  border: none;
+  border-bottom: 1px dashed black;
+}
+#large-text {
+  height: 14vh;
+  width: 100%;
+  border: 1px solid #E8E8E8;
+}

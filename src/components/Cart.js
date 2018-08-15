@@ -16,6 +16,7 @@ class Cart extends Component {
     this.updateQuantity = this.updateQuantity.bind(this)
     }
     componentDidMount(){
+        window.scrollTo(0,0)
         axios.get(`/api/getcart`)
         .then(response=>{
             this.setState({cartItems: response.data})

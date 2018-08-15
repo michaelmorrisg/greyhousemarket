@@ -4,7 +4,7 @@ import {findIndex} from 'lodash'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
 library.add(faStar)
 
@@ -13,10 +13,20 @@ class MyOrders extends Component{
         super()
         this.state = {
             orders: [],
-            condensedOrders: []
+            condensedOrders: [],
+            toLogIn: false
         }
     }
     componentDidMount(){
+        window.scrollTo(0,0)
+        axios.get('api/checkuser')
+        .then(res=>{
+            if(res.data === 'not logged in'){
+                this.setState({
+                    toLogIn : true
+                })
+            }
+        })
         axios.get('/api/getorders')
             .then(res=>{
                 this.setState({
@@ -75,7 +85,7 @@ class MyOrders extends Component{
                                 return(
                                     <div className="product-review-div" key={i}>
                                         {element.product_name} x {element.quantity}
-                                        <Link to={`/addreview/product/${element.product_id}`} ><FontAwesomeIcon icon="star" color="yellow"/></Link>
+                                        <Link to={`/addreview/product/${element.product_id}`} ><FontAwesomeIcon icon="star" color="black"/></Link>
                                     </div>
                                 )
                             })}
@@ -83,6 +93,7 @@ class MyOrders extends Component{
                         </div>
                     )
                 })}
+                {this.state.toLogIn ? <Redirect to="/account/login" /> : ''}
             </div>
         )
     }

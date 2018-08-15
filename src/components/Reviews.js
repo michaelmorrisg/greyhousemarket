@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import StarRatingComponent from 'react-star-rating-component'
+import {Link} from 'react-router-dom'
 
 class Reviews extends Component {
     constructor(){
@@ -39,17 +40,19 @@ class Reviews extends Component {
     render(props){
         return (
             <div>
-            {console.log(Date())}
-            {console.log(this.state.reviews)}
+            {/* {console.log(Date())} */}
+            {/* {console.log(this.state.reviews)} */}
                 <h2 className="single-product-header">Reviews</h2>
                 {this.state.reviews[0] ? '' : 'No reviews for this yet!'}
-                {this.state.reviews[0] ? <p>({this.state.averageReview} Average rating)</p>: ''}
+                {this.state.reviews[0] ? <p className="description">({this.state.averageReview} Average rating)</p>: ''}
                 {this.state.reviews.map((element,i)=>{
                     return (
-                        <div className="single-product-body-text" key={i}>
-                            <div>
-                                <p className="reviews-name">{element.user_name}</p>
-                                <p className="reviews-date">{element.date}</p>
+                        <div className="single-product-body-text review-div" key={i}>
+                            <div className="review-upper-div">
+                                <div className="reviews-namedate-div">
+                                    <p className="reviews-name">{element.user_name}</p>
+                                    <p className="reviews-date">{element.date}</p>
+                                </div>
                                 <StarRatingComponent
                                 name="Rating" 
                                 value={element.rating}
@@ -59,6 +62,10 @@ class Reviews extends Component {
                         </div>
                     )
                 })}
+                <div>
+                    <h4 id="tried-it-text">Tried it and loved it?</h4>
+                    <p>Go to <Link className="your-orders" to="/account/myaccount/myorders">your orders</Link> to leave a review!</p>
+                </div>
             </div>
         )
     }

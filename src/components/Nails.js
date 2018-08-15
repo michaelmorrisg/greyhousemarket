@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { Parallax, Background } from 'react-parallax'
+import Backdrop from './Backdrop'
 
 library.add(faChevronLeft)
 
@@ -17,6 +19,7 @@ class Nails extends Component{
     }
 
     componentDidMount(){
+        window.scrollTo(0,0)
         axios.get(`/api/products/2`)
         .then(res=>{
             this.setState({
@@ -30,10 +33,19 @@ class Nails extends Component{
         return(
             <div className="product-page">
                 <div className="product-headline">
+                <Parallax
+                    strength={500}
+                    bgImage={require('../images/Nails-Parallax.jpg')}
+                    bgWidth='100%'
+                    bgHeight='auto'
+                    blur={1}
+                    bgStyle = {{backgroundColor: 'black', opacity: '.7'}}
+                    >
                     <Link className="chevron-back" to="/">
                         <FontAwesomeIcon onClick={()=>this.setState({toHome:true})} icon="chevron-left" size="2x" color="white"/>
                     </Link>
                     <h2 className="product-headline-text">Nail Decals</h2>
+                </Parallax>
                 </div>
                 <div className="product-grid">{this.state.nailsProducts.map((element,i)=>{
                     return(
