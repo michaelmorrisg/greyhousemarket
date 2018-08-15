@@ -7,6 +7,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faShoppingCart, faSearch } from '@fortawesome/free-solid-svg-icons'
 import DrawerToggleButton from './DrawerToggleButton'
+import {debounce} from 'lodash'
+import SearchResults from './SearchResults'
 
 library.add(faBars)
 library.add(faShoppingCart)
@@ -23,7 +25,8 @@ class Nav extends Component{
             cartCount: 0,
             admin: false,
             rotated: false,
-            scroll: 0
+            scroll: 0,
+            searchQuery: ''
         }
     }
 
@@ -75,6 +78,21 @@ class Nav extends Component{
                         this.props.countCart(this.state.cartCount)
             })
     }
+    handleSearch(input){
+        this.setState({
+            searchQuery: input
+        })
+        if(this.state.searchQuery !== ''){
+        }
+         axios.post('/api/getfilterproducts', {search:'%' + this.state.searchQuery + '%'})
+        .then(res=>{
+                    console.log(res.data,'data')
+                })
+            console.log(this.state.searchQuery)
+            
+    }
+
+    debounced = debounce(this.handleSearch,1000)
 
     render(props){
         return(
@@ -88,10 +106,12 @@ class Nav extends Component{
                         </div>
                         <div className='navbar-right'>
                             {/* {this.props.firstName && this.props.firstName !== "Guest" ? <p className="list-item-nav">Hey there, {this.props.firstName}</p>: ''} */}
+                            <input onChange={(e)=>this.debounced(e.target.value)}/>
                             <img className="search-icon" src={require('../images/Search.png')} />
                             <Link className="list-item-nav" to="/cart"><div className={this.props.cart === 0 ? "shopping-cart-image" : "shopping-cart-item-image"}>{this.props.cart !== 0 ? <p className="cart-number">{this.props.cart}</p> : ''}</div></Link>
                             {/* <p className="cart-amount">{this.props.cart}</p> */}
                         </div>
+                        <SearchResults />
                     </div>
                 </div>
             </div>

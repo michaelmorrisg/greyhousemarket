@@ -451,5 +451,14 @@ module.exports = {
     },
     checkUser: (req,res)=>{
         !req.session.userid ? res.status(200).send('not logged in') : res.status(200).send('')
+    },
+    getFilterProducts: (req,res)=>{
+        const db = req.app.get('db')
+        console.log(req.body.search)
+
+        db.get_filter_products({search:req.body.search})
+        .then(response=>{
+            res.status(200).send(response)
+        })
     }
 }
