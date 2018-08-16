@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express')
 const bodyParser = require('body-parser')
 const massive = require('massive')
@@ -13,6 +14,7 @@ const keySecret = process.env.SECRET_KEY
 const controller = require('./controller')
 const port = process.env.SERVER_PORT
 const app = express()
+app.use( express.static( `${__dirname}/../build` ) )
 const stripe = require('stripe')(keySecret)
 
 app.set("view engine", "pug")
@@ -79,6 +81,9 @@ app.post('/api/submitreview/:id', controller.submitReview)
 app.put('/api/updateguestemail', controller.updateGuestEmail)
 app.get('/api/checkuser', controller.checkUser)
 app.post('/api/getfilterproducts', controller.getFilterProducts)
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 //Payment//
 app.post('/api/payment', function(req,res,next){

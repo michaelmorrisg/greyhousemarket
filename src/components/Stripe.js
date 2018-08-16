@@ -17,7 +17,7 @@ class Stripe extends Component {
     onToken= (token,props) => {
         token.card = void 0;
         console.log('token', token)
-        axios.post('http://localhost:3020/api/payment', {token, amount: this.props.total*100}).then(response=>{
+        axios.post('/api/payment', {token, amount: this.props.total*100}).then(response=>{
             // alert('it is working!')
             axios.get('/api/getcart')
             .then(response=>{
