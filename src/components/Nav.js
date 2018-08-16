@@ -9,6 +9,7 @@ import { faBars, faShoppingCart, faSearch } from '@fortawesome/free-solid-svg-ic
 import DrawerToggleButton from './DrawerToggleButton'
 import {debounce} from 'lodash'
 import SearchResults from './SearchResults'
+import Backdrop from './Backdrop'
 
 library.add(faBars)
 library.add(faShoppingCart)
@@ -26,8 +27,11 @@ class Nav extends Component{
             admin: false,
             rotated: false,
             scroll: 0,
-            searchQuery: ''
+            searchQuery: null,
+            searchResults: [],
+            searchActive: false
         }
+        this.closeSearch = this.closeSearch.bind(this)
     }
 
     componentDidMount(props){
@@ -87,9 +91,20 @@ class Nav extends Component{
          axios.post('/api/getfilterproducts', {search:'%' + this.state.searchQuery + '%'})
         .then(res=>{
                     console.log(res.data,'data')
+                    this.setState({
+                        searchResults: res.data
+                    })
                 })
             console.log(this.state.searchQuery)
             
+    }
+    activateSearch(){
+        this.setState({
+            searchActive : this.state.searchActive ? false : true
+        })
+    }
+    closeSearch(){
+        this.setState({searchQuery:null})
     }
 
     debounced = debounce(this.handleSearch,1000)
@@ -106,12 +121,14 @@ class Nav extends Component{
                         </div>
                         <div className='navbar-right'>
                             {/* {this.props.firstName && this.props.firstName !== "Guest" ? <p className="list-item-nav">Hey there, {this.props.firstName}</p>: ''} */}
-                            <input onChange={(e)=>this.debounced(e.target.value)}/>
-                            <img className="search-icon" src={require('../images/Search.png')} />
+                            <img onClick={()=>this.activateSearch()}className={this.state.searchActive ? "search-icon active-search-icon" : "search-icon"} src={require('../images/Search.png')} />
+                            <input className={this.state.searchActive ? "active-input" : "hidden-input"} onChange={(e)=>this.debounced(e.target.value)}/>
                             <Link className="list-item-nav" to="/cart"><div className={this.props.cart === 0 ? "shopping-cart-image" : "shopping-cart-item-image"}>{this.props.cart !== 0 ? <p className="cart-number">{this.props.cart}</p> : ''}</div></Link>
                             {/* <p className="cart-amount">{this.props.cart}</p> */}
                         </div>
-                        <SearchResults />
+                        <SearchResults searchQuery={this.state.searchQuery} results={this.state.searchResults} />
+                            {this.state.searchQuery ?<Backdrop click={this.closeSearch} searchQuery={this.state.searchQuery}/> :''}
+
                     </div>
                 </div>
             </div>

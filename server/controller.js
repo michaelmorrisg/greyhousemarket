@@ -454,7 +454,7 @@ module.exports = {
     },
     getFilterProducts: (req,res)=>{
         const db = req.app.get('db')
-        console.log(req.body.search)
+        // console.log(req.body.search)
 
         db.get_filter_products({search:req.body.search})
         .then(response=>{

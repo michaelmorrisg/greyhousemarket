@@ -3,7 +3,7 @@ import Order from './Order'
 import {connect} from 'react-redux'
 import {debounce} from 'lodash'
 import {updateShipping} from '../ducks/reducer'
-import {SplitButton,MenuItem} from 'react-bootstrap'
+import {SplitButton,MenuItem,DropdownButton,ButtonProps} from 'react-bootstrap'
 
 class Checkout extends Component {
     constructor(props){
@@ -166,7 +166,9 @@ class Checkout extends Component {
                     </div>
                 </div>
                 <h3>State</h3>
-                <SplitButton
+                <DropdownButton
+                bsStyle="info"
+                bsSize="large"
                 className="state-button"
                 title={this.state.myState ? this.state.myState : 'State'}
                 dropup={false}>
@@ -175,7 +177,7 @@ class Checkout extends Component {
                         <MenuItem onClick={()=>this.handleState(element)}>{element}</MenuItem>
                     )
                 })}
-                </SplitButton>
+                </DropdownButton>
                 </div>
                 </div>
                 <Order />
