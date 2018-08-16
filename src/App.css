@@ -201,8 +201,10 @@ button {
 .main-banner {
   color: gray;
   position: relative;
+  margin: 0px auto;
   margin-top: -30px;
   font-weight: lighter;
+  width: 90%;
 }
 .category-container{
   width: 100%;
@@ -808,6 +810,8 @@ button {
   left: 42vw;
   background: #E8E8E8;
   box-shadow: 2px 0px 5px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
 }
 .hidden-input {
   /* display: none; */
