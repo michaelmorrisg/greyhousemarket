@@ -81,6 +81,8 @@ app.post('/api/submitreview/:id', controller.submitReview)
 app.put('/api/updateguestemail', controller.updateGuestEmail)
 app.get('/api/checkuser', controller.checkUser)
 app.post('/api/getfilterproducts', controller.getFilterProducts)
+app.post('/api/lostpassword', controller.lostPassword)
+app.put('/api/updatepassword', controller.updatePassword)
 app.get('*', (req, res)=>{
     res.sendFile(path.join(__dirname, '../build/index.html'));
 });

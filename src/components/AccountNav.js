@@ -38,6 +38,7 @@ class AccountNav extends Component{
         return (
             <div>
                 <Link className="list-item account-nav" to="/account/myaccount/myorders" >My Orders</Link>
+                <Link className="list-item account-nav" to="/account/myaccount/updatepassword">Update Password</Link>
                 <Link className="list-item account-nav" onClick={()=>this.logOut()} to="/">Log Out</Link>
             </div>
         )

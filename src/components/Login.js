@@ -5,6 +5,7 @@ import {loginUser,countCart} from '../ducks/reducer'
 import {connect} from 'react-redux'
 import Swal from 'sweetalert2'
 import Backdrop from './Backdrop';
+import ForgotPass from './ForgotPass'
 
 class Login extends Component {
     constructor(){
@@ -12,7 +13,8 @@ class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            toHome: false
+            toHome: false,
+            forgotPass: false
         }
     }
     componentDidMount(props){
@@ -75,6 +77,12 @@ class Login extends Component {
                 <h2 className={window.location.hash === "#/account/login" ? "login-register-title" : "modal-login-title" }>Login</h2>
                 <input className={window.location.hash === "#/account/login" ? "main-login-input" : "modal-login-input"} onChange={(e)=>this.handleEmail(e.target.value)}placeholder="Email" />
                 <input className={window.location.hash === "#/account/login" ? "main-login-input" : 'modal-login-input'}  onChange={(e)=>this.handlePassword(e.target.value)}placeholder="Password" type="password" />
+                <div>
+                    <button onClick={()=>this.setState({forgotPass: !this.state.forgotPass})}>Forgot your password?</button>
+                </div>
+                <div>
+                    {this.state.forgotPass ? <ForgotPass/> : ''}
+                </div>
                 <div>
                 <button className={window.location.hash === "#/account/login" ? "main-login-button" : 'modal-button'} onClick={()=>this.signIn()}>Sign In</button>
                 <div className="line-container">

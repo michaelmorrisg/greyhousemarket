@@ -452,5 +452,75 @@ module.exports = {
         .then(response=>{
             res.status(200).send(response)
         })
+    },
+    updatePassword: (req,res)=>{
+        const db = req.app.get('db')
+        db.get_pass({id:req.session.userid})
+        .then(response=>{
+
+                var bcrypt = require('bcryptjs')
+                var salt = bcrypt.genSaltSync(10)
+                var hash = bcrypt.hashSync(req.body.oldPass, salt)
+    
+                bcrypt.compare(req.body.oldPass, response[0].password).then(hashRes=>{
+    
+                    if(hashRes===true){
+                        let newHash = bcrypt.hashSync(req.body.newPass, salt)
+                        db.update_pass({newPass: newHash, id:req.session.userid})
+                        res.status(200).send('success!')
+                   
+                    } else {
+                        res.status(200).send('Wrong password')
+                    }
+                })
+        })
+    },
+    lostPassword: (req,res)=>{
+        const crypto = require('crypto-random-string')
+        let randomPass = crypto(20)
+
+        var bcrypt = require('bcryptjs');
+        
+        var salt = bcrypt.genSaltSync(10)
+        var hash = bcrypt.hashSync(randomPass, salt)
+
+        const db = req.app.get('db')
+
+        db.lost_password({newPass:hash,email:req.body.email})
+        .then(response =>{
+            if(response[0]){
+                require('dotenv').config()
+                const nodemailer = require('nodemailer')
+                var transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: process.env.EMAIL,
+                        pass: process.env.EMAIL_PASSWORD
+                    }
+                })
+                
+                var mailOptions = {
+                    from: 'greyhousemarket@gmail.com',
+                    to: req.body.email,
+                    subject: "Password Update",
+                    text: `Hey there,
+                    Somebody requested a new password! Please use the following as your temporary password:
+                    
+                    ${randomPass}
+                    
+                    Thanks!
+                    
+                    Grey House Market`
+                }
+        
+                transporter.sendMail(mailOptions, function(error, info){
+                    if (error){
+                        console.log(error)
+                    } else {
+                        console.log('Email sent: ' + info.response)
+                    }
+                }) 
+            }
+        })
     }
 }
