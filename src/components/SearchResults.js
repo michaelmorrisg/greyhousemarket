@@ -4,77 +4,77 @@ import ItemsCarousel from 'react-items-carousel'
 import {range} from 'lodash'
 
 
+
 class SearchResults extends Component {
     constructor(){
         super()
         this.state = {
             activeItemIndex: 0,
-            searchResults: []
+            children: [],
+            carousel: false,
         }
     }
-    
-    // createChildren = n => range(n).map(i => <div key={i} style={{ height: 200, background: '#333' }}>{i}</div>);
-    // componentDidMount(props){
-    //     this.setState({
-    //         searchResults : this.props.results
-    //     })
-    //     console.log(this.state.searchResults)
-    //     setTimeout(() => {
-    //         this.setState({
-    //           searchResults: createChildren(20),
-    //         })
-    //       }, 100);
-    // }
-    // componentDidUpdate(prevProps){
-    //     if(this.props.results !== prevProps.results){
-    //         this.setState({
-    //             searchResults : this.props.results
-    //         })
-    //         console.log(this.props.results)
-    //     }
-    // }
+    componentDidMount() {
+        this.setState({
+          children: this.props.results,
+          activeItemIndex: 0
+        });
+    }
+    async componentDidUpdate(prevProps){
+        if(this.props.results !== prevProps.results){
+            console.log(this.props.results, 'updated')
+            await this.setState({
+                children: this.props.results.map(element=>{
+                    return element.image
+                })
+            })
+        }
+    }
 
-    
-    
- 
     changeActiveItem = (activeItemIndex) => this.setState({ activeItemIndex });
+                
+
 
 
     render(props){
-        const {activeItemIndex,searchResults} = this.state
+        const {
+            activeItemIndex,
+            children,
+          } = this.state;
         return(
             <div className={this.props.searchQuery ? "search-showing" : "search-hidden"}>
-                {this.props.results.map((element,i)=>{
+                {/* {this.props.results.map((element,i)=>{
                     return <Link key={i} to={`/product/${element.products_id}`}>{element.product_name}</Link>
-                })}
-
-                {/* <ItemsCarousel
-                        enablePlaceholder
-                        numberOfPlaceholderItems={5}
-                        minimumPlaceholderTime={1000}
-                        placeholderItem={<div style={{ height: 200, background: '#900' }}>Placeholder</div>}
-                 
-                        // Carousel configurations
-                        numberOfCards={3}
-                        gutter={12}
-                        showSlither={true}
-                        firstAndLastGutter={true}
-                        freeScrolling={false}
-                 
-                        // Active item configurations
-                        requestToChangeActive={this.changeActiveItem}
-                        activeItemIndex={activeItemIndex}
-                        activePosition={'center'}
-                 
-                        chevronWidth={24}
-                        rightChevron={'>'}
-                        leftChevron={'<'}
-                        outsideChevron={false}
-                
-                >
-                {this.props.results[0] ? this.props.results.image : ''}
-                </ItemsCarousel> */}
-
+                })} */}
+            <ItemsCarousel
+        // Placeholder configurations
+        enablePlaceholder
+        numberOfPlaceholderItems={this.props.results.length}
+        minimumPlaceholderTime={1000}
+        placeholderItem={<div style={{ height: 100, background: 'black' }}>GAH</div>}
+ 
+        // Carousel configurations
+        numberOfCards={2}
+        gutter={12}
+        showSlither={true}
+        firstAndLastGutter={true}
+        freeScrolling={false}
+        slidesToScroll={2}
+ 
+        // Active item configurations
+        requestToChangeActive={this.changeActiveItem}
+        activeItemIndex={activeItemIndex}
+        activePosition={'center'}
+ 
+        chevronWidth={24}
+        rightChevron={'>'}
+        leftChevron={'<'}
+        outsideChevron={false}
+        children={this.props.results.map((element,i)=>{
+            let splitImages = element.image.split(' ')
+            return <div className="carousel-search-div"><Link className='carousel-search-text' to={`/product/${element.products_id}`}><div className="search-upper-div" style={{backgroundImage: `url(${splitImages[0]})`,backgroundPosition: 'center',backgroundSize: 'cover'}}></div><div className="search-lower-div"><p>{element.product_name}</p></div></Link></div>
+        })}
+      />
             </div>
         )
     }

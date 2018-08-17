@@ -126,8 +126,8 @@ class Nav extends Component{
                             <Link className="list-item-nav" to="/cart"><div className={this.props.cart === 0 ? "shopping-cart-image" : "shopping-cart-item-image"}>{this.props.cart !== 0 ? <p className="cart-number">{this.props.cart}</p> : ''}</div></Link>
                             {/* <p className="cart-amount">{this.props.cart}</p> */}
                         </div>
-                        <SearchResults searchQuery={this.state.searchQuery} results={this.state.searchResults} />
-                            {this.state.searchQuery ?<Backdrop click={this.closeSearch} searchQuery={this.state.searchQuery}/> :''}
+                        {this.state.searchQuery && this.state.searchActive ? <SearchResults searchQuery={this.state.searchQuery} results={this.state.searchResults} /> : ''}
+                            {/* {this.state.searchQuery ?<Backdrop click={this.closeSearch} searchQuery={this.state.searchQuery}/> :''} */}
 
                     </div>
                 </div>
