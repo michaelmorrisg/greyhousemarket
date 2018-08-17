@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {SplitButton,MenuItem} from 'react-bootstrap'
 import axios from 'axios'
 import {findIndex,indexOf} from 'lodash'
-import swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 class AddProduct extends Component {
     constructor(){
@@ -112,7 +112,7 @@ class AddProduct extends Component {
             /////NEED TO ADD CATEGORIES TO DB
             this.state.categories.map(element=>{
                     axios.post('/api/addcategory', {productId: res.data[0].products_id, category: element})
-                    .then(res=>swal({
+                    .then(res=>Swal({
                         type: 'success',
                         title: 'Woo!',
                         text: 'Added, captain'

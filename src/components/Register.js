@@ -3,7 +3,7 @@ import axios from 'axios'
 import {loginUser} from '../ducks/reducer'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
-import swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 class Register extends Component {
     constructor() {
@@ -47,7 +47,7 @@ class Register extends Component {
                         toHome: true
                     })
                 } else {
-                    swal({
+                    Swal({
                         title: 'Oops!',
                         text: "It looks like that email already exists",
                         type: 'error'
@@ -55,7 +55,7 @@ class Register extends Component {
                 }
             })
         } else {
-            swal({
+            Swal({
                 title: ': /',
                 text: "Please enter your info",
                 type: "error"

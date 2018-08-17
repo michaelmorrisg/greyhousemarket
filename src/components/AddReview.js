@@ -4,7 +4,7 @@ import axios from 'axios'
 import {debounce} from 'lodash'
 import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom'
-import swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 class AddReview extends Component {
     constructor(){
@@ -24,7 +24,7 @@ onStarClick(nextValue, prevValue, name) {
 submitReview(props){
     axios.post(`/api/submitreview/${this.props.match.params.id}`,({message:this.state.message,rating:this.state.rating, name:this.props.firstName + ' ' + this.props.lastName}))
     .then(res=>{
-        swal({
+        Swal({
             type: 'success',
             title: 'Yay!',
             text: "Thank you for your review!"

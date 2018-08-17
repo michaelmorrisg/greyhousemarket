@@ -3,7 +3,7 @@ import {Link,Redirect} from 'react-router-dom'
 import axios from 'axios'
 import {loginUser,countCart} from '../ducks/reducer'
 import {connect} from 'react-redux'
-import swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 import Backdrop from './Backdrop';
 
 class Login extends Component {
@@ -33,7 +33,7 @@ class Login extends Component {
     }
     signIn(props){
         if(!this.state.email || !this.state.password){
-            swal({
+            Swal({
                 title: ": /",
                 text: "Please enter a valid email and password",
                 type: 'error'
@@ -50,7 +50,7 @@ class Login extends Component {
             })
             }
         } else {
-            swal({
+            Swal({
                 title: "Oops!",
                 text: "Looks like your email and password don't match",
                 type: 'error'

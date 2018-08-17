@@ -7,7 +7,7 @@ import {Carousel} from 'react-responsive-carousel'
 import {SplitButton,MenuItem,DropdownButton,ButtonProps} from 'react-bootstrap'
 import Reviews from './Reviews'
 import Backdrop from './Backdrop';
-import swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 import Footer from './Footer'
 
 
@@ -78,7 +78,7 @@ class SingleProduct extends Component{
         }})
         }) : this.state.color === '' ? this.setState({
             toggleColor: true
-        }) : this.state.quantity > this.state.possibleQuantity ? swal({type:'error', title:'Oops', text: `We only have ${this.state.possibleQuantity} left in that color`})
+        }) : this.state.quantity > this.state.possibleQuantity ? Swal({type:'error', title:'Oops', text: `We only have ${this.state.possibleQuantity} left in that color`})
         : ''
     }
 
