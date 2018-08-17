@@ -78,7 +78,7 @@ class Login extends Component {
                 <input className={window.location.hash === "#/account/login" ? "main-login-input" : "modal-login-input"} onChange={(e)=>this.handleEmail(e.target.value)}placeholder="Email" />
                 <input className={window.location.hash === "#/account/login" ? "main-login-input" : 'modal-login-input'}  onChange={(e)=>this.handlePassword(e.target.value)}placeholder="Password" type="password" />
                 <div>
-                    <button onClick={()=>this.setState({forgotPass: !this.state.forgotPass})}>Forgot your password?</button>
+                    <button className="forgot-pass-button" onClick={()=>this.setState({forgotPass: !this.state.forgotPass})}>Forgot your password?</button>
                 </div>
                 <div>
                     {this.state.forgotPass ? <ForgotPass/> : ''}

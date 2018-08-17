@@ -1091,6 +1091,9 @@ button {
   width: 80%;
   margin: 30px auto;
 }
+.forgot-pass-button {
+  background: transparent;
+}
 @keyframes shrinkline {
   from {width : 50vw;
     border-bottom: 2px solid #707070;}

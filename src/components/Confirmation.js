@@ -2,7 +2,9 @@ import React, {Component} from 'react'
 import Footer from './Footer'
 
 class Confirmation extends Component {
-
+componentDidMount(){
+    window.scrollTo(0,0)
+}
 
 
     render(){

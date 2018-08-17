@@ -507,6 +507,8 @@ module.exports = {
                     Somebody requested a new password! Please use the following as your temporary password:
                     
                     ${randomPass}
+
+                    Then, just go into your account info and update your password to something new :)
                     
                     Thanks!
                     
