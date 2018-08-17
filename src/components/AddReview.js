@@ -4,6 +4,7 @@ import axios from 'axios'
 import {debounce} from 'lodash'
 import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom'
+import swal from 'sweetalert2'
 
 class AddReview extends Component {
     constructor(){
@@ -23,7 +24,11 @@ onStarClick(nextValue, prevValue, name) {
 submitReview(props){
     axios.post(`/api/submitreview/${this.props.match.params.id}`,({message:this.state.message,rating:this.state.rating, name:this.props.firstName + ' ' + this.props.lastName}))
     .then(res=>{
-        alert('thank you for your review')
+        swal({
+            type: 'success',
+            title: 'Yay!',
+            text: "Thank you for your review!"
+        })
         this.setState({
             toHome: true
         })
@@ -46,7 +51,7 @@ handleChange = debounce((input)=>{
                 value={this.state.rating}
                 onStarClick = {this.onStarClick.bind(this)} />
                 <textarea onChange={(e)=>this.handleChange(e.target.value)} className="review-field" placeholder="Tell everyone what you think!"></textarea>
-                <button onClick={()=>this.submitReview()}>Submit</button>
+                <button className="addtocart-button" onClick={()=>this.submitReview()}>Submit</button>
                 {this.state.toHome ? <Redirect to="/"/> : ''}
             </div>
         )

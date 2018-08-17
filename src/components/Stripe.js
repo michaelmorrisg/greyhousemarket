@@ -10,15 +10,16 @@ class Stripe extends Component {
         super()
         this.state = {
             toCart : false,
-            cart : []
+            cart : [],
+            loading: false
         }
     }
 
     onToken= (token,props) => {
+        this.setState({loading: true})
         token.card = void 0;
         // console.log('token', token)
         axios.post('/api/payment', {token, amount: this.props.total*100}).then(response=>{
-            // alert('it is working!')
             axios.get('/api/getcart')
             .then(response=>{
                 this.setState({
@@ -38,6 +39,7 @@ class Stripe extends Component {
             axios.delete('/api/clearcart')
                 .then(response=>{
                     this.setState({
+                        loading: false,
                         toCart: true
                 })
                 this.props.countCart(0)
@@ -55,7 +57,7 @@ class Stripe extends Component {
                     name="Grey House Market"
                     image="https://i.etsystatic.com/isla/420b13/29519511/isla_500x500.29519511_ifsfvos4.jpg?version=0"
                 />
-                {this.state.toCart === true ? <Redirect to="/cart"/>  : ''}
+                {this.state.toCart === true ? <Redirect to="/orders/confirmation"/>  : ''}
             </div>
         )
     }

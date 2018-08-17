@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import Footer from './Footer'
 
 class Contact extends Component{
     constructor(){
@@ -11,6 +12,9 @@ class Contact extends Component{
             showReturn: false,
             showExchange: false
         }
+    }
+    componentDidMount(){
+        window.scrollTo(0,0)
     }
     handleEmail(input){
         this.setState({
@@ -42,6 +46,7 @@ class Contact extends Component{
     }
     render(){
         return (
+            <div className="contact-main-div">
             <div className="questions-main">
                 <h2>Top Questions</h2>
                 <h4 className="question" onClick={()=>this.toggleState()}>Are you really this cool?</h4>
@@ -51,11 +56,14 @@ class Contact extends Component{
                     and ship the items back within 30 days for a full refund</h5></div> : ''}
                 <h4 onClick={()=>this.toggleExchange()}>Do you accept exchanges?</h4>
                 {this.state.showExchange===true ? <h5>We do not :( But please let us know if you have any issues with your order and we'll be happy to help!</h5> : ''}
+                <div className="contact-form">
                 <h2>Still have questions?</h2>
                 <input onChange={(e)=>this.handleEmail(e.target.value)} placeholder="Your email address"/>
-                <input onChange={(e)=>this.handleMessage(e.target.value)} placeholder="Your message"/>
-                <button onClick={()=>this.sendMessage()}>Submit</button>
-
+                <textarea onChange={(e)=>this.handleMessage(e.target.value)} placeholder="Your message"></textarea>
+                <button className="addtocart-button" id="thinner-button" onClick={()=>this.sendMessage()}>Submit</button>
+                </div>
+            </div>
+            <Footer />
             </div>
         )
     }

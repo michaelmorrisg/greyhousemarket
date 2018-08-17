@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import {Link, Redirect} from 'react-router-dom'
 
+
 library.add(faStar)
 
 class MyOrders extends Component{

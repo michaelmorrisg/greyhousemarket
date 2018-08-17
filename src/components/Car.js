@@ -6,6 +6,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { Parallax, Background } from 'react-parallax'
+import Footer from './Footer'
 
 library.add(faChevronLeft)
 
@@ -50,6 +51,7 @@ class Car extends Component{
                     <Link className="main-product-div" to={`/product/${element.product_id}`} key={i}><div className="product"><MappedProducts productInfo = {element} /></div></Link>
                 )
             })}</div>
+            <Footer />
             </div>
         )
     }

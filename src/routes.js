@@ -15,6 +15,7 @@ import MyAccount from './components/MyAccount'
 import Contact from './components/Contact'
 import Admin from './components/Admin'
 import AddReview from './components/AddReview'
+import Confirmation from './components/Confirmation'
 
 export default (
     <Switch>
@@ -33,5 +34,6 @@ export default (
         <Route path="/contact" component={Contact}/>
         <Route path="/admin" component={Admin}/>
         <Route path="/addreview/product/:id" component={AddReview}/>
+        <Route path="/orders/confirmation" component={Confirmation}/>
     </Switch>
 )

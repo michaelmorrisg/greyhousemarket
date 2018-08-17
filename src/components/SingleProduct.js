@@ -7,6 +7,8 @@ import {Carousel} from 'react-responsive-carousel'
 import {SplitButton,MenuItem,DropdownButton,ButtonProps} from 'react-bootstrap'
 import Reviews from './Reviews'
 import Backdrop from './Backdrop';
+import swal from 'sweetalert2'
+import Footer from './Footer'
 
 
 class SingleProduct extends Component{
@@ -63,7 +65,6 @@ class SingleProduct extends Component{
             if(res.data==="Gotta log in!"){
                 this.toggleModalOn()
             } else {
-                // alert("Added to cart")
                 this.setState({
                     toggleColor: false
                 })
@@ -77,7 +78,7 @@ class SingleProduct extends Component{
         }})
         }) : this.state.color === '' ? this.setState({
             toggleColor: true
-        }) : this.state.quantity > this.state.possibleQuantity ? alert(`We only have ${this.state.possibleQuantity} left in that color`)
+        }) : this.state.quantity > this.state.possibleQuantity ? swal({type:'error', title:'Oops', text: `We only have ${this.state.possibleQuantity} left in that color`})
         : ''
     }
 
@@ -94,7 +95,7 @@ class SingleProduct extends Component{
     }
     async chooseColor(color,quantity){
         if (quantity <= 0){
-            alert('This color sold out :(')
+            return
         } else {
             await this.setState({
                 color: color
@@ -165,6 +166,7 @@ class SingleProduct extends Component{
                     {this.state.showBackdrop ? <Backdrop click={this.backdropClickHandler}/> : ''}
                 </div>
                 <Reviews productInfo={this.state.productInfo}/>
+                <Footer />
             </div>
         )
 

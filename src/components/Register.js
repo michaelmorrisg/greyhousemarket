@@ -3,6 +3,7 @@ import axios from 'axios'
 import {loginUser} from '../ducks/reducer'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
+import swal from 'sweetalert2'
 
 class Register extends Component {
     constructor() {
@@ -46,11 +47,19 @@ class Register extends Component {
                         toHome: true
                     })
                 } else {
-                    alert('Email already exists')
+                    swal({
+                        title: 'Oops!',
+                        text: "It looks like that email already exists",
+                        type: 'error'
+                    })
                 }
             })
         } else {
-            alert("Please enter your info")
+            swal({
+                title: ': /',
+                text: "Please enter your info",
+                type: "error"
+            })
         }
     }
 

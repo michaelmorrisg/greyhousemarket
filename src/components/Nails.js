@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { Parallax, Background } from 'react-parallax'
 import Backdrop from './Backdrop'
+import Footer from './Footer'
 
 library.add(faChevronLeft)
 
@@ -52,6 +53,7 @@ class Nails extends Component{
                         <Link className="main-product-div" to={`/product/${element.product_id}`} key={i}><div className="product"><MappedProducts productInfo = {element} /></div></Link>
                     )
                 })}</div>
+                <Footer />
             </div>
         )
     }

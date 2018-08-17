@@ -3,6 +3,8 @@ import {Link,Redirect} from 'react-router-dom'
 import axios from 'axios'
 import {loginUser,countCart} from '../ducks/reducer'
 import {connect} from 'react-redux'
+import swal from 'sweetalert2'
+import Backdrop from './Backdrop';
 
 class Login extends Component {
     constructor(){
@@ -14,6 +16,7 @@ class Login extends Component {
         }
     }
     componentDidMount(props){
+        window.scrollTo(0,0)
         this.setState({
             stayOnPage: this.props.modal
         })
@@ -29,6 +32,13 @@ class Login extends Component {
         })
     }
     signIn(props){
+        if(!this.state.email || !this.state.password){
+            swal({
+                title: ": /",
+                text: "Please enter a valid email and password",
+                type: 'error'
+            })
+        } else{
         axios.get(`/api/userinfo/${this.state.email}/${this.state.password}`)
         .then((response)=>{
             if(response.data!=='Wrong username or password'){
@@ -40,7 +50,11 @@ class Login extends Component {
             })
             }
         } else {
-            alert('dumb')
+            swal({
+                title: "Oops!",
+                text: "Looks like your email and password don't match",
+                type: 'error'
+            })
         }
         axios.get('/api/totalcart')
         .then(res=>{
@@ -52,6 +66,7 @@ class Login extends Component {
 
     })
     }
+}
 
 
     render(props){

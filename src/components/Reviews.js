@@ -37,7 +37,7 @@ class Reviews extends Component {
 
     render(props){
         return (
-            <div>
+            <div className="main-review-div">
                 <h2 className="single-product-header">Reviews</h2>
                 {this.state.reviews[0] ? '' : 'No reviews for this yet!'}
                 {this.state.reviews[0] ? <p className="description">({this.state.averageReview} Average rating)</p>: ''}

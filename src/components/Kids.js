@@ -6,6 +6,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { Parallax, Background } from 'react-parallax'
+import Footer from './Footer'
 
 library.add(faChevronLeft)
 
@@ -54,6 +55,7 @@ class Kids extends Component{
                     })}
                     {this.state.toHome ? <Redirect to="/"/> : ''}
                 </div>
+                <Footer />
             </div>
         )
     }
