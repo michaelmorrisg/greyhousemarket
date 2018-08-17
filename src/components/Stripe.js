@@ -16,7 +16,7 @@ class Stripe extends Component {
 
     onToken= (token,props) => {
         token.card = void 0;
-        console.log('token', token)
+        // console.log('token', token)
         axios.post('/api/payment', {token, amount: this.props.total*100}).then(response=>{
             // alert('it is working!')
             axios.get('/api/getcart')
@@ -24,7 +24,6 @@ class Stripe extends Component {
                 this.setState({
                     cart: response.data
                 })
-                console.log(this.state.cart)
                 let date = Date()
             axios.put('/api/updatemaxquantity', {cart:this.state.cart})
             axios.post('/api/addpurchase',{amount: this.props.total,date: date})

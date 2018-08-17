@@ -27,7 +27,6 @@ class SideDrawer extends Component {
             this.setState({
                 admin: this.props.admin,
             })
-            console.log(this.state.admin, "updated!")
         }
         if(this.props.firstName !== prevProps.firstName){
             this.setState({

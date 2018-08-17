@@ -21,7 +21,6 @@ class Order extends Component {
             })
             this.props.getTotal(this.state.total)
             
-            console.log(res.data)
         })
     }
 

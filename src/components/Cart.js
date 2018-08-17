@@ -19,7 +19,7 @@ class Cart extends Component {
         window.scrollTo(0,0)
         axios.get(`/api/getcart`)
         .then(response=>{
-            console.log(response, 'response from db')
+
             this.setState({cartItems: response.data})
             //pulling prices and converting to do a subtotal
             var prices = response.data.map(arrayItem=>arrayItem.price)
@@ -87,7 +87,7 @@ class Cart extends Component {
         return(
             <div className="main-cart">
                 {this.state.cartItems[0] ? this.state.cartItems.map((element,i)=>{
-                    console.log(this.state.cartItems)
+
                     return (
                                 <CartItem updateQuantity={this.updateQuantity} key={i} removeFromCart={this.removeFromCart} item={this.state.cartItems[i]}/>
                     )

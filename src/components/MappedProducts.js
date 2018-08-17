@@ -18,7 +18,6 @@ async componentDidMount(props){
         backgroundPosition: "center",
         backgroundSize: "cover"
     }
-    console.log(this.state.mappedImages[0])
     this.setState({
         hey: myStyle
     })
@@ -28,7 +27,6 @@ async componentDidMount(props){
 render(props){
         return(
             <div className="product">
-            {console.log(this.state.hey)}
                 <div className="image-div">
                     {this.props.productInfo.image && this.state.hey ? <div className="mapped-products-image" style={this.state.hey}></div>: ''}
                 </div>

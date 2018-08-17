@@ -22,7 +22,6 @@ class SearchResults extends Component {
     }
     async componentDidUpdate(prevProps){
         if(this.props.results !== prevProps.results){
-            console.log(this.props.results, 'updated')
             await this.setState({
                 children: this.props.results.map(element=>{
                     return element.image
@@ -48,14 +47,14 @@ class SearchResults extends Component {
                 })} */}
             <ItemsCarousel
         // Placeholder configurations
-        enablePlaceholder
+        enablePlaceholder={false}
         numberOfPlaceholderItems={this.props.results.length}
         minimumPlaceholderTime={1000}
-        placeholderItem={<div style={{ height: 100, background: 'black' }}>GAH</div>}
+        placeholderItem={<div style={{ height: 100, background: '#707070' }}></div>}
  
         // Carousel configurations
         numberOfCards={2}
-        gutter={12}
+        gutter={13}
         showSlither={true}
         firstAndLastGutter={true}
         freeScrolling={false}
@@ -66,7 +65,7 @@ class SearchResults extends Component {
         activeItemIndex={activeItemIndex}
         activePosition={'center'}
  
-        chevronWidth={24}
+        chevronWidth={30}
         rightChevron={'>'}
         leftChevron={'<'}
         outsideChevron={false}

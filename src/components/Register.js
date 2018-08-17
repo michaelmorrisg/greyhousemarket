@@ -40,7 +40,6 @@ class Register extends Component {
         if(this.state.firstName && this.state.lastName && this.state.email && this.state.password){
             axios.post(`/api/newuser`,{firstName:this.state.firstName,lastName:this.state.lastName,email:this.state.email,password:this.state.password})
             .then(res=>{
-                console.log(res)
                 if(res.data !== "User already exists"){
                     this.props.loginUser(res.data.response[0].first_name,res.data.response[0].last_name,res.data.response[0].id,res.data.response[0].email)
                     this.setState({

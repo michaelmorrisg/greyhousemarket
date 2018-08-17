@@ -15,13 +15,10 @@ class AddReview extends Component {
         }
     }
 
-componentDidMount(props){
-    console.log(this.props.match)
 
-}
 onStarClick(nextValue, prevValue, name) {
     this.setState({rating: nextValue})
-    console.log(this.state.rating)
+
 }
 submitReview(props){
     axios.post(`/api/submitreview/${this.props.match.params.id}`,({message:this.state.message,rating:this.state.rating, name:this.props.firstName + ' ' + this.props.lastName}))
@@ -31,7 +28,7 @@ submitReview(props){
             toHome: true
         })
     })
-    console.log(this.state.message)
+
 }
 handleChange = debounce((input)=>{
     this.setState({

@@ -58,7 +58,6 @@ class Login extends Component {
         return(
             <div className={this.props.show===false ? "loginHidden" : this.props.show===true && window.location.hash !== "#/account/login" ? "login login-modal" : "login"}>
                 <h2 className={window.location.hash === "#/account/login" ? "login-register-title" : "modal-login-title" }>Login</h2>
-                {console.log(window.location.hash)}
                 <input className={window.location.hash === "#/account/login" ? "main-login-input" : "modal-login-input"} onChange={(e)=>this.handleEmail(e.target.value)}placeholder="Email" />
                 <input className={window.location.hash === "#/account/login" ? "main-login-input" : 'modal-login-input'}  onChange={(e)=>this.handlePassword(e.target.value)}placeholder="Password" type="password" />
                 <div>

@@ -71,7 +71,6 @@ class AddProduct extends Component {
             colors: tempArray
         })
     }
-        console.log(this.state.colors)
     }
     handleQuantity(input,colorVal){
         let tempArray = this.state.colors
@@ -82,7 +81,6 @@ class AddProduct extends Component {
                 colors: tempArray
             })
         }
-        console.log(this.state.colors)
     }
     handleCategory(input){
         let tempArray = this.state.categories
@@ -98,7 +96,7 @@ class AddProduct extends Component {
                 categories: tempArray
             })
         }
-        console.log(this.state.categories)
+
     }
     addProduct(){
         axios.post('/api/addtodb',{
@@ -110,7 +108,6 @@ class AddProduct extends Component {
             colors: this.state.colors
         })
         .then(res=>{
-            console.log(res.data[0].products_id)
             /////NEED TO ADD CATEGORIES TO DB
             this.state.categories.map(element=>{
                     axios.post('/api/addcategory', {productId: res.data[0].products_id, category: element})

@@ -81,7 +81,6 @@ class MyOrders extends Component{
                             <p>{element.product_name}</p>
                             <p className="bold">{element.purchase_date}</p>
                             {this.state.condensedOrders[i].purchases.map((element,i)=>{
-                                console.log(element)
                                 return(
                                     <div className="product-review-div" key={i}>
                                         {element.product_name} x {element.quantity}

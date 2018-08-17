@@ -90,12 +90,10 @@ class Nav extends Component{
         }
          axios.post('/api/getfilterproducts', {search:'%' + this.state.searchQuery + '%'})
         .then(res=>{
-                    console.log(res.data,'data')
                     this.setState({
                         searchResults: res.data
                     })
                 })
-            console.log(this.state.searchQuery)
             
     }
     activateSearch(){

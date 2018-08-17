@@ -3,7 +3,6 @@ module.exports = {
         const db = req.app.get('db')
         db.check_user({email: req.body.email})
             .then(response=>{
-                console.log(response)
                 if(response[0]){
                     res.status(200).send('User already exists')
                 }else{
@@ -26,7 +25,6 @@ module.exports = {
         db.add_user({firstName: "Guest", lastName: "Guest", password: "Guest", email: "Guest"})
         .then(response=>{
             req.session.userid = response[0].id
-            console.log(req.session.userid,response)
             res.status(200).send(response)
         })
     },
@@ -114,7 +112,6 @@ module.exports = {
     },
     refreshUser: (req,res)=>{
         const db = req.app.get('db')
-        console.log(req.session.userid)
         if(req.session.userid){
 
         db.refresh_user({id:req.session.userid})
@@ -130,7 +127,6 @@ module.exports = {
 
         db.total_cart({id:req.session.userid})
             .then(response =>{
-                console.log(response)
                 res.status(200).send(response)
             })
     },
@@ -295,7 +291,6 @@ module.exports = {
     },
     addPurchaseCart: (req,res)=>{
         const db = req.app.get('db')
-        console.log(req.body.cart)
         req.body.cart.map(element=>{
             db.add_purchase_cart({userId:element.user_id,productId:element.products_id,quantity:element.quantity,purchaseId:req.body.purchaseId,color:element.color})
     //         .then(response=>{
@@ -341,12 +336,10 @@ module.exports = {
     },
     addToDb: (req,res)=>{
         const db = req.app.get('db')
-        console.log(req.body)
 
         db.add_to_db({product_name:req.body.name,price:Number(req.body.price),image:req.body.image,description:req.body.description,measurement:req.body.measurement})
         .then(response=>{
             
-            console.log(response,"the response")
             req.body.colors.map(element =>{
                 db.add_colors_to_product({colorId: element.color, productId: response[0].products_id,productQuantity: element.quantity})
 
@@ -454,7 +447,6 @@ module.exports = {
     },
     getFilterProducts: (req,res)=>{
         const db = req.app.get('db')
-        // console.log(req.body.search)
 
         db.get_filter_products({search:req.body.search})
         .then(response=>{

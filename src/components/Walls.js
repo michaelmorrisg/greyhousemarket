@@ -27,7 +27,6 @@ class Walls extends Component{
     }
 
     render(){
-        {console.log(this.state.wallsProducts)}
         return(
             <div className="product-page">
             <div className="product-headline">

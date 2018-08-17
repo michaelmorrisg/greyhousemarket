@@ -30,7 +30,6 @@ class SingleProduct extends Component{
         window.scrollTo(0,0)
         axios.get(`/api/getproduct/${this.props.match.params.id}`)
         .then(res=>{
-            // console.log(res.data)
             let splitImages = res.data[0].image.split(' ')
             this.setState({
                 productInfo: res.data,
@@ -39,7 +38,6 @@ class SingleProduct extends Component{
         })
         axios.get(`/api/getcolors/${this.props.match.params.id}`)
         .then(res=>{
-            // console.log(res.data,'colorOptions')
             this.setState({
                 colorOptions: res.data
             })
@@ -55,7 +53,6 @@ class SingleProduct extends Component{
                 quantity: 1
             })
         }
-        console.log(this.state.quantity)
     }
     addToCart(props){
         this.state.color !== '' && this.state.quantity <= this.state.possibleQuantity ? 
