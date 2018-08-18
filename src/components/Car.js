@@ -51,7 +51,7 @@ class Car extends Component{
                     <Link className="main-product-div" to={`/product/${element.product_id}`} key={i}><div className="product"><MappedProducts productInfo = {element} /></div></Link>
                 )
             })}</div>
-            <Footer />
+            {this.state.carProducts[0] ? <Footer /> : ''}
             </div>
         )
     }

@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import Footer from './Footer'
+import cloud from '../images/cloud.svg'
+import cloudy from '../images/cloudy.png'
 
 class Confirmation extends Component {
 componentDidMount(){
@@ -22,7 +24,9 @@ componentDidMount(){
                         <li></li>
                         <li></li>
                     </ul>
+                <div className="gray"></div>
                 </div>
+                {/* <img className="cloud" src={`${cloudy}`}/> */}
                 <Footer />
             </div>
         )

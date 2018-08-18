@@ -36,11 +36,11 @@ handleChange(input){
                     <div>
                         <p>{this.props.item.product_name}</p>
                         <p>Color: {this.props.item.color}</p>
-                        <p>Quantity: <input onChange={(e)=>this.handleChange(e.target.value)} type="number" min="1" value={this.state.quantity}/></p>
+                        <p>Quantity: <input className='cart-quantity-input' onChange={(e)=>this.handleChange(e.target.value)} type="number" min="1" value={this.state.quantity}/></p>
                     </div>
                     <div>
                         <p>${(this.props.item.price * this.state.quantity).toFixed(2)}</p>
-                        <button onClick={()=>this.props.removeFromCart(this.props.item.product_id,this.props.item.color)}>Remove from cart</button>
+                        <button className="remove-from-cart-button" onClick={()=>this.props.removeFromCart(this.props.item.product_id,this.props.item.color)}>Remove from cart</button>
                     </div>
                 </div>
                 <div className="right-cart-item">

@@ -14,7 +14,7 @@ class MyAccount extends Component{
         return(
             <div className="account-home">
                 <AccountNav />
-                <div>
+                <div className="account-main">
                 <Switch>
                     <Route path="/account/myaccount/myorders" component={MyOrders}/>
                     <Route path="/account/myaccount/updatepassword" component={UpdatePassword}/>

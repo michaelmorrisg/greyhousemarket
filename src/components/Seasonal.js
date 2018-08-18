@@ -53,7 +53,7 @@ class Seasonal extends Component{
                     )
                 })}
             </div>
-            <Footer />
+            {this.state.seasonProducts[0] ? <Footer /> :''}
             </div>
         )
     }

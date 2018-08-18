@@ -144,8 +144,10 @@ class SingleProduct extends Component{
                     <h4 className="single-product-header">{this.state.productInfo[0] ? this.state.productInfo[0].product_name : ''}</h4>
                     <p className="price-quantity">{this.state.productInfo[0] ? '$'+this.state.productInfo[0].price : ''}</p>
                     {this.state.toggleColor? <p className="select-color">* Please select a color *</p> : ''}
+               <div className='button-div'>
                 <DropdownButton
                 // bsClass="btn test"
+                id="obey-me"
                 bsStyle="info"
                 block={true}
                 // active={true}
@@ -156,6 +158,7 @@ class SingleProduct extends Component{
                         )
                     })}
                 </DropdownButton>
+                </div>
                     <p className="price-quantity">Quantity: <input className="quant-input" onChange={(e)=>this.handleQuantity(e.target.value)} type="number" min="1" max={this.state.possibleQuantity} placeholder="1"/></p>
                     {this.state.productInfo[0] ? <button className="addtocart-button" onClick={()=>this.addToCart()}>Add to Cart</button> : '' }
                     <h4 className="single-product-header">{this.state.productInfo[0] ? "Description" : ''}</h4>

@@ -8,6 +8,9 @@ html {
   height: 100%;
   position: relative;
 }
+.fullscreen-icon {
+  display: none;
+}
 body {
   height: 100%;
   position: relative;
@@ -24,7 +27,7 @@ button {
   background-color: white;
   box-shadow: 2px 0px 5px rgba(0,0,0,0.5);
   position: fixed;
-  top: 7.8vh;
+  top: 7vh;
   left: 0;
   width: 60%;
   max-width: 300px;
@@ -147,6 +150,8 @@ button {
 }
 .list-item-nav {
   margin-left: 5%;
+  text-decoration: none;
+  color: black;
 }
 .hamburger-button {
   padding-left: 0px;
@@ -230,6 +235,10 @@ button {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
+.product-lower a:active,
+.product-lower a:hover {
+  color: #ff5e55;
+}
 .upper-div-category{
   background-color: #999999;
   width: 100%;
@@ -256,6 +265,11 @@ button {
   font-weight: lighter;
   width: 45%;
   margin-top: 10%;
+}
+.category-text:hover,
+.category-text:active{
+  color: #ff5e55;
+  text-decoration: none;
 }
 .nails-category {
   width: 100%;
@@ -486,16 +500,22 @@ button {
   display: flex;
   width: 95%;
   justify-content: space-between;
-  margin: 0px auto;
+  margin: 15px auto;
+  background-color: #E8E8E8;
+  padding-top: 15px;
+  padding-right: 15px;
+  border-radius: 15px;
 }
 .left-cart-item {
   width: 50%;
+  margin-bottom: 10px;
 }
 .right-cart-item {
   width: 50%;
 }
 .main-cart {
   margin-top: 80px;
+  margin-bottom: 25vh;
 }
 .empty-cart {
   margin-top: 40vh;
@@ -505,6 +525,7 @@ button {
   width: 100%;
   background-color: #ff5e55;
   position: fixed;
+  left: 0;
   bottom: 0;
   display: flex;
   flex-direction: column;
@@ -587,8 +608,9 @@ button {
 .individual-order {
   background-color: #E8E8E8;
   width: 80%;
-  margin: 0px auto;
+  margin: 8px auto;
   border-radius: 10px;
+  padding: 5px;
 }
 .product-review-div {
   width: 80%;
@@ -924,6 +946,20 @@ button {
   margin-top: 100px;
   height: 100vh;
 }
+.cart-quantity-input {
+  width: 12%;
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid #707070;
+  text-align: center;
+}
+.remove-from-cart-button {
+  background-color: #ff5e55;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  margin-top: 10px;
+}
 .center {
   position: relative;
   top: 0;
@@ -936,7 +972,7 @@ button {
   position: relative;
   width: 100%;
   height: 240px;
-  /* overflow: hidden; */
+  overflow: hidden;
   /* border-bottom: 1px solid rgba(0,0,0,0.2); */
 }
 .center ul li {
@@ -948,21 +984,21 @@ button {
   left: 50%;
   box-shadow: 0 0 10px rgba(0,0,0,.5);
   animation: animate 5s infinite alternate;
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
+  border-bottom-color: transparent !important;
+  border-left-color: transparent !important;
 }
 .center ul li:nth-child(1){
   width: 60px;
   height: 60px;
   border-color: #1c3765;
   animation-delay: .2s;
-  border-bottom-color: transparent !important;
 }
 .center ul li:nth-child(2){
   width: 90px;
   height: 90px;
   border-color: #c4b9dd;
   animation-delay: .4s;
-  border-left-color: transparent !important;
 }
 .center ul li:nth-child(3){
   width: 120px;
@@ -975,14 +1011,13 @@ button {
   height: 150px;
   border-color: #6f639f;
   animation-delay: .8s;
-  border-bottom-color: transparent !important;
+
 }
 .center ul li:nth-child(5){
   width: 180px;
   height: 180px;
   border-color: #5698c9;
   animation-delay: 1s;
-  border-left-color: transparent !important;
 }
 .center ul li:nth-child(6){
   width: 210px;
@@ -995,7 +1030,6 @@ button {
   height: 240px;
   border-color: #78b4dd;
   animation-delay: 1.4s;
-  border-bottom-color: transparent !important;
 }
 .footer-main {
   width: 100%;
@@ -1094,11 +1128,41 @@ button {
 .forgot-pass-button {
   background: transparent;
 }
+.cloud {
+  position: absolute;
+  transform: translate(-50%,-50%);
+  width: 350px;
+  bottom: -5px;
+  height: auto;
+}
+.gray {
+  height: 100px;
+  width: 90%;
+  background-image: radial-gradient(#E0E0E0 ,white);
+  border-radius: 40%;
+  position: absolute;
+  bottom: -91px;
+  left: 16px;
+  max-width: 440px;
+  margin: 0px auto;
+}
 @keyframes shrinkline {
   from {width : 50vw;
     border-bottom: 2px solid #707070;}
   to {width: 0vw;
     border-bottom: 2px solid #707070;}
+}
+@media(min-width:450px){
+  .gray {
+    display: none;
+  }
+  .center {
+    display: none;
+  }
+  .cart-image {
+    width: 70%;
+    height: auto;
+  }
 }
 @media(min-width:580px){
 .category-container {
@@ -1131,5 +1195,170 @@ button {
     width: 80%;
     margin: 0px auto;
     margin-bottom: 35vh;
+  }
+  .product-headline {
+    height: 60vh;
+  }
+  .product{
+    height: 100%;
+  }
+  .product-page {
+    margin-bottom: 45vh;
+  }
+  .main-product-div {
+    width: 30%;
+    margin: 50px 15px;
+    height: 300px;
+    margin-bottom: 80px;
+  }
+  .mapped-products-image {
+    background-position: center top;
+    height: 100%;
+  }
+  .image-div {
+    height: 100%;
+  }
+  .lower-product {
+    height: 30%;
+  }
+  .lower-product p {
+    font-size: 20px;
+  }
+  .lower-product:hover p {
+    color: #ff5e55;
+  }
+  .product-grid {
+    width: 90%;
+    margin: 0px auto;
+  }
+  .product-headline {
+    font-size: 30px;
+  } 
+  .product-headline-text {
+    font-size: 50px;
+  }
+  .search-showing {
+    height: 60vh;
+  }
+  .carousel-search-div {
+    height: 300px;
+    margin-top: 10%;
+  }
+  .carousel-search-div a {
+    text-decoration: none;
+  }
+  .search-lower-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .search-lower-div p {
+    font-size: 20px;
+  }
+  .search-lower-div p:hover,
+  .search-lower-div a:hover {
+    color: #ff5e55;
+    text-decoration: none;
+  }
+  .copyright {
+    font-size: 20px;
+  }
+  .social-media-icons a {
+    margin-right: 20px;
+  }
+  .forgot-pass-button{
+    padding: 10px 20px;
+    width: 30%;
+  }
+  .login {
+    width: 60%;
+  }
+  .questions-main {
+    margin: 0px auto;
+    margin-top: 15vh;
+    margin-bottom: 30vh;
+    width: 80%;
+  }
+  .addtocart-button{
+    padding: 5px 20px;
+  }
+  #thinner-button {
+    padding: 5px 20px;
+    width: 20%;
+  }
+  .single-product-body-text{
+    width: 80%;
+  }
+  .button-div {
+    margin: 0px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    left: -35px;
+  }
+  .app {
+    width: 100%;
+  }
+  .footer-main {
+    width: 100%;
+    left: 0;
+  }
+  .carousel-div {
+    width: 50%;
+    margin: 0px auto;
+  }
+  .carousel-image-div{
+    width: 100%;
+    height: 500px;
+  }
+  .single-product-main {
+    width: 80%;
+    margin: 0px auto;
+    margin-top: 100px;
+    margin-bottom: 35vh;
+  }
+  .main-review-div {
+    width: 100%;
+    margin: 0px auto;
+    margin-bottom: 20vh;
+  }
+  .review-div {
+    width: 80%;
+    margin: 0px auto;
+  }
+  #obey-me {
+    width: 130px;
+    padding: 5px;
+  }
+  .btn-group {
+    display: flex;
+    justify-content: center;
+  }
+  .dropdown-menu {
+    top: 70%;
+    left: 141px;
+  }
+  .cart-image {
+    width: 40%;
+    height: auto;
+  }
+  .main-cart {
+    width: 75%;
+    margin: 0px auto;
+    margin-top: 80px;
+  }
+  .orders-main {
+    width: 80%;
+    margin: 0px auto;
+  }
+  .product-review-div {
+    font-size: 20px;
+  }
+  .update-pass-main {
+    width: 50%;
+    margin-top: 100px;
+  }
+  .account-main {
+    margin-top: 40px;
   }
 }

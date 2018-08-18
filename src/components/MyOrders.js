@@ -75,7 +75,7 @@ class MyOrders extends Component{
     }
     render(){
         return (
-            <div>
+            <div className="orders-main">
                 {this.state.condensedOrders.map((element,i)=>{
                     return(
                         <div className="individual-order" key={i}>

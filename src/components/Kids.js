@@ -55,7 +55,7 @@ class Kids extends Component{
                     })}
                     {this.state.toHome ? <Redirect to="/"/> : ''}
                 </div>
-                <Footer />
+                {this.state.kidsProducts[0] ? <Footer /> : ''}
             </div>
         )
     }

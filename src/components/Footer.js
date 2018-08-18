@@ -16,8 +16,8 @@ export default class Footer extends Component {
             <div className="secondary-border-footer"></div>
             <div className="footer-content">
             <div className="footer-left">
-                <Link to="/contact">Contact Us</Link>
-                <p>©2018 TheGreyHouseMarket</p>
+                <Link className="copyright" to="/contact">Contact Us</Link>
+                <p className="copyright">©2018 TheGreyHouseMarket</p>
             </div>
             <div className="footer-right">
             <div className="social-media-icons">

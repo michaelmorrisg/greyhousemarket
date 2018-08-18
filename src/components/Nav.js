@@ -114,6 +114,7 @@ class Nav extends Component{
                     <div className={this.state.scroll > 30 ? 'navbar scrolling-navbar' : 'navbar'}>
                         <div className='navbar-left'>
                         <DrawerToggleButton click={this.props.drawerClickHandler}/>
+                        {/* <Link to="/" ><img className='fullscreen-icon' src="https://i.etsystatic.com/isla/420b13/29519511/isla_500x500.29519511_ifsfvos4.jpg?version=0" /></Link> */}
                             {/* <img src={require('../images/Hamburger.png')} onClick={()=>this.setState({rotated:!this.state.rotated})} className={this.state.rotated? "rotated" : 'normal'}/> */}
                             <Link to="/" ><img className={this.state.scroll > 30 ? "nav-image" : "nav-image nav-image-hidden"} src="https://i.etsystatic.com/isla/420b13/29519511/isla_500x500.29519511_ifsfvos4.jpg?version=0" /></Link>
                         </div>
