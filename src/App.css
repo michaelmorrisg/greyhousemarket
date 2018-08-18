@@ -920,6 +920,7 @@ button {
   width: 100%;
   background-color: #4d4d4d;
   border-radius: 10px;
+  min-height: 166px;
 }
 .carousel-search-text{
   width: 100%;
