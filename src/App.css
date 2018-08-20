@@ -817,6 +817,7 @@ button {
   margin-top: 5vh;
   width: 80%;
   outline: none;
+  min-height: 163px;
 }
 #thinner-button {
   width: 80%;
@@ -1504,6 +1505,13 @@ button {
   .contact-form input,
   .contact-form textarea {
     width: 50%;
+  }
+  .main-product-div p:hover {
+    color: #ff5e55;
+    text-decoration: none;
+  }
+  .product-grid {
+    width: 80%;
   }
 
 }
