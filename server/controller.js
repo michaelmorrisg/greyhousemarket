@@ -161,23 +161,23 @@ module.exports = {
             from: 'grayhousemarket@gmail.com',
             to: 'michaelmorrisg@gmail.com',
             subject: 'New Order, Tannin!',
-            html: `<h1 style="color:blue;text-align:center">New order from ${req.body.firstName} ${req.body.lastName}</h1>
-            <h2 style="text-align: center">Shipping Details:</h2>
-            <h3 style="font-size:12px">Email Address: ${req.body.email}</h3>
-            <h3 style="font-size:12px">Full Name: ${req.body.firstName} ${req.body.lastName}</h3>
-            <h3 style="font-size:12px">Address: ${req.body.address1}</h3>
-            <h3 style="font-size:12px">${req.body.address2}</h3>
-            <h3 style="font-size:12px">Zip: ${req.body.zip}</h3>
-            <h3 style="font-size:12px">City: ${req.body.city}</h3>
-            <h3 style="font-size:12px">State: ${req.body.state}</h3>
+            html: `<h1 style="text-align:center">New order from ${req.body.firstName} ${req.body.lastName}</h1>
+            <h2 style="text-decoration: underline;color:gray">Shipping Details:</h2>
+            <h3 style="font-size:14px">Email Address: ${req.body.email}</h3>
+            <h3 style="font-size:14px">Full Name: ${req.body.firstName} ${req.body.lastName}</h3>
+            <h3 style="font-size:14px">Address: ${req.body.address1}</h3>
+            <h3 style="font-size:14px">${req.body.address2}</h3>
+            <h3 style="font-size:14px">Zip: ${req.body.zip}</h3>
+            <h3 style="font-size:14px">City: ${req.body.city}</h3>
+            <h3 style="font-size:14px">State: ${req.body.state}</h3>
             
-            <h2 style="color:red; text-align: center">Products:</h2>
+            <h2 style="color:gray; text-decoration:underline">Products:</h2>
             ${req.body.products.map(element=>{
                 return (
-                    `Product: ${element.product_name}
-                    ID: ${element.product_id}
-                    Quantity: ${element.quantity}
-                    Color: ${element.color}`
+                    `<p>Product: ${element.product_name}</p>
+                    <p>ID: ${element.product_id}</p>
+                    <p>Quantity: ${element.quantity}</p>
+                    <p>Color: ${element.color}</p>`
                 )
             })}`
         }
