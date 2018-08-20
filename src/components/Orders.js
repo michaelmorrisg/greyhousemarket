@@ -107,7 +107,7 @@ class Orders extends Component{
                                     </div>
                                 )
                             }): ''}
-                            <button onClick={()=>this.fulfillOrder(element.purchase_id)}>Fulfill Order</button>
+                            <button className="fulfill-button" onClick={()=>this.fulfillOrder(element.purchase_id)}>Fulfill Order</button>
                         </div>
                     )
                 }): <h3>You're all caught up!</h3>}

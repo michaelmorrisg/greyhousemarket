@@ -121,7 +121,7 @@ class SingleProduct extends Component{
     render(){
         return(
             <div className="single-product-main">
-                <div className="carousel-div">{this.state.productInfo[0] ? <Carousel showArrows={false} showStatus={false} showThumbs={false} className="carousel-image">{this.state.images.map((element,i)=>{
+                <div className="carousel-div">{this.state.productInfo[0] ? <Carousel showArrows={true} showStatus={false} showThumbs={false} className="carousel-image">{this.state.images.map((element,i)=>{
                     if(element !== " " || element !== ""){
                     let image = {
                                 height: '100%',

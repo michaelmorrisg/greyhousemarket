@@ -1,5 +1,4 @@
 html {
-  height: 100%;
   position: relative;
 }
 .App {
@@ -8,11 +7,47 @@ html {
   height: 100%;
   position: relative;
 }
+.fulfill-button {
+  background-color: #ff5e55;
+  border: none;
+  color: white;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+.shipping-info h3 {
+  font-weight: 700;
+}
+.shipping-needed {
+  color: #ff5e55;
+  font-weight: 700;
+}
+.checkout-order {
+  background-color: #707070;
+  border-radius: 15px;
+  color: white;
+  margin-bottom: 40px;
+}
+.modal-button-log {
+  background-color: #ff5e55;
+  color: white;
+  border: none;
+  padding: 3px 8px;
+}
+.modal-forgot-pass {
+  font-size: 12px;
+  margin: 3px auto;
+  margin-bottom: 15px;
+  display: none;
+}
+.modal-button-guest {
+  border: 2px solid #ff5e55;
+  background-color: white;
+  color: #ff5e55;
+}
 .fullscreen-icon {
   display: none;
 }
 body {
-  height: 100%;
   position: relative;
 }
 button {
@@ -345,7 +380,7 @@ button {
 }
 .showing {
       background-color: #E8E8E8;
-      width: 85%;
+      width: 60%;
       height: 30vh;
       position: fixed;
       top: 40%;
@@ -375,7 +410,7 @@ button {
 }
 .modal-content {
   box-shadow: none;
-  background-color: #E8E8E8;
+  background-color: 	#F8F8F8;
   border: none;
   width: 100%;
   height: 100%;
@@ -572,6 +607,8 @@ button {
 .btn-group {
   width: 80%;
   margin: 0px auto;
+  display: flex;
+  justify-content: center;
 }
 .dropdown {
   margin: 0px auto;
@@ -893,14 +930,25 @@ button {
   z-index: 901;
 }
 .login-modal {
-  margin-top: -5vh;
+  margin: 0px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -2vh;
 }
 .modal-login-input {
   margin-top: 1vh;
+  border: none;
+  border-bottom: 2px solid #707070;
+  background: transparent;
+  width: 90%;
+  outline: none;
+  margin-bottom: 2vh;
 }
 .modal-login-title {
   font-size: 20px;
   margin-top: 5vh;
+  display: none;
 }
 .modal-or {
   font-size: 5px;
@@ -931,7 +979,7 @@ button {
   font-size: 15px;
 }
 .search-upper-div {
-  height: 80%;
+  height: 87%;
   width: 100%;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -1054,7 +1102,7 @@ button {
   align-items: center;
   width: 90%;
   margin: 0px auto;
-  height: 80%;
+  height: 76%;
   color: white;
 }
 .footer-left {
@@ -1148,6 +1196,12 @@ button {
   max-width: 440px;
   margin: 0px auto;
 }
+.grow {
+  transition: all .2s ease-in-out;
+}
+.grow:hover {
+  transform: scale(1.2);
+}
 @keyframes shrinkline {
   from {width : 50vw;
     border-bottom: 2px solid #707070;}
@@ -1169,6 +1223,10 @@ button {
 @media(min-width:580px){
 .category-container {
   height: 30vh;
+}
+.carousel-search-div {
+  margin-top: 10%;
+  height: 150px;
 }
 
 }
@@ -1256,6 +1314,7 @@ button {
   }
   .search-lower-div p {
     font-size: 20px;
+    margin-top: 0px;
   }
   .search-lower-div p:hover,
   .search-lower-div a:hover {
@@ -1306,18 +1365,21 @@ button {
     left: 0;
   }
   .carousel-div {
-    width: 50%;
+    width: 60%;
     margin: 0px auto;
   }
   .carousel-image-div{
     width: 100%;
-    height: 500px;
+    height: 440px;
   }
   .single-product-main {
     width: 80%;
     margin: 0px auto;
     margin-top: 100px;
     margin-bottom: 35vh;
+  }
+  .single-product-header {
+    margin-top: 20px;
   }
   .main-review-div {
     width: 100%;
@@ -1363,4 +1425,69 @@ button {
   .account-main {
     margin-top: 40px;
   }
+  .quant-input {
+    width: 6%;
+  }
+  .showing {
+    width: 20%;
+  }
+  .tall {
+    height: 60%;
+    margin-top: 5%;
+  }
+  .modal-button-log {
+    font-size: 18px;
+  }
+  .modal-button-guest {
+    font-size: 18px;
+  }
+  .checkout-left {
+    width: 60%;
+  }
+  .checkout-order {
+    width: 40%;
+    background-color: #707070;
+    border-radius: 15px;
+    color: white;
+  }
+  .shipping-info{
+    width: 100%;
+    margin: 0px auto;
+    margin-top: 50px;
+  }
+  .email {
+    width: 60%;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  .first-name-last-name-checkout{
+    width: 60%;
+    margin: 0px auto;
+  }
+  .first-name-last-name-checkout input {
+    font-size: 18px;
+  }
+  .checkout {
+    display: flex;
+    width: 95%;
+    justify-content: space-around;
+  }
+  .shipping-info input {
+    margin-bottom: 50px;
+  }
+  .shipping-needed{
+    font-size: 20px;
+  }
+  .admin-page {
+    width: 70%;
+    margin: 0px auto;
+    margin-top: 80px;
+  }
+  .review-main {
+    width: 60%;
+  }
+  #review-button {
+    width: 30%;
+  }
+
 }

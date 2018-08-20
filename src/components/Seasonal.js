@@ -41,7 +41,7 @@ class Seasonal extends Component{
                     blur={1}
                      >
                 <Link className="chevron-back" to="/">
-                    <FontAwesomeIcon onClick={()=>this.setState({toHome:true})} icon="chevron-left" size="2x" color="white"/>
+                    <FontAwesomeIcon onClick={()=>this.setState({toHome:true})} className="grow" icon="chevron-left" size="2x" color="white"/>
                 </Link>
                 <h2 className="product-headline-text">Seasonal Decals</h2>
                 </Parallax>

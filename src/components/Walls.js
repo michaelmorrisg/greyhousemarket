@@ -40,7 +40,7 @@ class Walls extends Component{
                     bgStyle = {{backgroundColor: 'black', opacity: '.7'}}
                      >
                 <Link className="chevron-back"  to="/">
-                    <FontAwesomeIcon onClick={()=>this.setState({toHome:true})} icon="chevron-left" size="2x" color="white"/>
+                    <FontAwesomeIcon onClick={()=>this.setState({toHome:true})} className="grow" icon="chevron-left" size="2x" color="white"/>
                 </Link>
                 <h2 className="product-headline-text">Home Decor</h2>
             </Parallax>

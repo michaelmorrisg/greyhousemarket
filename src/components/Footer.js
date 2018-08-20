@@ -21,9 +21,9 @@ export default class Footer extends Component {
             </div>
             <div className="footer-right">
             <div className="social-media-icons">
-            <a href="https://www.facebook.com" target="_blank"><FontAwesomeIcon icon={faFacebookSquare} size="2x" color='white'/></a>
-            <a href="https://www.pinterest.com" target="_blank"><FontAwesomeIcon icon={faPinterest} size="2x" color='white'/></a>
-            <a href="https://www.twitter.com" target="_blank"><FontAwesomeIcon icon={faTwitter} size="2x" color='white'/></a>
+            <a href="https://www.facebook.com" target="_blank"><FontAwesomeIcon className="grow" icon={faFacebookSquare} size="2x" color='white'/></a>
+            <a href="https://www.pinterest.com" target="_blank"><FontAwesomeIcon className="grow" icon={faPinterest} size="2x" color='white'/></a>
+            <a href="https://www.twitter.com" target="_blank"><FontAwesomeIcon className="grow" icon={faTwitter} size="2x" color='white'/></a>
             </div>
             </div>
             </div>

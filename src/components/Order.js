@@ -27,13 +27,13 @@ class Order extends Component {
 
     render(props){
         return(
-            <div>
+            <div className="checkout-order">
                 <h2>Order</h2>
                 {this.state.cart.map(element=>{
                     return(
                         <div>
-                            <h5>{element.product_name}</h5>
-                            <p>x{element.quantity}</p>
+                            <h5>{element.product_name} x {element.quantity}</h5>
+                            {/* <p>x{element.quantity}</p> */}
                             <p>${Number(element.price)*element.quantity}</p>
                         </div>
                     )
@@ -46,13 +46,14 @@ class Order extends Component {
                 this.props.shipFirstName &&
                 this.props.shipAddress1 &&
                 this.props.shipCity &&
-                this.props.shipZipCode ? <Stripe />: <p>Enter Shipping Info To Continue</p>}
+                this.props.shipState &&
+                this.props.shipZipCode ? <Stripe />: <p className="shipping-needed">Enter Shipping Info To Continue</p>}
             </div>
         )
     }
 }
 function mapStateToProps(state){
- const {subTotal,shipEmail,shipLastName,shipFirstName,shipCity,shipZipCode,shipAddress1} = state
- return {subTotal,shipEmail,shipLastName,shipFirstName,shipCity,shipZipCode,shipAddress1}
+ const {subTotal,shipEmail,shipLastName,shipFirstName,shipCity,shipZipCode,shipAddress1,shipState} = state
+ return {subTotal,shipEmail,shipLastName,shipFirstName,shipCity,shipZipCode,shipAddress1,shipState}
 }
 export default connect(mapStateToProps,{getTotal})(Order)

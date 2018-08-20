@@ -129,13 +129,13 @@ class Checkout extends Component {
     }
     sendToRedux = debounce(()=>{
             this.props.updateShipping(this.state.email,this.state.firstName,this.state.lastName,this.state.address1,this.state.address2,this.state.zipCode,this.state.city,this.state.myState)
-        }, 2000
+        }, 1000
     )
 
     render(){
         return(
             <div className="checkout">
-            <div>
+            <div className='checkout-left'>
                 <h1>Checkout</h1>
                 <div className="shipping-info">
                 <h2>Shipping Address</h2>
@@ -153,7 +153,7 @@ class Checkout extends Component {
                 </div>
                 <h3>Address</h3>
                 <input className="checkout-input email" onChange={(e)=>this.handleAddress1(e.target.value)} value={this.state.address1}/>
-                <h3>Address 2</h3>
+                <h3>Address 2 (Optional)</h3>
                 <input className="checkout-input email" onChange={(e)=>this.handleAddress2(e.target.value)} value={this.state.address2}/>
                 <div className="first-name-last-name-checkout">
                     <div>
@@ -171,7 +171,7 @@ class Checkout extends Component {
                 bsSize="large"
                 className="state-button"
                 title={this.state.myState ? this.state.myState : 'State'}
-                dropup={false}>
+                dropup={true}>
                 {this.state.states.map(element=>{
                     return (
                         <MenuItem onClick={()=>this.handleState(element)}>{element}</MenuItem>

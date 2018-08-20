@@ -16,6 +16,9 @@ class Register extends Component {
             toHome: false
         }
     }
+    componentDidMount(){
+        window.scrollTo(0,0)
+    }
 
     handleFirst(input){
         this.setState({

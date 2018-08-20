@@ -120,9 +120,9 @@ class Nav extends Component{
                         </div>
                         <div className='navbar-right'>
                             {/* {this.props.firstName && this.props.firstName !== "Guest" ? <p className="list-item-nav">Hey there, {this.props.firstName}</p>: ''} */}
-                            <img onClick={()=>this.activateSearch()}className={this.state.searchActive ? "search-icon active-search-icon" : "search-icon"} src={require('../images/Search.png')} />
+                            <img onClick={()=>this.activateSearch()}className={this.state.searchActive ? "search-icon active-search-icon grow" : "search-icon grow"} src={require('../images/Search.png')} />
                             <input className={this.state.searchActive ? "active-input" : "hidden-input"} onChange={(e)=>this.debounced(e.target.value)}/>
-                            <Link className="list-item-nav" to="/cart"><div className={this.props.cart === 0 ? "shopping-cart-image" : "shopping-cart-item-image"}>{this.props.cart !== 0 ? <p className="cart-number">{this.props.cart}</p> : ''}</div></Link>
+                            <Link className="list-item-nav" to="/cart"><div className={this.props.cart === 0 ? "shopping-cart-image grow" : "shopping-cart-item-image grow"}>{this.props.cart !== 0 ? <p className="cart-number">{this.props.cart}</p> : ''}</div></Link>
                             {/* <p className="cart-amount">{this.props.cart}</p> */}
                         </div>
                         {this.state.searchQuery && this.state.searchActive ? <SearchResults searchQuery={this.state.searchQuery} results={this.state.searchResults} /> : ''}

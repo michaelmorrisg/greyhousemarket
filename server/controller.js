@@ -161,17 +161,17 @@ module.exports = {
             from: 'grayhousemarket@gmail.com',
             to: 'michaelmorrisg@gmail.com',
             subject: 'New Order, Tannin!',
-            text: `New order from ${req.body.firstName} ${req.body.lastName}
-            Shipping Details:
-            Email Address: ${req.body.email}
-            Full Name: ${req.body.firstName} ${req.body.lastName}
-            Address: ${req.body.address1}
-            ${req.body.address2}
-            Zip: ${req.body.zip}
-            City: ${req.body.city}
-            State: ${req.body.state}
+            html: `<h1 style="color:blue;text-align:center">New order from ${req.body.firstName} ${req.body.lastName}</h1>
+            <h2 style="text-align: center">Shipping Details:</h2>
+            <h3 style="font-size:12px">Email Address: ${req.body.email}</h3>
+            <h3 style="font-size:12px">Full Name: ${req.body.firstName} ${req.body.lastName}</h3>
+            <h3 style="font-size:12px">Address: ${req.body.address1}</h3>
+            <h3 style="font-size:12px">${req.body.address2}</h3>
+            <h3 style="font-size:12px">Zip: ${req.body.zip}</h3>
+            <h3 style="font-size:12px">City: ${req.body.city}</h3>
+            <h3 style="font-size:12px">State: ${req.body.state}</h3>
             
-            Products:
+            <h2 style="color:red; text-align: center">Products:</h2>
             ${req.body.products.map(element=>{
                 return (
                     `Product: ${element.product_name}

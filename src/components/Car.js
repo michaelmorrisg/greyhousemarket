@@ -41,7 +41,7 @@ class Car extends Component{
                     bgStyle = {{backgroundColor: 'black', opacity: '.6'}}
                      >
                 <Link className="chevron-back"  to="/">
-                    <FontAwesomeIcon onClick={()=>this.setState({toHome:true})} icon="chevron-left" size="2x" color="white"/>
+                    <FontAwesomeIcon onClick={()=>this.setState({toHome:true})} className="grow" icon="chevron-left" size="2x" color="white"/>
                 </Link>
                 <h2 className="product-headline-text">Car Decals</h2>
                 </Parallax>
