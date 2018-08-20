@@ -7,6 +7,10 @@ html {
   height: 100%;
   position: relative;
 }
+.quant-button {
+  background-color: #E0E0E0;
+  border: none;
+}
 .fulfill-button {
   background-color: #ff5e55;
   border: none;

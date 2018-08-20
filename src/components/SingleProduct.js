@@ -118,6 +118,20 @@ class SingleProduct extends Component{
         })
       }
 
+      addQuant(){
+          this.setState({
+              quantity: this.state.quantity +1
+          })
+      }
+      removeQuant(){
+          if(this.state.quantity > 1){
+              this.setState({
+                  quantity: this.state.quantity -1
+              })
+
+          }
+    }
+
 
     render(){
         return(
@@ -160,7 +174,7 @@ class SingleProduct extends Component{
                     })}
                 </DropdownButton>
                 </div>
-                    <p className="price-quantity">Quantity: <input className="quant-input" onChange={(e)=>this.handleQuantity(e.target.value)} type="number" min="1" max={this.state.possibleQuantity} placeholder="1"/></p>
+                    <p className="price-quantity">Quantity: <span><button className="quant-button" onClick={()=>this.removeQuant()}>-</button></span><input className="quant-input" onChange={(e)=>this.handleQuantity(e.target.value)} type="number" min="1" max={this.state.possibleQuantity} placeholder="1" value={this.state.quantity}/><span><button className="quant-button" onClick={()=>this.addQuant()}>+</button></span> </p>
                     {this.state.productInfo[0] ? <button className="addtocart-button" onClick={()=>this.addToCart()}>Add to Cart</button> : '' }
                     <h4 className="single-product-header">{this.state.productInfo[0] ? "Description" : ''}</h4>
                     <p className="description">{this.state.productInfo[0] ? this.state.productInfo[0].description : ''}</p>
