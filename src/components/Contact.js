@@ -33,7 +33,7 @@ class Contact extends Component{
             Swal({
                 type: 'success',
                 title: 'Woo!',
-                text: 'Message sent!'
+                text: 'Message sent! Give us a bit to get back to you'
             })
         )
          this.setState({
