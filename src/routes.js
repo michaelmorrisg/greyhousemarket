@@ -35,5 +35,7 @@ export default (
         <Route path="/admin" component={Admin}/>
         <Route path="/addreview/product/:id" component={AddReview}/>
         <Route path="/orders/confirmation" component={Confirmation}/>
+        }}
+        
     </Switch>
 )

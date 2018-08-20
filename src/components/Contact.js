@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import Footer from './Footer'
+import Swal from 'sweetalert2'
 
 class Contact extends Component{
     constructor(){
@@ -28,6 +29,17 @@ class Contact extends Component{
     }
     sendMessage(){
         axios.post('/api/sendcontactemail',{email: this.state.email,message: this.state.message})
+        .then(
+            Swal({
+                type: 'success',
+                title: 'Woo!',
+                text: 'Message sent!'
+            })
+        )
+         this.setState({
+            message: '',
+            email: ''
+        })
     }
     toggleState(){
         this.setState({
@@ -59,8 +71,8 @@ class Contact extends Component{
                 <h5 className={this.state.showExchange ? 'showing-answer' : 'hidden-answer'}>We do not :( But please let us know if you have any issues with your order and we'll be happy to help!</h5>
                 <div className="contact-form">
                 <h2>Still have questions?</h2>
-                <input onChange={(e)=>this.handleEmail(e.target.value)} placeholder="Your email address"/>
-                <textarea onChange={(e)=>this.handleMessage(e.target.value)} placeholder="Your message"></textarea>
+                <input onChange={(e)=>this.handleEmail(e.target.value)} placeholder="Your email address" value={this.state.email}/>
+                <textarea onChange={(e)=>this.handleMessage(e.target.value)} placeholder="Your message" value={this.state.message}></textarea>
                 <button className="addtocart-button" id="thinner-button" onClick={()=>this.sendMessage()}>Submit</button>
                 </div>
             </div>

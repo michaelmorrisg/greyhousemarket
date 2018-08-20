@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import ItemsCarousel from 'react-items-carousel'
 import {range} from 'lodash'
+import {withRouter} from 'react-router'
 
 
 
@@ -47,7 +48,7 @@ class SearchResults extends Component {
                 {/* {this.props.results.map((element,i)=>{
                     return <Link key={i} to={`/product/${element.products_id}`}>{element.product_name}</Link>
                 })} */}
-            <ItemsCarousel
+        <ItemsCarousel
         // Placeholder configurations
         enablePlaceholder={false}
         numberOfPlaceholderItems={this.props.results.length}
@@ -80,4 +81,4 @@ class SearchResults extends Component {
         )
     }
 }
-export default SearchResults
+export default withRouter(SearchResults)

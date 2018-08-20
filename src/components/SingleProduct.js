@@ -9,6 +9,7 @@ import Reviews from './Reviews'
 import Backdrop from './Backdrop';
 import Swal from 'sweetalert2'
 import Footer from './Footer'
+import {withRouter} from 'react-router'
 
 
 class SingleProduct extends Component{
@@ -175,4 +176,4 @@ class SingleProduct extends Component{
 
     }
 }
-export default connect(null,{countCart})(SingleProduct)
+export default withRouter(connect(null,{countCart})(SingleProduct))
