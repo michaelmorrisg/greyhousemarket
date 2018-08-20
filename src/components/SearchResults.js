@@ -5,6 +5,7 @@ import {range} from 'lodash'
 
 
 
+
 class SearchResults extends Component {
     constructor(){
         super()
@@ -19,6 +20,7 @@ class SearchResults extends Component {
           children: this.props.results,
           activeItemIndex: 0
         });
+        // console.log(this.state.children)
     }
     async componentDidUpdate(prevProps){
         if(this.props.results !== prevProps.results){

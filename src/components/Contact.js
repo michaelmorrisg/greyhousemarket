@@ -50,12 +50,12 @@ class Contact extends Component{
             <div className="contact-main-div">
             <div className="questions-main">
                 <h2>Top Questions</h2>
-                <h4 className="question" onClick={()=>this.toggleState()}>Are you really this cool?</h4>
+                <h4 className="question" onClick={()=>this.toggleState()}><span>{this.state.showCool ? '-  ' : '+  '}</span>Are you really this cool?</h4>
                 <div className={this.state.showCool ? "showing-answer" : "hidden-answer" }><h5 className="answer">Yes. Yes we are.</h5></div>
-                <h4 className="question" onClick={()=>this.toggleReturn()}>What is your return policy?</h4>
+                <h4 className="question" onClick={()=>this.toggleReturn()}><span>{this.state.showReturn ? '-  ' : '+  '}</span>What is your return policy?</h4>
                 <div className={this.state.showReturn ? 'showing-answer' : 'hidden-answer'}><h5><b>We gladly accept returns</b></h5><h5>Contact me within 14 days of delivery
                     and ship the items back within 30 days for a full refund</h5></div>
-                <h4 className="question" onClick={()=>this.toggleExchange()}>Do you accept exchanges?</h4>
+                <h4 className="question" onClick={()=>this.toggleExchange()}><span>{this.state.showExchange ? '-  ' : '+  '}</span>Do you accept exchanges?</h4>
                 <h5 className={this.state.showExchange ? 'showing-answer' : 'hidden-answer'}>We do not :( But please let us know if you have any issues with your order and we'll be happy to help!</h5>
                 <div className="contact-form">
                 <h2>Still have questions?</h2>
