@@ -16,6 +16,7 @@ import Contact from './components/Contact'
 import Admin from './components/Admin'
 import AddReview from './components/AddReview'
 import Confirmation from './components/Confirmation'
+import HomeDecor from './components/HomeDecor'
 
 export default (
     <Switch>
@@ -26,6 +27,7 @@ export default (
         <Route path="/kids" component={Kids}/>
         <Route path="/walls" component={Walls}/>
         <Route path="/car" component={Car}/>
+        <Route path="/home-decor" component={HomeDecor}/>
         <Route path="/seasonal" component={Seasonal}/>
         <Route path="/product/:id" component={SingleProduct}/>
         <Route path="/cart" component={Cart}/>
