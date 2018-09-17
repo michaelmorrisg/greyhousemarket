@@ -11,6 +11,9 @@ html {
   background-color: #E0E0E0;
   border: none;
 }
+.main-banner-div-left, .main-banner-div-right{
+  display: none;
+}
 .fulfill-button {
   background-color: #ff5e55;
   border: none;
@@ -1151,6 +1154,9 @@ button {
 .main-review-div {
   margin-bottom: 20vh;
 }
+.real-nav-full {
+  display: none;
+}
 @keyframes animate {
   0%{
     transform: translate(-50%,-50%) rotate(-45deg);
@@ -1224,8 +1230,17 @@ button {
 .grow:hover {
   transform: scale(1.2);
 }
+.categories-full {
+  display: none;
+}
 @keyframes shrinkline {
   from {width : 50vw;
+    border-bottom: 2px solid #707070;}
+  to {width: 0vw;
+    border-bottom: 2px solid #707070;}
+}
+@keyframes shrinklineFull {
+  from {width : 50%;
     border-bottom: 2px solid #707070;}
   to {width: 0vw;
     border-bottom: 2px solid #707070;}
@@ -1530,6 +1545,190 @@ button {
   .product-grid {
     width: 80%;
   }
+  .full-nav {
+    display: none;
+  }
+  .real-nav-full {
+    display: block;
+  }
+  .full-nav-background {
+    background-color: #f5f3f3;
+    height: 130px;
+  }
+  .full-nav-content {
+    width: 90%;
+    margin: 0px auto;
+    height: 100%;
+    display: flex;
+  }
+  .navbar-left {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .full-nav-left-upper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  .nav-icon {
+    margin: 0px 10px;
+  }
+  .full-nav-left-lower {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+  .navbar-right {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+.full-nav-right-upper {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+.full-nav-right-upper .active-input {
+  width: 50%;
+}
+.full-nav-right-lower {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.full-nav-img {
+  width: 100px;
+  height: auto;
+  padding-top: 15px;
+}
+.full-nav-mid {
+  background-color: white;
+  width: 20%;
+  border-radius: 50%;
+  height: 180px;
+  margin-top: -26px;
+  max-width: 190px;
+}
+.full-nav-mid img {
+  margin-top: 20px;
+}
+.main-logo, .main-banner {
+  display: none;
+}
+.main-banner-div {
+  height: 450px;
+  display: flex;
+  margin-top: -25px;
+}
+.active-input{
+  background: transparent;
+}
+.hidden-input {
+  background: transparent;
+  animation: shrinklineFull .5s
+}
+.search-icon {
+  margin-right: 10px;
+}
+
+.main-banner-div-left {
+  background-color: #ff5e55;
+  width: 60%;
+  border-right: 10px solid white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.main-banner-div-right {
+  width: 40%;
+  height: 100%;
+}
+.carousel-image-full {
+  width: 100%;
+  height: 100%;
+}
+.full-carousel-div {
+  width: 100%;
+  height: 100%;
+}
+.full-carousel-img {
+  width: 100%;
+  height: 100%;
+}
+.full-banner-text {
+  width: 80%;
+  height: auto;
+}
+.main-banner-div-left > h4 {
+  color: white;
+  font-size: 20px;
+}
+.main-banner-div-left, .main-banner-div-right{
+  display: block;
+}
+.category-text {
+  width: 30%;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+}
+.categories {
+  width: 95%;
+}
+.category-rows {
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin: 0px auto;
+  margin-top: -50px;
+}
+.categories {
+  display: none;
+  
+}
+.categories-full {
+  display: block;
+  margin-top: -50px;
+}
+.background-test {
+  height: 80%;
+  width: 100%;
+  background-color: black;
+  opacity: 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  position: absolute;
+}
+.category-container:hover .background-test {
+  opacity: .38;
+}
+.category-container{
+  overflow:hidden;
+  max-height: 300px;
+}
+
+.category-container:hover .lower-div-category {
+  background-color: #ff5e55;
+  color: white;
+}
+.lower-div-category{
+  background-color: #f5f3f3;
+  color: #333333;
+}
+.full-nav-left-lower a, .full-nav-right-lower a {
+  color: #333333;
+  font-size: 20px;
+  text-decoration: none;
+}
+.full-nav-left-lower a:hover, .full-nav-right-lower a:hover {
+  color: #ff5e55;
+}
+#third-row {
+  display: none;
+}
+
 
 }
 @media(min-width:1240px){

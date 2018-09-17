@@ -4,6 +4,7 @@ import './App.css';
 import styles from 'react-responsive-carousel/lib/styles/carousel.min.css'
 import routes from './routes'
 import Nav from './components/Nav'
+import NavFull from './components/NavFull'
 import CartTotals from './components/CartTotals'
 import SideDrawer from './components/SideDrawer'
 import Backdrop from './components/Backdrop'
@@ -40,6 +41,7 @@ class App extends Component {
     return (
       <div className="App">
         <Nav drawerClickHandler={this.drawerToggleClickHandler} />
+        <NavFull/>
         <SideDrawer drawerClickHandler={this.drawerToggleClickHandler} show={this.state.sideDrawerOpen}/>
         {backdrop}
         {routes}
