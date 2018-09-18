@@ -120,7 +120,7 @@ class Nav extends Component{
                         <a href="https://www.twitter.com" target="_blank"><FontAwesomeIcon className="grow nav-icon" icon={faTwitter} size="2x" color='#333333'/></a>
                         </div>
                         <div className="full-nav-left-lower">
-                            <Link to="/account/login" >Login</Link>
+                            <Link to="/" >Home</Link>
                             <Link to="/contact" >About Us</Link>
                         </div>
                         </div>
@@ -135,7 +135,8 @@ class Nav extends Component{
                         </div>
                         <div className="full-nav-right-lower">
                             <Link to="/account/myaccount">My Account</Link>
-                            <Link to="/contact">Contact Us</Link>
+                            <Link to="/account/login">Login</Link>
+                            {/* <Link to="/contact">Contact Us</Link> */}
                         </div>
                         </div>
                         {this.state.searchQuery && this.state.searchActive ? <SearchResults searchQuery={this.state.searchQuery} results={this.state.searchResults} /> : ''}
