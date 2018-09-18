@@ -35,7 +35,7 @@ class HomeDecor extends Component{
             <div id="grad1" className="product-headline">
             <Parallax
                     strength={500}
-                    bgImage={require('../images/wall-parallax-large.jpg')}
+                    bgImage={require('../images/HomeDecorMain.jpg')}
                     bgWidth='100%'
                     bgHeight='auto'
                     blur={1}

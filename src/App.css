@@ -1728,6 +1728,12 @@ button {
 #third-row {
   display: none;
 }
+.footer-main {
+  background-color: #f5f3f3;
+}
+.footer-main p, .footer-main a {
+  color: #333333;
+}
 
 
 }
