@@ -347,6 +347,11 @@ button {
   flex-wrap: wrap;
   justify-content: space-around;
 }
+.product:hover .lower-product {
+  background-color: #ff5e55;
+  text-decoration: none !important;
+  color: white !important;
+}
 .product {
   width: 100%;
   height: 20vh;
@@ -1325,9 +1330,9 @@ button {
   .lower-product p {
     font-size: 20px;
   }
-  .lower-product:hover p {
+  /* .lower-product:hover p {
     color: #ff5e55;
-  }
+  } */
   .product-grid {
     width: 90%;
     margin: 0px auto;
@@ -1361,11 +1366,11 @@ button {
     font-size: 20px;
     margin-top: 0px;
   }
-  .search-lower-div p:hover,
+  /* .search-lower-div p:hover,
   .search-lower-div a:hover {
     color: #ff5e55;
     text-decoration: none;
-  }
+  } */
   .copyright {
     font-size: 20px;
   }
@@ -1742,9 +1747,16 @@ button {
     margin-top: 6%;
   }
   .search-showing {
-    width: 70%;
+    width: 100%;
     left: 15%;
   }
 
 
+}
+
+a:hover {
+  text-decoration: none;
+}
+.lower-product:hover {
+  color: white !important;
 }

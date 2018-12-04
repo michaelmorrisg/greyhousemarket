@@ -31,8 +31,8 @@ render(props){
                     {this.props.productInfo.image && this.state.hey ? <div className="mapped-products-image" style={this.state.hey}></div>: ''}
                 </div>
                 <div className="lower-product">
-                    <p>{this.props.productInfo.product_name}</p>
-                    <p>${this.props.productInfo.price}</p>
+                    <p style={{textDecoration: "none"}}>{this.props.productInfo.product_name}</p>
+                    <p style={{textDecoration: "none"}}>${this.props.productInfo.price}</p>
                 </div>
             </div>
         )
