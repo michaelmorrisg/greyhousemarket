@@ -1757,6 +1757,6 @@ button {
 a:hover {
   text-decoration: none;
 }
-.lower-product:hover {
+.lower-product p:hover {
   color: white !important;
 }
